@@ -7,6 +7,9 @@ class LoginScreen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.pink[400],
+      ),
       body: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -154,7 +157,7 @@ class LoginScreen1 extends StatelessWidget {
                               child: new Row(
                                 children: <Widget>[
                                   new Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
+                                    padding: const EdgeInsets.only(left: 10.0),
                                     child: Text(
                                       "Login",
                                       style: TextStyle(color: Colors.white),
@@ -170,7 +173,8 @@ class LoginScreen1 extends StatelessWidget {
                                           color: Colors.white,
                                         ),
                                         onPressed: () => {
-                                          Navigator.of(context).pushNamed(
+                                          Navigator.of(context)
+                                              .pushReplacementNamed(
                                             HomeScreen.route,
                                           )
                                         },
@@ -180,7 +184,7 @@ class LoginScreen1 extends StatelessWidget {
                                 ],
                               ),
                               onPressed: () => {
-                                Navigator.of(context).pushNamed(
+                                Navigator.of(context).pushReplacementNamed(
                                   HomeScreen.route,
                                 )
                               },

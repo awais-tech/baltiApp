@@ -1,10 +1,8 @@
-import 'dart:html';
-
 import 'package:balti/Model/meal.dart';
 import 'package:balti/Provider/MealsProvider.dart';
 import 'package:balti/Screens/addtocart.dart';
 import 'package:balti/Widgets/badge.dart';
-import 'package:balti/Widgets/cart_item_details.dart';
+
 import 'package:balti/Widgets/BlaltiMealItem.dart';
 
 import 'package:flutter/material.dart';
