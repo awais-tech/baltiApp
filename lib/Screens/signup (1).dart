@@ -1,4 +1,5 @@
 import 'package:balti/Screens/HomepageScreen.dart';
+import 'package:balti/Screens/login%20screen%201%20(2).dart';
 import 'package:flutter/material.dart';
 
 class Mysignuppage extends StatelessWidget {
@@ -6,9 +7,6 @@ class Mysignuppage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.pink[400],
-      ),
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -16,21 +14,39 @@ class Mysignuppage extends StatelessWidget {
             new Container(
               width: double.infinity,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   FittedBox(
                     fit: BoxFit.fitWidth,
                     child: Container(
-                      padding: EdgeInsets.all(20),
+                      padding: EdgeInsets.only(left: 20),
                       child: Text(
-                        "BALTI SIGN-UP",
+                        "Create Account,",
                         style: TextStyle(
-                            fontStyle: FontStyle.italic,
+                            //fontStyle: FontStyle.italic,
                             fontSize: (MediaQuery.of(context).size.width -
                                     MediaQuery.of(context).padding.top) *
                                 0.060,
                             fontWeight: FontWeight.bold,
                             color: Colors.pink[900]),
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                  ),
+                  FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Container(
+                      padding: EdgeInsets.only(left: 20, bottom: 30, top: 5),
+                      child: Text(
+                        "Sign up to get started!",
+                        style: TextStyle(
+                            //fontStyle: FontStyle.italic,
+                            fontSize: (MediaQuery.of(context).size.width -
+                                    MediaQuery.of(context).padding.top) *
+                                0.040,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[600]),
+                        textAlign: TextAlign.start,
                       ),
                     ),
                   ),
@@ -202,6 +218,7 @@ class Mysignuppage extends StatelessWidget {
                     ),
                   ),
                   Container(
+                    width: double.infinity,
                     margin: const EdgeInsets.only(top: 20.0),
                     padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                     child: new Row(
@@ -213,10 +230,18 @@ class Mysignuppage extends StatelessWidget {
                               shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
+                                borderRadius: BorderRadius.circular(10.0),
                               )),
-                              padding:
-                                  MaterialStateProperty.all(EdgeInsets.all(10)),
+                              padding: MaterialStateProperty.all(
+                                  EdgeInsets.symmetric(
+                                          vertical: 25,
+                                          horizontal: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              MediaQuery.of(context)
+                                                  .padding
+                                                  .top) *
+                                      0.35),
                               backgroundColor: MaterialStateProperty.all(
                                   Colors.pink[900]), // <-- Button color
                               overlayColor:
@@ -226,36 +251,41 @@ class Mysignuppage extends StatelessWidget {
                                   return Colors.red; // <-- Splash color
                               }),
                             ),
-                            child: new Row(
-                              children: <Widget>[
-                                new Padding(
-                                  padding: const EdgeInsets.only(left: 20.0),
-                                  child: Text(
-                                    "Register",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                                new Transform.translate(
-                                  offset: Offset(15.0, 0.0),
-                                  child: new Container(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: TextButton(
-                                      child: Icon(
-                                        Icons.arrow_forward,
-                                        color: Colors.white,
-                                      ),
-                                      onPressed: () => {
-                                        Navigator.of(context)
-                                            .pushNamed(HomeScreen.route)
-                                      },
-                                    ),
-                                  ),
-                                )
-                              ],
+                            child: const Text(
+                              "Register",
+                              style: TextStyle(color: Colors.white),
                             ),
                             onPressed: () => {
                               Navigator.of(context).pushNamed(HomeScreen.route)
                             },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                            child: Text(
+                          "I'm already a member.",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )),
+                        new Container(
+                          //padding: const EdgeInsets.only(left: 0),
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                              textStyle: const TextStyle(
+                                  fontSize: 10, color: Colors.pink),
+                            ),
+                            onPressed: () {
+                              // Navigator.of(context).pushNamed(
+                              //   LoginScreen1.route,
+                              // );
+                            },
+                            child: const Text('Sign in'),
                           ),
                         ),
                       ],
