@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     final loadedMenu = Provider.of<BaltiMeals>(
       context,
-      listen: false,
+      listen: true,
     );
     final products =
         _showOnlyFavorites ? loadedMenu.favoriteItems : loadedMenu.items;
