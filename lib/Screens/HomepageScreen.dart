@@ -124,15 +124,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 //       ),
                 //     )
                 child: ListView.builder(
+                  cacheExtent: 9999,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, index) {
                     return ChangeNotifierProvider.value(
-                        value: products[index],
-                        child: Container(
-                          width: 300.0,
-                          child: BaltiItem(),
-                        ));
+                      value: products[index],
+                      child: Container(
+                        width: 300.0,
+                        child: BaltiItem(),
+                      ),
+                    );
                   },
                   itemCount: products.length,
                 ),

@@ -11,6 +11,7 @@ class LoginScreen1 extends StatelessWidget {
         child: SingleChildScrollView(
           child: SafeArea(
             child: Container(
+              margin: EdgeInsets.only(top: 30),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -130,7 +131,8 @@ class LoginScreen1 extends StatelessWidget {
                         ),
                         Container(
                           margin: const EdgeInsets.only(top: 20.0),
-                          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                          padding:
+                              const EdgeInsets.only(left: 20.0, right: 20.0),
                           child: new Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -146,10 +148,10 @@ class LoginScreen1 extends StatelessWidget {
                                         EdgeInsets.all(10)),
                                     backgroundColor: MaterialStateProperty.all(
                                         Colors.pink[900]), // <-- Button color
-                                    overlayColor:
-                                        MaterialStateProperty.resolveWith<Color?>(
-                                            (states) {
-                                      if (states.contains(MaterialState.pressed))
+                                    overlayColor: MaterialStateProperty
+                                        .resolveWith<Color?>((states) {
+                                      if (states
+                                          .contains(MaterialState.pressed))
                                         return Colors
                                             .pink[700]; // <-- Splash color
                                     }),
@@ -167,7 +169,7 @@ class LoginScreen1 extends StatelessWidget {
                                       new Transform.translate(
                                         offset: Offset(15.0, 0.0),
                                         child: new Container(
-                                          padding: const EdgeInsets.all(5.0),
+                                          padding: const EdgeInsets.all(2.0),
                                           child: TextButton(
                                             child: Icon(
                                               Icons.arrow_forward,
@@ -196,7 +198,8 @@ class LoginScreen1 extends StatelessWidget {
                         ),
                         Container(
                           margin: const EdgeInsets.only(top: 20.0),
-                          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                          padding:
+                              const EdgeInsets.only(left: 20.0, right: 20.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -209,7 +212,8 @@ class LoginScreen1 extends StatelessWidget {
                                     padding: const EdgeInsets.only(left: 3),
                                     child: TextButton(
                                       style: TextButton.styleFrom(
-                                        textStyle: const TextStyle(fontSize: 10),
+                                        textStyle:
+                                            const TextStyle(fontSize: 10),
                                       ),
                                       onPressed: () {
                                         Navigator.of(context).pushNamed(
