@@ -270,7 +270,7 @@ class Mysignuppage extends StatelessWidget {
                       children: [
                         Container(
                             child: Text(
-                          "I'm already a member.",
+                          "if you have an account.",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )),
                         new Container(
@@ -281,9 +281,9 @@ class Mysignuppage extends StatelessWidget {
                                   fontSize: 10, color: Colors.pink),
                             ),
                             onPressed: () {
-                              // Navigator.of(context).pushNamed(
-                              //   LoginScreen1.route,
-                              // );
+                              Navigator.of(context).pushNamed(
+                                '/',
+                              );
                             },
                             child: const Text('Sign in'),
                           ),
