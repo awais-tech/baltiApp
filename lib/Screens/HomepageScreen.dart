@@ -40,7 +40,37 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text('Home Screen'),
         actions: <Widget>[
           PopupMenuButton(
-            color: Colors.yellow,
+            color: Colors.white,
+            onSelected: (FilterOptions selectedValue) {
+              setState(() {
+                if (selectedValue == FilterOptions.Favorites) {
+                  _showOnlyFavorites = true;
+                } else {
+                  _showOnlyFavorites = false;
+                }
+              });
+            },
+            icon: Icon(Icons.map_outlined),
+            itemBuilder: (_) => [
+              PopupMenuItem(
+                child: Column(
+                  children: [
+                    Text('Change Location'),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Enter Location',
+                        border: InputBorder.none,
+                        hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
+                      ),
+                    )
+                  ],
+                ),
+                value: FilterOptions.Favorites,
+              ),
+            ],
+          ),
+          PopupMenuButton(
+            color: Colors.pink,
             onSelected: (FilterOptions selectedValue) {
               setState(() {
                 if (selectedValue == FilterOptions.Favorites) {
@@ -64,20 +94,24 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          Badge(
-            child: IconButton(
-              icon: Icon(
-                Icons.shopping_cart,
-              ),
-              onPressed: () {
-                Navigator.of(context).pushNamed(
-                  Mycart.route,
-                );
-              },
-            ),
-            value: '4',
-            color: Colors.yellow,
-          ),
+          // Badge(
+          //   child: IconButton(
+          //     icon: Icon(
+          //       Icons.shopping_cart,
+          //     ),
+          //     onPressed: () {
+          //       Navigator.of(context).pushNamed(
+          //         Mycart.route,
+          //       );
+          //     },
+          //   ),
+          //   value: '4',
+          //   color: Colors.yellow,
+          // ),
+          ElevatedButton(
+            onPressed: () => {},
+            child: Text('Switch to Buyer'),
+          )
         ],
       ),
       body: Container(

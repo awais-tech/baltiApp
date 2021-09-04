@@ -13,7 +13,8 @@ class BaltiMeals with ChangeNotifier {
       ResturentName: 'Subway',
       Category: 'Chinese',
       price: 20,
-      description: 'Its new products you can buy now',
+      description:
+          'Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy nowIts new products you can buy now Its new products you can buy now Its new products you can buy now',
       Dilvery: '45 Dilvery Fee',
       imageUrl:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',

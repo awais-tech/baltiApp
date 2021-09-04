@@ -4,6 +4,7 @@ import 'package:balti/Screens/HomepageScreen.dart';
 import 'package:balti/Screens/addtocart.dart';
 import 'package:balti/Screens/login%20screen%201%20(2).dart';
 import 'package:balti/Screens/signup%20(1).dart';
+import 'package:balti/Widgets/tab.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
           home: LoginScreen1(),
           routes: {
             Mysignuppage.route: (ctx) => Mysignuppage(),
-            HomeScreen.route: (ctx) => HomeScreen(),
+            HomeScreen.route: (ctx) => TabsScreen(),
             Mycart.route: (ctx) => Mycart(),
             ProductDetailScreen.routeName: (ctx) => ProductDetailScreen()
           }),

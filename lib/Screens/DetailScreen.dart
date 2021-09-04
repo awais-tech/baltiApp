@@ -11,6 +11,7 @@ class ProductDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size;
     final productId =
         ModalRoute.of(context)?.settings.arguments as String; // is the id!
     final loadedProduct = Provider.of<BaltiMeals>(
@@ -21,38 +22,85 @@ class ProductDetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(loadedProduct.title),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            Container(
-              height: 300,
-              width: double.infinity,
-              child: Image.network(loadedProduct.imageUrl, fit: BoxFit.contain),
+      body: Column(
+        children: <Widget>[
+          Container(
+            height: screenWidth.height * 0.75,
+            child: ListView(
+              children: <Widget>[
+                Container(
+                  height: 250,
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  width: double.infinity,
+                  child: Image.network(loadedProduct.imageUrl,
+                      fit: BoxFit.contain),
+                ),
+                Divider(),
+                SizedBox(height: 10),
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    'Rs ${loadedProduct.price}',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  decoration: BoxDecoration(),
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  width: double.infinity,
+                  child: Text(
+                    loadedProduct.title,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    softWrap: true,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  decoration: BoxDecoration(),
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  width: double.infinity,
+                  margin: EdgeInsets.only(bottom: 20),
+                  child: Text(
+                    loadedProduct.description,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontSize: 15),
+                    softWrap: true,
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 10),
-            Text(
-              '\$${loadedProduct.price}',
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 20,
-              ),
+          ),
+          Divider(),
+          ElevatedButton(
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              )),
+              padding: MaterialStateProperty.all(
+                  EdgeInsets.only(left: 30, right: 30, top: 20, bottom: 20)),
+
+              backgroundColor: MaterialStateProperty.all(
+                  Colors.pink[900]), // <-- Button color
+              overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
+                if (states.contains(MaterialState.pressed))
+                  return Colors.red; // <-- Splash color
+              }),
             ),
-            SizedBox(
-              height: 10,
+            child: Text(
+              "Add To Cart",
             ),
-            Container(
-              decoration: BoxDecoration(),
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              width: double.infinity,
-              child: Text(
-                loadedProduct.description,
-                textAlign: TextAlign.center,
-                softWrap: true,
-              ),
-            )
-          ],
-        ),
+            onPressed: () => {},
+          )
+        ],
       ),
     );
   }
