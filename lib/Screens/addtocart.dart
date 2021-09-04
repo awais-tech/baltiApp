@@ -21,6 +21,9 @@ class Mycart extends StatelessWidget {
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Cart'),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

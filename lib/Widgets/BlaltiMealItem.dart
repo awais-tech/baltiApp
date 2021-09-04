@@ -1,4 +1,5 @@
 import 'package:balti/Model/meal.dart';
+import 'package:balti/Screens/DetailScreen.dart';
 import 'package:balti/Screens/addtocart.dart';
 
 import 'package:provider/provider.dart';
@@ -33,11 +34,10 @@ class BaltiItem extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          GestureDetector(
+          InkWell(
             onTap: () {
-              Navigator.of(context).pushNamed(
-                Mycart.route,
-              );
+              Navigator.of(context).pushNamed(ProductDetailScreen.routeName,
+                  arguments: loadedMenu.id);
             },
             child: Stack(
               children: <Widget>[
