@@ -2,9 +2,7 @@ import 'package:balti/Model/meal.dart';
 import 'package:balti/Provider/MealsProvider.dart';
 import 'package:balti/Screens/addtocart.dart';
 import 'package:balti/Widgets/badge.dart';
-
 import 'package:balti/Widgets/BlaltiMealItem.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -37,10 +35,11 @@ class _HomeScreenState extends State<HomeScreen> {
     List<Meal> allMenu = loadedMenu.items;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.pink[900],
         title: Text('Home Screen'),
         actions: <Widget>[
           PopupMenuButton(
-            color: Colors.yellow,
+            color: Colors.white,
             onSelected: (FilterOptions selectedValue) {
               setState(() {
                 if (selectedValue == FilterOptions.Favorites) {
@@ -76,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             value: '4',
-            color: Colors.yellow,
+            color: Colors.red,
           ),
         ],
       ),
