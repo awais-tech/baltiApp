@@ -37,7 +37,7 @@ class BaltiMeals with ChangeNotifier {
       duration: 20,
     ),
     Meal(
-        id: 'm1',
+        id: 'm7',
         categories: [
           'c1',
           'c2',

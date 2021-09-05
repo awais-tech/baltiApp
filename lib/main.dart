@@ -1,4 +1,5 @@
 import 'package:balti/Provider/MealsProvider.dart';
+import 'package:balti/Provider/cart.dart';
 import 'package:balti/Screens/DetailScreen.dart';
 import 'package:balti/Screens/HomepageScreen.dart';
 import 'package:balti/Screens/addtocart.dart';
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (ctx) => BaltiMeals(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => Cart(),
         ),
       ],
       child: MaterialApp(

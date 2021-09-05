@@ -1,5 +1,6 @@
 import 'package:balti/Model/meal.dart';
 import 'package:balti/Provider/MealsProvider.dart';
+import 'package:balti/Provider/cart.dart';
 import 'package:balti/Screens/addtocart.dart';
 import 'package:balti/Widgets/badge.dart';
 import 'package:balti/Widgets/BlaltiMealItem.dart';
@@ -93,20 +94,23 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          Badge(
-            child: IconButton(
-              icon: Icon(
-                Icons.shopping_cart,
-              ),
-              onPressed: () {
-                Navigator.of(context).pushNamed(
-                  Mycart.route,
-                );
-              },
+          Consumer<Cart>(
+            builder: (_, cart, ch) => Badge(
+              child: ch,
+              value: cart.itemCount.toString(),
+              color: Colors.pink,
             ),
-            value: '4',
-            color: Colors.red,
+            child: IconButton(
+                icon: Icon(
+                  Icons.shopping_cart,
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushNamed(
+                    Mycart.route,
+                  );
+                }),
           ),
+
           // Badge(
           //   child: IconButton(
           //     icon: Icon(

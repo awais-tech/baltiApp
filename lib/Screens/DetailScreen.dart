@@ -1,4 +1,5 @@
 import 'package:balti/Provider/MealsProvider.dart';
+import 'package:balti/Provider/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +19,7 @@ class ProductDetailScreen extends StatelessWidget {
       context,
       listen: false,
     ).findById(productId);
+    final cart = Provider.of<Cart>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text(loadedProduct.title),
@@ -98,7 +100,25 @@ class ProductDetailScreen extends StatelessWidget {
             child: Text(
               "Add To Cart",
             ),
-            onPressed: () => {},
+            onPressed: () {
+              cart.addItem(
+                  loadedProduct.id, loadedProduct.price, loadedProduct.title);
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    'Added item to cart!',
+                  ),
+                  duration: Duration(seconds: 2),
+                  action: SnackBarAction(
+                    label: 'UNDO',
+                    onPressed: () {
+                      cart.removeSingleItem(loadedProduct.id);
+                    },
+                  ),
+                ),
+              );
+            },
           )
         ],
       ),

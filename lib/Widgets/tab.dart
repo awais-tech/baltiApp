@@ -1,6 +1,9 @@
+import 'package:balti/Provider/cart.dart';
 import 'package:balti/Screens/HomepageScreen.dart';
 import 'package:balti/Screens/addtocart.dart';
+import 'package:balti/Widgets/badge.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class TabsScreen extends StatefulWidget {
   @override
@@ -64,7 +67,16 @@ class _TabsScreenState extends State<TabsScreen> {
           ),
           BottomNavigationBarItem(
             backgroundColor: Theme.of(context).primaryColor,
-            icon: Icon(Icons.add_shopping_cart_rounded),
+            icon: Consumer<Cart>(
+              builder: (_, cart, ch) => Badge(
+                child: ch,
+                value: cart.itemCount.toString(),
+                color: Colors.pink,
+              ),
+              child: Icon(
+                Icons.shopping_cart,
+              ),
+            ),
             label: 'Cart',
           ),
           BottomNavigationBarItem(
