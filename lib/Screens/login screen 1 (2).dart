@@ -142,11 +142,19 @@ class LoginScreen1 extends StatelessWidget {
                                     shape: MaterialStateProperty.all<
                                             RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
+                                      borderRadius: BorderRadius.circular(10.0),
                                     )),
                                     padding: MaterialStateProperty.all(
                                         EdgeInsets.symmetric(
-                                            vertical: 5, horizontal: 10)),
+                                                vertical: 1.5,
+                                                horizontal:
+                                                    MediaQuery.of(context)
+                                                            .size
+                                                            .width -
+                                                        MediaQuery.of(context)
+                                                            .padding
+                                                            .top) *
+                                            0.1),
                                     backgroundColor: MaterialStateProperty.all(
                                         Colors.pink[900]), // <-- Button color
                                     overlayColor: MaterialStateProperty
@@ -157,35 +165,40 @@ class LoginScreen1 extends StatelessWidget {
                                             .pink[700]; // <-- Splash color
                                     }),
                                   ),
-                                  child: new Row(
-                                    children: <Widget>[
-                                      new Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 10.0),
-                                        child: Text(
-                                          "Login",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                      new Transform.translate(
-                                        offset: Offset(15.0, 0.0),
-                                        child: new Container(
-                                          padding: const EdgeInsets.all(2.0),
-                                          child: TextButton(
-                                            child: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.white,
-                                            ),
-                                            onPressed: () => {
-                                              Navigator.of(context)
-                                                  .pushReplacementNamed(
-                                                HomeScreen.route,
-                                              )
-                                            },
+                                  child: FittedBox(
+                                    child: new Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        new Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 1.0),
+                                          child: Text(
+                                            "Login",
+                                            style:
+                                                TextStyle(color: Colors.white),
                                           ),
                                         ),
-                                      )
-                                    ],
+                                        new Transform.translate(
+                                          offset: Offset(15.0, 0.0),
+                                          child: new Container(
+                                            //padding: const EdgeInsets.all(1.0),
+                                            child: TextButton(
+                                              child: Icon(
+                                                Icons.arrow_forward,
+                                                color: Colors.white,
+                                              ),
+                                              onPressed: () => {
+                                                Navigator.of(context)
+                                                    .pushReplacementNamed(
+                                                  HomeScreen.route,
+                                                )
+                                              },
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                   onPressed: () => {
                                     Navigator.of(context).pushReplacementNamed(

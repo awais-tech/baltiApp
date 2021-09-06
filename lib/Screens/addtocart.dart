@@ -190,7 +190,7 @@ class _MycartState extends State<Mycart> {
                             vertical: 25,
                             horizontal: MediaQuery.of(context).size.width -
                                 MediaQuery.of(context).padding.top) *
-                        0.3),
+                        0.2),
                     backgroundColor: MaterialStateProperty.all(
                         Colors.pink[900]), // <-- Button color
                     overlayColor:
@@ -199,14 +199,17 @@ class _MycartState extends State<Mycart> {
                         return Colors.red; // <-- Splash color
                     }),
                   ),
-                  child: Text(
-                    "Review Address and Payment",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: (MediaQuery.of(context).size.width -
-                                MediaQuery.of(context).padding.top) *
-                            0.02),
-                    textAlign: TextAlign.center,
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Text(
+                      "Review Address and Payment",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: (MediaQuery.of(context).size.width -
+                                  MediaQuery.of(context).padding.top) *
+                              0.04),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                   onPressed: () => {},
                 ),

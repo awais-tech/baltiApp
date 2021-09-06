@@ -51,27 +51,27 @@ class _TabsScreenState extends State<TabsScreen> {
         onTap: _selectPage,
         backgroundColor: Colors.pink[900],
         unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.pink[900],
+        selectedItemColor: Colors.amber,
         currentIndex: _selectedPageIndex,
         // type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-            backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor: Colors.pink[900],
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor: Colors.pink[900],
             icon: Icon(Icons.explore),
             label: 'Explore',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor: Colors.pink[900],
             icon: Consumer<Cart>(
               builder: (_, cart, ch) => Badge(
                 child: ch,
                 value: cart.itemCount.toString(),
-                color: Colors.pink,
+                color: Colors.amber,
               ),
               child: Icon(
                 Icons.shopping_cart,
@@ -80,7 +80,7 @@ class _TabsScreenState extends State<TabsScreen> {
             label: 'Cart',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor: Colors.pink[900],
             icon: Icon(Icons.settings),
             label: 'Account',
           ),

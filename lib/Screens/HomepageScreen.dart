@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.pink[900],
-        title: Text('Home Screen'),
+        title: FittedBox(fit: BoxFit.fitWidth, child: Text('Home Feed')),
         actions: <Widget>[
           PopupMenuButton(
             color: Colors.white,

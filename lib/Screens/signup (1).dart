@@ -273,7 +273,7 @@ class Mysignuppage extends StatelessWidget {
                           "if you have an account.",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )),
-                        new Container(
+                        Container(
                           //padding: const EdgeInsets.only(left: 0),
                           child: TextButton(
                             style: TextButton.styleFrom(

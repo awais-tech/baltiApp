@@ -53,67 +53,80 @@ class _CartItemDetailState extends State<CartItemDetail> {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Container(
-                height: 30,
-                width: 30,
-                child: GestureDetector(
-                    onTap: () {
-                      cart.removeSingleItem(widget.keys);
-                    },
-                    child: Icon(
-                      Icons.remove_outlined,
-                      color: Colors.grey,
-                      size: 30,
-                    )),
-              ),
-              Container(
-                  margin: EdgeInsets.only(left: 6, right: 6),
-                  child: Text(
-                    '${widget.Quantity}',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  )),
-              Container(
-                height: 30,
-                width: 30,
-                child: GestureDetector(
-                    onTap: () {
-                      cart.updateSingleItem(widget.keys);
-                    },
-                    child: Icon(
-                      Icons.add_outlined,
-                      color: Colors.grey,
-                      size: 30,
-                    )),
-              ),
-              Container(
+              FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Container(
                   height: 30,
                   width: 30,
-                  child: IconButton(
-                    icon: Icon(Icons.delete_rounded),
-                    color: Colors.pink[900],
-                    iconSize: 30,
-                    onPressed: () {
-                      cart.removeItem(widget.keys);
-                    },
-                  )),
-              new Padding(
-                  padding: EdgeInsets.only(left: 20),
-                  child: Text('${widget.productTitle}',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                  child: GestureDetector(
+                      onTap: () {
+                        cart.removeSingleItem(widget.keys);
+                      },
+                      child: Icon(
+                        Icons.remove_outlined,
+                        color: Colors.grey,
+                        size: MediaQuery.of(context).size.width * 0.06,
+                      )),
+                ),
+              ),
+              FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Container(
+                      margin: EdgeInsets.only(left: 3, right: 3),
+                      child: Text(
+                        '${widget.Quantity}',
+                        style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width * 0.04,
+                            fontWeight: FontWeight.bold),
                       ))),
+              FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Container(
+                    height: 30,
+                    width: 30,
+                    child: GestureDetector(
+                        onTap: () {
+                          cart.updateSingleItem(widget.keys);
+                        },
+                        child: Icon(
+                          Icons.add_outlined,
+                          color: Colors.grey,
+                          size: MediaQuery.of(context).size.width * 0.06,
+                        )),
+                  )),
+              FittedBox(
+                  child: Container(
+                      height: 30,
+                      width: 30,
+                      child: IconButton(
+                        icon: Icon(Icons.delete_rounded),
+                        color: Colors.pink[900],
+                        iconSize: MediaQuery.of(context).size.width * 0.04,
+                        onPressed: () {
+                          cart.removeItem(widget.keys);
+                        },
+                      ))),
+              FittedBox(
+                  child: Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Text('${widget.productTitle}',
+                          style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width * 0.04,
+                            fontWeight: FontWeight.bold,
+                          )))),
             ],
           ),
-          new Padding(
-              padding: EdgeInsets.only(left: 30, right: 20),
-              child: Text(
-                'Rs.${widget.productPrice * widget.Quantity}',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                ),
-              ))
+          Expanded(
+              child: FittedBox(
+                  child: Padding(
+                      padding: EdgeInsets.only(left: 30, right: 20),
+                      child: Text(
+                        'Rs.${widget.productPrice * widget.Quantity}',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width * 0.04,
+                        ),
+                      ))))
         ],
       ),
     );
