@@ -41,7 +41,7 @@ class _MycartState extends State<Mycart> {
         ],
       ),
       body: Container(
-        height: MediaQuery.of(context).size.height * 1,
+        height: MediaQuery.of(context).size.height * 0.9,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -50,7 +50,7 @@ class _MycartState extends State<Mycart> {
                 children: [
                   Container(
                     margin: EdgeInsets.only(left: 10, right: 10, top: 30),
-                    height: MediaQuery.of(context).size.height / 1.4,
+                    height: MediaQuery.of(context).size.height * 0.67,
                     width: screenWidth.width * 1.0,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
@@ -86,7 +86,8 @@ class _MycartState extends State<Mycart> {
                         cart.itemCount < 1
                             ? Center(child: Text('Your cart is empty'))
                             : Container(
-                                height: MediaQuery.of(context).size.height / 3,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2,
                                 margin: EdgeInsets.only(
                                   left: 20,
                                 ),
@@ -179,7 +180,8 @@ class _MycartState extends State<Mycart> {
                 ],
               ),
               Container(
-                margin: EdgeInsets.all(20),
+                height: MediaQuery.of(context).size.height * 0.065,
+                margin: EdgeInsets.all(10),
                 child: ElevatedButton(
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(

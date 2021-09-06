@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.pink[900],
-        title: FittedBox(fit: BoxFit.fitWidth, child: Text('Home Feed')),
+        title: FittedBox(fit: BoxFit.fitWidth, child: Text('Home')),
         actions: <Widget>[
           PopupMenuButton(
             color: Colors.white,
@@ -94,22 +94,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          Consumer<Cart>(
-            builder: (_, cart, ch) => Badge(
-              child: ch,
-              value: cart.itemCount.toString(),
-              color: Colors.pink,
-            ),
-            child: IconButton(
-                icon: Icon(
-                  Icons.shopping_cart,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pushNamed(
-                    Mycart.route,
-                  );
-                }),
-          ),
 
           // Badge(
           //   child: IconButton(
@@ -129,8 +113,9 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () => {},
             style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.pink[900])),
-            child: Text('Switch to Buyer'),
-          )
+            child:
+                FittedBox(fit: BoxFit.fitWidth, child: Text('Switch to Buyer')),
+          ),
         ],
       ),
       body: Container(
