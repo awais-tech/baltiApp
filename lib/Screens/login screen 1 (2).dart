@@ -130,9 +130,9 @@ class LoginScreen1 extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: const EdgeInsets.only(top: 20.0),
-                          padding:
-                              const EdgeInsets.only(left: 20.0, right: 20.0),
+                          // margin: const EdgeInsets.only(top: 2.0),
+                          //padding:
+                          //const EdgeInsets.only(left: 20.0, right: 20.0),
                           child: new Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -142,11 +142,11 @@ class LoginScreen1 extends StatelessWidget {
                                     shape: MaterialStateProperty.all<
                                             RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
+                                      borderRadius: BorderRadius.circular(30.0),
                                     )),
                                     padding: MaterialStateProperty.all(
                                         EdgeInsets.symmetric(
-                                                vertical: 1.5,
+                                                vertical: 1,
                                                 horizontal:
                                                     MediaQuery.of(context)
                                                             .size
@@ -154,7 +154,7 @@ class LoginScreen1 extends StatelessWidget {
                                                         MediaQuery.of(context)
                                                             .padding
                                                             .top) *
-                                            0.1),
+                                            0.08),
                                     backgroundColor: MaterialStateProperty.all(
                                         Colors.pink[900]), // <-- Button color
                                     overlayColor: MaterialStateProperty
@@ -166,23 +166,26 @@ class LoginScreen1 extends StatelessWidget {
                                     }),
                                   ),
                                   child: FittedBox(
+                                    fit: BoxFit.fitWidth,
                                     child: new Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                          MainAxisAlignment.spaceAround,
                                       children: <Widget>[
                                         new Padding(
                                           padding:
-                                              const EdgeInsets.only(left: 1.0),
+                                              const EdgeInsets.only(left: 2.0),
                                           child: Text(
                                             "Login",
-                                            style:
-                                                TextStyle(color: Colors.white),
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontStyle: FontStyle.italic),
                                           ),
                                         ),
                                         new Transform.translate(
                                           offset: Offset(15.0, 0.0),
                                           child: new Container(
-                                            //padding: const EdgeInsets.all(1.0),
+                                            // padding: const EdgeInsets.on(1.0),
                                             child: TextButton(
                                               child: Icon(
                                                 Icons.arrow_forward,
@@ -211,7 +214,7 @@ class LoginScreen1 extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: const EdgeInsets.only(top: 20.0),
+                          margin: const EdgeInsets.only(top: 2.0),
                           padding:
                               const EdgeInsets.only(left: 20.0, right: 20.0),
                           child: Column(
@@ -223,7 +226,7 @@ class LoginScreen1 extends StatelessWidget {
                                   Container(
                                       child: Text("Don\'t have an account?")),
                                   new Container(
-                                    padding: const EdgeInsets.only(left: 3),
+                                    //padding: const EdgeInsets.only(left: 1),
                                     child: TextButton(
                                       style: TextButton.styleFrom(
                                         textStyle:
@@ -240,7 +243,7 @@ class LoginScreen1 extends StatelessWidget {
                                 ],
                               ),
                               new Padding(
-                                padding: const EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(2),
                                 child: Text(
                                   "OR",
                                   style: TextStyle(color: Colors.grey[700]),
@@ -250,7 +253,7 @@ class LoginScreen1 extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: const EdgeInsets.only(top: 10.0),
+                          margin: const EdgeInsets.only(top: 5.0),
                           padding: const EdgeInsets.only(left: 20.0),
                           child: SignInButton(
                               buttonType: ButtonType.facebook,
@@ -258,7 +261,7 @@ class LoginScreen1 extends StatelessWidget {
                               onPressed: () {}),
                         ),
                         Container(
-                          margin: const EdgeInsets.only(top: 10.0),
+                          margin: const EdgeInsets.only(top: 5.0),
                           padding: const EdgeInsets.only(left: 20.0),
                           child: SignInButton(
                               buttonType: ButtonType.mail,
@@ -266,7 +269,7 @@ class LoginScreen1 extends StatelessWidget {
                               onPressed: () {}),
                         ),
                         Container(
-                          margin: const EdgeInsets.only(top: 10.0),
+                          margin: const EdgeInsets.only(top: 5.0),
                           padding: const EdgeInsets.only(left: 20.0),
                           child: SignInButton(
                               buttonType: ButtonType.google,
