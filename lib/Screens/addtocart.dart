@@ -110,70 +110,72 @@ class _MycartState extends State<Mycart> {
                             child: Divider(
                               thickness: 2,
                             )),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 20),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Subtotal',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'Rs.${cart.totalAmount}',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Delivery Fee',
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                  Text(
-                                    'Rs.50',
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Total',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'Rs.${cart.totalAmount + 50}',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              Container(
-                                  margin: EdgeInsets.only(
-                                      top: 20, left: 20, right: 20),
-                                  child: Divider(
-                                    thickness: 2,
-                                  )),
-                            ],
-                          ),
-                        )
+                        cart.items.length > 0
+                            ? Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 20, horizontal: 20),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Subtotal',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          'Rs.${cart.totalAmount}',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Delivery Fee',
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                        Text(
+                                          'Rs.50',
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Total',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          'Rs.${cart.totalAmount + 50}',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    Container(
+                                        margin: EdgeInsets.only(
+                                            top: 20, left: 20, right: 20),
+                                        child: Divider(
+                                          thickness: 2,
+                                        )),
+                                  ],
+                                ),
+                              )
+                            : Container()
                       ],
                     ),
                   ),
@@ -204,16 +206,20 @@ class _MycartState extends State<Mycart> {
                   child: FittedBox(
                     fit: BoxFit.fitWidth,
                     child: Text(
-                      "Review Address and Payment",
+                      cart.items.length > 0
+                          ? "Review Address and Payment"
+                          : "Add Some Value into Cart",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: cart.items.length > 0
+                              ? Colors.white
+                              : Colors.grey,
                           fontSize: (MediaQuery.of(context).size.width -
                                   MediaQuery.of(context).padding.top) *
                               0.04),
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  onPressed: () => {},
+                  onPressed: cart.itemCount < 1 ? null : () => {},
                 ),
               ),
             ],

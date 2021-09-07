@@ -1,4 +1,6 @@
 import 'package:balti/Provider/cart.dart';
+import 'package:balti/Screens/Account.dart';
+import 'package:balti/Screens/Explore.dart';
 import 'package:balti/Screens/HomepageScreen.dart';
 import 'package:balti/Screens/addtocart.dart';
 import 'package:balti/Widgets/badge.dart';
@@ -20,7 +22,7 @@ class _TabsScreenState extends State<TabsScreen> {
         'title': 'Home',
       },
       {
-        'Pages': 2,
+        'Pages': Explore(),
         'title': 'Explore',
       },
       {
@@ -28,7 +30,7 @@ class _TabsScreenState extends State<TabsScreen> {
         'title': 'Cart',
       },
       {
-        'Pages': 2,
+        'Pages': Account(),
         'title': 'Account',
       }
     ];
