@@ -31,6 +31,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       ),
       body: Container(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text("Payment Methods"),
             Card(
@@ -148,7 +149,43 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       ))
                 ],
               ),
-            )
+            ),
+            Container(
+                height: MediaQuery.of(context).size.height * 0.065,
+                margin: EdgeInsets.all(10),
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    )),
+                    padding: MaterialStateProperty.all(EdgeInsets.symmetric(
+                            vertical: 25,
+                            horizontal: MediaQuery.of(context).size.width -
+                                MediaQuery.of(context).padding.top) *
+                        0.2),
+                    backgroundColor: MaterialStateProperty.all(
+                        Colors.pink[900]), // <-- Button color
+                    overlayColor:
+                        MaterialStateProperty.resolveWith<Color?>((states) {
+                      if (states.contains(MaterialState.pressed))
+                        return Colors.red; // <-- Splash color
+                    }),
+                  ),
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Text(
+                      "Proceed",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: (MediaQuery.of(context).size.width -
+                                  MediaQuery.of(context).padding.top) *
+                              0.04),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  onPressed: () => {},
+                ))
           ],
         ),
       ),
