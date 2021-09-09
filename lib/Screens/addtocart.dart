@@ -1,4 +1,5 @@
 import 'package:balti/Provider/cart.dart';
+import 'package:balti/Screens/Checkout.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../Widgets/cart_item_details.dart';
@@ -219,7 +220,13 @@ class _MycartState extends State<Mycart> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  onPressed: cart.itemCount < 1 ? null : () => {},
+                  onPressed: cart.itemCount < 1
+                      ? null
+                      : () => {
+                            Navigator.of(context).pushNamed(
+                              CheckoutScreen.route,
+                            )
+                          },
                 ),
               ),
             ],

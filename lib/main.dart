@@ -1,5 +1,6 @@
 import 'package:balti/Provider/MealsProvider.dart';
 import 'package:balti/Provider/cart.dart';
+import 'package:balti/Screens/Checkout.dart';
 import 'package:balti/Screens/DetailScreen.dart';
 import 'package:balti/Screens/HomepageScreen.dart';
 import 'package:balti/Screens/addtocart.dart';
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
               Mysignuppage.route: (ctx) => Mysignuppage(),
               HomeScreen.route: (ctx) => TabsScreen(),
               Mycart.route: (ctx) => Mycart(),
-              ProductDetailScreen.routeName: (ctx) => ProductDetailScreen()
+              ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
+              CheckoutScreen.route: (ctx) => CheckoutScreen()
             }));
   }
 }

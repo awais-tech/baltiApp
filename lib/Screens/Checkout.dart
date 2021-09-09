@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 
 class CheckoutScreen extends StatefulWidget {
+  static final route = '/checkout';
   @override
   _CheckoutScreenState createState() => _CheckoutScreenState();
 }
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
+  var card = false;
+  var cash = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,20 +43,20 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 children: [
                   CheckboxListTile(
                     title: const Text('Credit/Debit Card'),
-                    value: timeDilation != 1.0,
+                    value: card,
                     onChanged: (bool? value) {
                       setState(() {
-                        timeDilation = value! ? 3.0 : 1.0;
+                        card = !card;
                       });
                     },
                     secondary: const Icon(Icons.payment),
                   ),
                   CheckboxListTile(
                     title: const Text('Cash'),
-                    value: timeDilation != 1.0,
+                    value: cash,
                     onChanged: (bool? value) {
                       setState(() {
-                        timeDilation = value! ? 3.0 : 1.0;
+                        cash = !cash;
                       });
                     },
                     secondary: const Icon(Icons.attach_money),
