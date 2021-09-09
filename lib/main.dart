@@ -19,26 +19,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (ctx) => BaltiMeals(),
-        ),
-        ChangeNotifierProvider(
-          create: (ctx) => Cart(),
-        ),
-      ],
-      child: MaterialApp(
-          title: 'BaltiApp',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
+        providers: [
+          ChangeNotifierProvider(
+            create: (ctx) => BaltiMeals(),
           ),
-          home: Splash(),
-          routes: {
-            Mysignuppage.route: (ctx) => Mysignuppage(),
-            HomeScreen.route: (ctx) => TabsScreen(),
-            Mycart.route: (ctx) => Mycart(),
-            ProductDetailScreen.routeName: (ctx) => ProductDetailScreen()
-          }),
-    );
+          ChangeNotifierProvider(
+            create: (ctx) => Cart(),
+          ),
+        ],
+        child: MaterialApp(
+            title: 'BaltiApp',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            home: Splash(),
+            routes: {
+              Mysignuppage.route: (ctx) => Mysignuppage(),
+              HomeScreen.route: (ctx) => TabsScreen(),
+              Mycart.route: (ctx) => Mycart(),
+              ProductDetailScreen.routeName: (ctx) => ProductDetailScreen()
+            }));
   }
 }
