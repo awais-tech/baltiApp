@@ -79,82 +79,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 ],
               ),
             ),
-            Container(
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.065,
-                    margin: EdgeInsets.all(10),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        )),
-                        padding: MaterialStateProperty.all(EdgeInsets.symmetric(
-                                //vertical: 25,
-                                horizontal: MediaQuery.of(context).size.width -
-                                    MediaQuery.of(context).padding.top) *
-                            0.2),
-                        backgroundColor: MaterialStateProperty.all(
-                            Colors.pink[900]), // <-- Button color
-                        overlayColor:
-                            MaterialStateProperty.resolveWith<Color?>((states) {
-                          if (states.contains(MaterialState.pressed))
-                            return Colors.red; // <-- Splash color
-                        }),
-                      ),
-                      child: FittedBox(
-                        fit: BoxFit.fitWidth,
-                        child: new Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: <Widget>[
-                            new Transform.translate(
-                              offset: Offset(15.0, 0.0),
-                              child: new Container(
-                                // padding: const EdgeInsets.on(1.0),
-                                child: TextButton(
-                                    child: Icon(
-                                      Icons.add_sharp,
-                                      color: Colors.white,
-                                    ),
-                                    onPressed: () => {}),
-                              ),
-                            ),
-                            new Padding(
-                              padding: const EdgeInsets.only(right: 2.0),
-                              child: Text(
-                                "Add New Card",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize:
-                                        (MediaQuery.of(context).size.width -
-                                                MediaQuery.of(context)
-                                                    .padding
-                                                    .top) *
-                                            0.04),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      onPressed: () => {
-                        showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            builder: (context) {
-                              return NewCard();
-                            })
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            Button(context, "Add new card"),
             Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,155 +98,155 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     elevation: 5,
                     child: Text("Billing Address"),
                   ),
-                  Container(
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                            height: MediaQuery.of(context).size.height * 0.065,
-                            margin: EdgeInsets.all(10),
-                            child: ElevatedButton(
-                              style: ButtonStyle(
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                )),
-                                padding: MaterialStateProperty.all(
-                                    EdgeInsets.symmetric(
-                                            vertical: 25,
-                                            horizontal: MediaQuery.of(context)
-                                                    .size
-                                                    .width -
+                  Button(context, "Add New Address"),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            )),
+                            padding: MaterialStateProperty.all(
+                                EdgeInsets.symmetric(
+                                        vertical: 25,
+                                        horizontal:
+                                            MediaQuery.of(context).size.width -
                                                 MediaQuery.of(context)
                                                     .padding
                                                     .top) *
-                                        0.2),
-                                backgroundColor: MaterialStateProperty.all(
-                                    Colors.pink[900]), // <-- Button color
-                                overlayColor:
-                                    MaterialStateProperty.resolveWith<Color?>(
-                                        (states) {
-                                  if (states.contains(MaterialState.pressed))
-                                    return Colors.red; // <-- Splash color
-                                }),
-                              ),
-                              child: FittedBox(
-                                fit: BoxFit.fitWidth,
-                                child: new Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: <Widget>[
-                                    new Transform.translate(
-                                      offset: Offset(15.0, 0.0),
-                                      child: new Container(
-                                        // padding: const EdgeInsets.on(1.0),
-                                        child: TextButton(
-                                            child: Icon(
-                                              Icons.add_sharp,
-                                              color: Colors.white,
-                                            ),
-                                            onPressed: () => {}),
-                                      ),
-                                    ),
-                                    new Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 2.0),
-                                      child: Text(
-                                        "Add New Address",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: (MediaQuery.of(context)
-                                                        .size
-                                                        .width -
+                                    0.35),
+                            backgroundColor: MaterialStateProperty.all(
+                                Colors.pink[900]), // <-- Button color
+                            overlayColor:
+                                MaterialStateProperty.resolveWith<Color?>(
+                                    (states) {
+                              if (states.contains(MaterialState.pressed))
+                                return Colors.red; // <-- Splash color
+                            }),
+                          ),
+                          child: FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: new Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                new Padding(
+                                  padding: const EdgeInsets.only(right: 2.0),
+                                  child: Text(
+                                    "Proceed",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize:
+                                            (MediaQuery.of(context).size.width -
                                                     MediaQuery.of(context)
                                                         .padding
                                                         .top) *
-                                                0.04),
-                                      ),
-                                    ),
-                                  ],
+                                                0.07),
+                                  ),
                                 ),
-                              ),
-                              onPressed: () => {
-                                showModalBottomSheet(
-                                    context: context,
-                                    isScrollControlled: true,
-                                    builder: (context) {
-                                      return NewAddress();
-                                    })
-                              },
-                            )),
-                      ],
-                    ),
+                                new Transform.translate(
+                                  offset: Offset(15.0, 0.0),
+                                  child: new Container(
+                                    // padding: const EdgeInsets.on(1.0),
+                                    child: TextButton(
+                                        child: Icon(
+                                          Icons.arrow_forward,
+                                          color: Colors.white,
+                                        ),
+                                        onPressed: () => {}),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          onPressed: () => {},
+                        ),
+                      ),
+                    ],
                   )
                 ],
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      )),
-                      padding: MaterialStateProperty.all(EdgeInsets.symmetric(
-                              vertical: 25,
-                              horizontal: MediaQuery.of(context).size.width -
-                                  MediaQuery.of(context).padding.top) *
-                          0.35),
-                      backgroundColor: MaterialStateProperty.all(
-                          Colors.pink[900]), // <-- Button color
-                      overlayColor:
-                          MaterialStateProperty.resolveWith<Color?>((states) {
-                        if (states.contains(MaterialState.pressed))
-                          return Colors.red; // <-- Splash color
-                      }),
-                    ),
-                    child: FittedBox(
-                      fit: BoxFit.fitWidth,
-                      child: new Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          new Padding(
-                            padding: const EdgeInsets.only(right: 2.0),
-                            child: Text(
-                              "Proceed",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: (MediaQuery.of(context).size.width -
-                                          MediaQuery.of(context).padding.top) *
-                                      0.07),
-                            ),
-                          ),
-                          new Transform.translate(
-                            offset: Offset(15.0, 0.0),
-                            child: new Container(
-                              // padding: const EdgeInsets.on(1.0),
-                              child: TextButton(
-                                  child: Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.white,
-                                  ),
-                                  onPressed: () => {}),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    onPressed: () => {},
-                  ),
-                ),
-              ],
-            )
           ],
         ),
+      ),
+    );
+  }
+
+  Widget Button(BuildContext context, String title) {
+    return Container(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height * 0.065,
+            margin: EdgeInsets.all(10),
+            child: ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                )),
+                padding: MaterialStateProperty.all(EdgeInsets.symmetric(
+                        //vertical: 25,
+                        horizontal: MediaQuery.of(context).size.width -
+                            MediaQuery.of(context).padding.top) *
+                    0.2),
+                backgroundColor: MaterialStateProperty.all(
+                    Colors.pink[900]), // <-- Button color
+                overlayColor:
+                    MaterialStateProperty.resolveWith<Color?>((states) {
+                  if (states.contains(MaterialState.pressed))
+                    return Colors.red; // <-- Splash color
+                }),
+              ),
+              child: FittedBox(
+                fit: BoxFit.fitWidth,
+                child: new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    new Transform.translate(
+                      offset: Offset(15.0, 0.0),
+                      child: new Container(
+                        // padding: const EdgeInsets.on(1.0),
+                        child: TextButton(
+                            child: Icon(
+                              Icons.add_sharp,
+                              color: Colors.white,
+                            ),
+                            onPressed: () => {}),
+                      ),
+                    ),
+                    new Padding(
+                      padding: const EdgeInsets.only(right: 2.0),
+                      child: Text(
+                        title,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: (MediaQuery.of(context).size.width -
+                                    MediaQuery.of(context).padding.top) *
+                                0.04),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              onPressed: () => {
+                showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (context) {
+                      return title == "Add new card" ? NewCard() : NewAddress();
+                    })
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
