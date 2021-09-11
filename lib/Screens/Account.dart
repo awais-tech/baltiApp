@@ -106,9 +106,8 @@ class _AccountState extends State<Account> {
                       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                       elevation: 2,
                       child: Container(
-                        height: 130,
-                        child: ListView(
-                          physics: const NeverScrollableScrollPhysics(),
+                        child: Column(
+                          // can add list view here with height
                           children: acountinfo
                               .map(
                                 (x) => Column(
@@ -141,9 +140,10 @@ class _AccountState extends State<Account> {
                       ),
                       elevation: 2,
                       child: Container(
-                        height: 370,
-                        child: ListView(
-                          physics: const NeverScrollableScrollPhysics(),
+                        // height: 370,
+                        child: Column(
+                          // can add list view here with height
+                          // physics: const NeverScrollableScrollPhysics(),
                           children: acounts
                               .map(
                                 (x) => Column(
