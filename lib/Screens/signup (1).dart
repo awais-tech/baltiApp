@@ -1,5 +1,4 @@
 import 'package:balti/Screens/HomepageScreen.dart';
-import 'package:balti/Screens/login%20screen%201%20(2).dart';
 import 'package:flutter/material.dart';
 
 class Mysignuppage extends StatelessWidget {
@@ -11,7 +10,7 @@ class Mysignuppage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            new Container(
+            Container(
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,7 +22,6 @@ class Mysignuppage extends StatelessWidget {
                       child: Text(
                         "Create Account,",
                         style: TextStyle(
-                            //fontStyle: FontStyle.italic,
                             fontSize: (MediaQuery.of(context).size.width -
                                     MediaQuery.of(context).padding.top) *
                                 0.060,
@@ -40,7 +38,6 @@ class Mysignuppage extends StatelessWidget {
                       child: Text(
                         "Sign up to get started!",
                         style: TextStyle(
-                            //fontStyle: FontStyle.italic,
                             fontSize: (MediaQuery.of(context).size.width -
                                     MediaQuery.of(context).padding.top) *
                                 0.040,
@@ -62,7 +59,7 @@ class Mysignuppage extends StatelessWidget {
                         vertical: 10.0, horizontal: 20.0),
                     child: Row(
                       children: <Widget>[
-                        new Padding(
+                        Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 10.0, horizontal: 15.0),
                           child: Icon(
@@ -77,7 +74,7 @@ class Mysignuppage extends StatelessWidget {
                           margin:
                               const EdgeInsets.only(left: 00.0, right: 10.0),
                         ),
-                        new Expanded(
+                        Expanded(
                           child: TextField(
                             decoration: InputDecoration(
                               labelText: 'Enter New Username',
@@ -103,7 +100,7 @@ class Mysignuppage extends StatelessWidget {
                         vertical: 10.0, horizontal: 20.0),
                     child: Row(
                       children: <Widget>[
-                        new Padding(
+                        Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 10.0, horizontal: 15.0),
                           child: Icon(
@@ -145,7 +142,7 @@ class Mysignuppage extends StatelessWidget {
                         vertical: 10.0, horizontal: 20.0),
                     child: Row(
                       children: <Widget>[
-                        new Padding(
+                        Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 10.0, horizontal: 15.0),
                           child: Icon(
@@ -160,7 +157,7 @@ class Mysignuppage extends StatelessWidget {
                           margin:
                               const EdgeInsets.only(left: 00.0, right: 10.0),
                         ),
-                        new Expanded(
+                        Expanded(
                           child: TextField(
                             keyboardType: TextInputType.phone,
                             decoration: InputDecoration(
@@ -187,7 +184,7 @@ class Mysignuppage extends StatelessWidget {
                         vertical: 10.0, horizontal: 20.0),
                     child: Row(
                       children: <Widget>[
-                        new Padding(
+                        Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 10.0, horizontal: 15.0),
                           child: Icon(
@@ -202,7 +199,7 @@ class Mysignuppage extends StatelessWidget {
                           margin:
                               const EdgeInsets.only(left: 00.0, right: 10.0),
                         ),
-                        new Expanded(
+                        Expanded(
                           child: TextField(
                             keyboardType: TextInputType.visiblePassword,
                             decoration: InputDecoration(
@@ -221,7 +218,7 @@ class Mysignuppage extends StatelessWidget {
                     width: double.infinity,
                     margin: const EdgeInsets.only(top: 20.0),
                     padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: new Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Container(

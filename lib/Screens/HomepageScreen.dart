@@ -1,8 +1,5 @@
 import 'package:balti/Model/meal.dart';
 import 'package:balti/Provider/MealsProvider.dart';
-import 'package:balti/Provider/cart.dart';
-import 'package:balti/Screens/addtocart.dart';
-import 'package:balti/Widgets/badge.dart';
 import 'package:balti/Widgets/BlaltiMealItem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,17 +20,12 @@ class _HomeScreenState extends State<HomeScreen> {
   var _showOnlyFavorites = false;
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    final double itemHeight = (size.height - kToolbarHeight - 24) / 2;
-    final double itemWidth = size.width / 2;
-
     final loadedMenu = Provider.of<BaltiMeals>(
       context,
       listen: true,
     );
     final products =
         _showOnlyFavorites ? loadedMenu.favoriteItems : loadedMenu.items;
-    List<Meal> allMenu = loadedMenu.items;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.pink[900],

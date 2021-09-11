@@ -17,78 +17,38 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.pink[900],
-        title: Text(
-          'Checkout',
-          textAlign: TextAlign.center,
-        ),
-        actions: <Widget>[
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.cancel_outlined,
-              size: 32,
-              color: Colors.pink[900],
-            ),
+        appBar: AppBar(
+          backgroundColor: Colors.pink[900],
+          title: Text(
+            'Checkout',
+            textAlign: TextAlign.center,
           ),
-        ],
-      ),
-      body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-                padding: EdgeInsets.only(top: 10, bottom: 10, left: 15),
-                child: Text(
-                  "Payment Methods",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                      color: Colors.pink[900], fontWeight: FontWeight.bold),
-                )),
-            Card(
-              margin: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-              elevation: 5,
-              child: Column(
-                children: [
-                  RadioListTile(
-                    groupValue: _character,
-                    title: const Text('Credit/Debit Card'),
-                    value: SingingCharacter.card,
-                    onChanged: (SingingCharacter? value) {
-                      setState(() {
-                        _character = value;
-                      });
-                    },
-                    secondary: const Icon(Icons.payment),
-                  ),
-                  RadioListTile(
-                    groupValue: _character,
-                    title: const Text('Cash'),
-                    value: SingingCharacter.cash,
-                    onChanged: (SingingCharacter? value) {
-                      setState(() {
-                        _character = value;
-                      });
-                    },
-                    secondary: const Icon(Icons.attach_money),
-                  ),
-                ],
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.cancel_outlined,
+                size: 32,
+                color: Colors.pink[900],
               ),
             ),
-            Button(context, "Add new card"),
-            Container(
-              child: Column(
+          ],
+        ),
+        body: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
+                  Container(
                       padding: EdgeInsets.only(top: 10, bottom: 10, left: 15),
                       child: Text(
-                        "Delivery Address",
-                        //textAlign: TextAlign.start,
+                        "Payment Methods",
+                        textAlign: TextAlign.start,
                         style: TextStyle(
                             color: Colors.pink[900],
                             fontWeight: FontWeight.bold),
@@ -96,84 +56,126 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   Card(
                     margin: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                     elevation: 5,
-                    child: Text("Billing Address"),
+                    child: Column(
+                      children: [
+                        RadioListTile(
+                          groupValue: _character,
+                          title: const Text('Credit/Debit Card'),
+                          value: SingingCharacter.card,
+                          onChanged: (SingingCharacter? value) {
+                            setState(() {
+                              _character = value;
+                            });
+                          },
+                          secondary: const Icon(Icons.payment),
+                        ),
+                        RadioListTile(
+                          groupValue: _character,
+                          title: const Text('Cash'),
+                          value: SingingCharacter.cash,
+                          onChanged: (SingingCharacter? value) {
+                            setState(() {
+                              _character = value;
+                            });
+                          },
+                          secondary: const Icon(Icons.attach_money),
+                        ),
+                      ],
+                    ),
                   ),
-                  Button(context, "Add New Address"),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                  Button(context, "Add New Card"),
+                  Container(
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                        Padding(
+                            padding:
+                                EdgeInsets.only(top: 10, bottom: 10, left: 15),
+                            child: Text(
+                              "Delivery Address",
+                              //textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  color: Colors.pink[900],
+                                  fontWeight: FontWeight.bold),
                             )),
-                            padding: MaterialStateProperty.all(
-                                EdgeInsets.symmetric(
-                                        vertical: 25,
-                                        horizontal:
-                                            MediaQuery.of(context).size.width -
+                        Card(
+                          margin:
+                              EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                          elevation: 5,
+                          child: Text("Billing Address"),
+                        ),
+                        Button(context, "Add New Address"),
+                      ])),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        )),
+                        padding: MaterialStateProperty.all(EdgeInsets.symmetric(
+                                vertical: 25,
+                                horizontal: MediaQuery.of(context).size.width -
+                                    MediaQuery.of(context).padding.top) *
+                            0.35),
+                        backgroundColor: MaterialStateProperty.all(
+                            Colors.pink[900]), // <-- Button color
+                        overlayColor:
+                            MaterialStateProperty.resolveWith<Color?>((states) {
+                          if (states.contains(MaterialState.pressed))
+                            return Colors.red; // <-- Splash color
+                        }),
+                      ),
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: new Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            new Padding(
+                              padding: const EdgeInsets.only(right: 2.0),
+                              child: Text(
+                                "Proceed",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize:
+                                        (MediaQuery.of(context).size.width -
                                                 MediaQuery.of(context)
                                                     .padding
                                                     .top) *
-                                    0.35),
-                            backgroundColor: MaterialStateProperty.all(
-                                Colors.pink[900]), // <-- Button color
-                            overlayColor:
-                                MaterialStateProperty.resolveWith<Color?>(
-                                    (states) {
-                              if (states.contains(MaterialState.pressed))
-                                return Colors.red; // <-- Splash color
-                            }),
-                          ),
-                          child: FittedBox(
-                            fit: BoxFit.fitWidth,
-                            child: new Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: <Widget>[
-                                new Padding(
-                                  padding: const EdgeInsets.only(right: 2.0),
-                                  child: Text(
-                                    "Proceed",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize:
-                                            (MediaQuery.of(context).size.width -
-                                                    MediaQuery.of(context)
-                                                        .padding
-                                                        .top) *
-                                                0.07),
-                                  ),
-                                ),
-                                new Transform.translate(
-                                  offset: Offset(15.0, 0.0),
-                                  child: new Container(
-                                    // padding: const EdgeInsets.on(1.0),
-                                    child: TextButton(
-                                        child: Icon(
-                                          Icons.arrow_forward,
-                                          color: Colors.white,
-                                        ),
-                                        onPressed: () => {}),
-                                  ),
-                                ),
-                              ],
+                                            0.07),
+                              ),
                             ),
-                          ),
-                          onPressed: () => {},
+                            new Transform.translate(
+                              offset: Offset(15.0, 0.0),
+                              child: new Container(
+                                // padding: const EdgeInsets.on(1.0),
+                                child: TextButton(
+                                    child: Icon(
+                                      Icons.arrow_forward,
+                                      color: Colors.white,
+                                    ),
+                                    onPressed: () => {}),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  )
+                      onPressed: () => {},
+                    ),
+                  ),
                 ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+              )
+            ],
+          ),
+        ));
   }
 
   Widget Button(BuildContext context, String title) {
@@ -184,7 +186,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         children: [
           Container(
             height: MediaQuery.of(context).size.height * 0.065,
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.all(20),
             child: ElevatedButton(
               style: ButtonStyle(
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -207,22 +209,17 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               child: FittedBox(
                 fit: BoxFit.fitWidth,
                 child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    new Transform.translate(
-                      offset: Offset(15.0, 0.0),
-                      child: new Container(
-                        // padding: const EdgeInsets.on(1.0),
-                        child: TextButton(
-                            child: Icon(
-                              Icons.add_sharp,
-                              color: Colors.white,
-                            ),
-                            onPressed: () => {}),
-                      ),
-                    ),
-                    new Padding(
-                      padding: const EdgeInsets.only(right: 2.0),
+                    Padding(
+                        padding: EdgeInsets.only(right: 5),
+                        child: Icon(
+                          Icons.add_sharp,
+                          color: Colors.white,
+                          size: 16,
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
                       child: Text(
                         title,
                         textAlign: TextAlign.center,
@@ -241,7 +238,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     context: context,
                     isScrollControlled: true,
                     builder: (context) {
-                      return title == "Add new card" ? NewCard() : NewAddress();
+                      return title == "Add New Card" ? NewCard() : NewAddress();
                     })
               },
             ),

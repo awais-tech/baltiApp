@@ -13,10 +13,9 @@ class LoginScreen1 extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              //margin: EdgeInsets.only(top: 40),
               child: Column(
                 children: [
-                  new Container(
+                  Container(
                     width: double.infinity,
                     decoration: BoxDecoration(),
                     child: Column(
@@ -50,7 +49,7 @@ class LoginScreen1 extends StatelessWidget {
                               vertical: 10.0, horizontal: 20.0),
                           child: Row(
                             children: <Widget>[
-                              new Padding(
+                              Padding(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 10.0, horizontal: 15.0),
                                 child: Icon(
@@ -65,7 +64,7 @@ class LoginScreen1 extends StatelessWidget {
                                 margin: const EdgeInsets.only(
                                     left: 00.0, right: 10.0),
                               ),
-                              new Expanded(
+                              Expanded(
                                 child: TextField(
                                   keyboardType: TextInputType.phone,
                                   decoration: InputDecoration(
@@ -92,7 +91,7 @@ class LoginScreen1 extends StatelessWidget {
                               vertical: 10.0, horizontal: 20.0),
                           child: Row(
                             children: <Widget>[
-                              new Padding(
+                              Padding(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 10.0, horizontal: 15.0),
                                 child: Icon(
@@ -107,7 +106,7 @@ class LoginScreen1 extends StatelessWidget {
                                 margin: const EdgeInsets.only(
                                     left: 00.0, right: 10.0),
                               ),
-                              new Expanded(
+                              Expanded(
                                 child: TextField(
                                   decoration: InputDecoration(
                                     labelText: 'Password',
@@ -131,10 +130,7 @@ class LoginScreen1 extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          // margin: const EdgeInsets.only(top: 2.0),
-                          //padding:
-                          //const EdgeInsets.only(left: 20.0, right: 20.0),
-                          child: new Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Container(
@@ -168,11 +164,11 @@ class LoginScreen1 extends StatelessWidget {
                                   ),
                                   child: FittedBox(
                                     fit: BoxFit.fitWidth,
-                                    child: new Row(
+                                    child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
                                       children: <Widget>[
-                                        new Padding(
+                                        Padding(
                                           padding:
                                               const EdgeInsets.only(left: 2.0),
                                           child: Text(
@@ -183,9 +179,9 @@ class LoginScreen1 extends StatelessWidget {
                                                 fontStyle: FontStyle.italic),
                                           ),
                                         ),
-                                        new Transform.translate(
+                                        Transform.translate(
                                           offset: Offset(15.0, 0.0),
-                                          child: new Container(
+                                          child: Container(
                                             // padding: const EdgeInsets.on(1.0),
                                             child: TextButton(
                                               child: Icon(
@@ -226,8 +222,7 @@ class LoginScreen1 extends StatelessWidget {
                                 children: [
                                   Container(
                                       child: Text("Don\'t have an account?")),
-                                  new Container(
-                                    //padding: const EdgeInsets.only(left: 1),
+                                  Container(
                                     child: TextButton(
                                       style: TextButton.styleFrom(
                                         textStyle:
@@ -243,7 +238,7 @@ class LoginScreen1 extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              new Padding(
+                              Padding(
                                 padding: const EdgeInsets.all(2),
                                 child: Text(
                                   "OR",
