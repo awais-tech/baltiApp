@@ -1,10 +1,11 @@
 import 'package:balti/Model/Accountoption.dart';
-import 'package:balti/Screens/Orderhistory.dart';
+
 import 'package:balti/Screens/Orderstatus.dart';
 import 'package:balti/Screens/Profile.dart';
 import 'package:balti/Screens/aboutus.dart';
 import 'package:balti/Screens/contactus.dart';
 import 'package:balti/Screens/informtion.dart';
+import 'package:balti/Screens/orders_screen.dart';
 import 'package:flutter/material.dart';
 
 class Account extends StatefulWidget {
@@ -20,13 +21,13 @@ class _AccountState extends State<Account> {
       title: 'Orders History',
       icons: Icons.shopping_basket,
       color: Colors.green,
-      link: Orderhistory.routeName,
+      link: OrdersScreen.routeName,
     )),
     (Accountoption(
       title: 'Order Items',
       icons: Icons.wallet_giftcard_outlined,
       color: Colors.green,
-      link: OrderStatus.routeName,
+      link: OrdersScreen.routeName,
     ))
   ];
   List<Accountoption> acounts = [

@@ -1,6 +1,9 @@
+import 'package:balti/Provider/cart.dart';
+import 'package:balti/Provider/orders.dart';
 import 'package:balti/Widgets/NewAdress.dart';
 import 'package:balti/Widgets/NewCard.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 enum SingingCharacter { card, cash }
 
@@ -16,6 +19,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<Cart>(context);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.pink[900],
@@ -141,7 +145,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             new Padding(
                               padding: const EdgeInsets.only(right: 2.0),
                               child: Text(
-                                "Proceed",
+                                cart.totalAmount > 0
+                                    ? "Proceed"
+                                    : "Order will dilver soon",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: Colors.white,
@@ -162,13 +168,83 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                       Icons.arrow_forward,
                                       color: Colors.white,
                                     ),
-                                    onPressed: () => {}),
+                                    onPressed: cart.totalAmount > 0
+                                        ? () => {
+                                              showDialog(
+                                                context: context,
+                                                builder: (ctx) => AlertDialog(
+                                                  title: Text('Are you sure?'),
+                                                  content: Text(
+                                                    'Do you want to order it?',
+                                                  ),
+                                                  actions: <Widget>[
+                                                    ElevatedButton(
+                                                      child: Text('No'),
+                                                      onPressed: () {
+                                                        Navigator.of(ctx)
+                                                            .pop(false);
+                                                      },
+                                                    ),
+                                                    ElevatedButton(
+                                                      child: Text('Yes'),
+                                                      onPressed: () {
+                                                        Provider.of<Orders>(
+                                                                context,
+                                                                listen: false)
+                                                            .addOrder(
+                                                          cart.items.values
+                                                              .toList(),
+                                                          cart.totalAmount,
+                                                        );
+                                                        cart.clear();
+                                                        Navigator.of(ctx)
+                                                            .pop(true);
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            }
+                                        : null),
                               ),
                             ),
                           ],
                         ),
                       ),
-                      onPressed: () => {},
+                      onPressed: cart.totalAmount > 0
+                          ? () => {
+                                showDialog(
+                                  context: context,
+                                  builder: (ctx) => AlertDialog(
+                                    title: Text('Are you sure?'),
+                                    content: Text(
+                                      'Do you want to order it?',
+                                    ),
+                                    actions: <Widget>[
+                                      ElevatedButton(
+                                        child: Text('No'),
+                                        onPressed: () {
+                                          Navigator.of(ctx).pop(false);
+                                        },
+                                      ),
+                                      ElevatedButton(
+                                        child: Text('Yes'),
+                                        onPressed: () {
+                                          Provider.of<Orders>(context,
+                                                  listen: false)
+                                              .addOrder(
+                                            cart.items.values.toList(),
+                                            cart.totalAmount,
+                                          );
+                                          cart.clear();
+                                          Navigator.of(ctx).pop(true);
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              }
+                          : null,
                     ),
                   ),
                 ],

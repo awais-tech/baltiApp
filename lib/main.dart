@@ -1,15 +1,17 @@
 import 'package:balti/Provider/MealsProvider.dart';
 import 'package:balti/Provider/cart.dart';
+import 'package:balti/Provider/orders.dart';
 import 'package:balti/Screens/Address.dart';
 import 'package:balti/Screens/Checkout.dart';
 import 'package:balti/Screens/DetailScreen.dart';
 import 'package:balti/Screens/HomepageScreen.dart';
-import 'package:balti/Screens/Orderhistory.dart';
+
 import 'package:balti/Screens/Orderstatus.dart';
 import 'package:balti/Screens/Profile.dart';
 import 'package:balti/Screens/aboutus.dart';
 import 'package:balti/Screens/addtocart.dart';
 import 'package:balti/Screens/login%20screen%201%20(2).dart';
+import 'package:balti/Screens/orders_screen.dart';
 import 'package:balti/Screens/signup%20(1).dart';
 import 'package:balti/Screens/splash.dart';
 import 'package:balti/Widgets/tab.dart';
@@ -32,6 +34,9 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(
             create: (ctx) => Cart(),
           ),
+          ChangeNotifierProvider(
+            create: (ctx) => Orders(),
+          ),
         ],
         child: MaterialApp(
             title: 'BaltiApp',
@@ -47,7 +52,7 @@ class MyApp extends StatelessWidget {
               CheckoutScreen.route: (ctx) => CheckoutScreen(),
               Profile.routeName: (ctx) => Profile(),
               OrderStatus.routeName: (ctx) => OrderStatus(),
-              Orderhistory.routeName: (ctx) => Orderhistory(),
+              OrdersScreen.routeName: (ctx) => OrdersScreen(),
               AboutUs.routeName: (ctx) => AboutUs(),
               Address.routeName: (ctx) => Address(),
             }));
