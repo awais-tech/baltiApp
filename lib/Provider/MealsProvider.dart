@@ -1,14 +1,12 @@
 import 'package:balti/Model/meal.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class BaltiMeals with ChangeNotifier {
   List<Meal> meals = [
     Meal(
       id: 'm1',
-      categories: [
-        'c1',
-        'c2',
-      ],
       title: 'Chill out deals',
       ResturentName: 'Subway',
       Category: 'Chinese',
@@ -22,10 +20,6 @@ class BaltiMeals with ChangeNotifier {
     ),
     Meal(
       id: 'm1',
-      categories: [
-        'c1',
-        'c2',
-      ],
       title: 'Chill out deals',
       ResturentName: 'Subway',
       Category: 'Chinese',
@@ -38,10 +32,6 @@ class BaltiMeals with ChangeNotifier {
     ),
     Meal(
         id: 'm7',
-        categories: [
-          'c1',
-          'c2',
-        ],
         title: 'Chill out deals',
         ResturentName: 'Subway',
         Category: 'Chinese',
@@ -53,9 +43,6 @@ class BaltiMeals with ChangeNotifier {
         description: 'Its new products you can buy now'),
     Meal(
       id: 'm2',
-      categories: [
-        'c2',
-      ],
       title: 'Chill out deals',
       ResturentName: 'Subway',
       Category: 'Chinese',
@@ -68,10 +55,6 @@ class BaltiMeals with ChangeNotifier {
     ),
     Meal(
         id: 'm3',
-        categories: [
-          'c2',
-          'c3',
-        ],
         title: 'Chill out deals',
         ResturentName: 'Subway',
         Category: 'Chinese',
@@ -83,9 +66,6 @@ class BaltiMeals with ChangeNotifier {
         description: 'Its new products you can buy now'),
     Meal(
         id: 'm4',
-        categories: [
-          'c4',
-        ],
         title: 'Chill out deals',
         ResturentName: 'Subway',
         Category: 'Chinese',
@@ -106,5 +86,36 @@ class BaltiMeals with ChangeNotifier {
 
   Meal findById(String id) {
     return items.firstWhere((prod) => prod.id == id);
+  }
+
+  Future<void> fetchAndSetProducts() async {
+    var url = Uri.parse('https://baltiapi.herokuapp.com/products');
+    try {
+      final response = await http.get(url);
+      final extractedData = json.decode(response.body);
+      print(extractedData);
+      final List<Meal> loadedProducts = [];
+      extractedData != Null
+          ? extractedData.forEach((prodData) {
+              loadedProducts.add(Meal(
+                id: prodData['_id'],
+                title: prodData['title'],
+                description: prodData['Description'],
+                price: prodData['price'],
+                isFavorite: true,
+                imageUrl: prodData['imageUrl'],
+                duration: prodData['duration'],
+                ResturentName: prodData['ResturentName'],
+                Category: prodData['Category'],
+                Dilvery: prodData[' Dilvery'],
+              ));
+            })
+          : print(2);
+
+      meals = [...meals, ...loadedProducts];
+      notifyListeners();
+    } catch (error) {
+      throw (error);
+    }
   }
 }

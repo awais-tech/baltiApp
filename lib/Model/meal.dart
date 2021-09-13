@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 class Meal with ChangeNotifier {
   final String id;
-  final List<String> categories;
+
   final String title;
   final String imageUrl;
 
@@ -16,7 +16,6 @@ class Meal with ChangeNotifier {
 
   Meal({
     required this.id,
-    required this.categories,
     required this.title,
     required this.imageUrl,
     required this.duration,
