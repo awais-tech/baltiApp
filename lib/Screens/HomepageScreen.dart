@@ -18,6 +18,24 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var _showOnlyFavorites = false;
+  var _isInit = true;
+  var _isLoading = false;
+  @override
+  void didChangeDependencies() {
+    if (_isInit) {
+      setState(() {
+        _isLoading = true;
+      });
+      Provider.of<BaltiMeals>(context).fetchAndSetProducts().then((_) {
+        setState(() {
+          _isLoading = false;
+        });
+      });
+    }
+    _isInit = false;
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     final loadedMenu = Provider.of<BaltiMeals>(
@@ -110,69 +128,71 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                height: 280,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (ctx, index) {
-                    return ChangeNotifierProvider.value(
-                        value: products[index],
-                        child: Container(
-                          width: 300.0,
-                          child: BaltiItem(),
-                        ));
-                  },
-                  itemCount: products.length,
-                ),
-              ),
-              Container(
-                // child: Container(
-                //     color: Colors.white,
-                //     child: GridView.builder(
-                //       shrinkWrap: true,
-                //       physics: NeverScrollableScrollPhysics(),
-                //       itemCount: allMenu.length,
-                //       itemBuilder: (ctx, index) => BaltiItem(
-                //           allMenu[index].id,
-                //           allMenu[index].title,
-                //           allMenu[index].imageUrl,
-                //           allMenu[index].duration,
-                //           allMenu[index].Dilvery,
-                //           allMenu[index].Category,
-                //           allMenu[index].ResturentName),
-                //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                //         crossAxisCount: 2,
-                //         childAspectRatio: 1,
-                //         crossAxisSpacing: 4,
-                //         mainAxisSpacing: 4,
-                //       ),
-                //     )
-                child: ListView.builder(
-                  cacheExtent: 9999,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (ctx, index) {
-                    return ChangeNotifierProvider.value(
-                      value: products[index],
-                      child: Container(
-                        width: 300.0,
-                        child: BaltiItem(),
+      body: _isLoading
+          ? Center(child: CircularProgressIndicator())
+          : Container(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      height: 280,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (ctx, index) {
+                          return ChangeNotifierProvider.value(
+                              value: products[index],
+                              child: Container(
+                                width: 300.0,
+                                child: BaltiItem(),
+                              ));
+                        },
+                        itemCount: products.length,
                       ),
-                    );
-                  },
-                  itemCount: products.length,
+                    ),
+                    Container(
+                      // child: Container(
+                      //     color: Colors.white,
+                      //     child: GridView.builder(
+                      //       shrinkWrap: true,
+                      //       physics: NeverScrollableScrollPhysics(),
+                      //       itemCount: allMenu.length,
+                      //       itemBuilder: (ctx, index) => BaltiItem(
+                      //           allMenu[index].id,
+                      //           allMenu[index].title,
+                      //           allMenu[index].imageUrl,
+                      //           allMenu[index].duration,
+                      //           allMenu[index].Dilvery,
+                      //           allMenu[index].Category,
+                      //           allMenu[index].ResturentName),
+                      //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      //         crossAxisCount: 2,
+                      //         childAspectRatio: 1,
+                      //         crossAxisSpacing: 4,
+                      //         mainAxisSpacing: 4,
+                      //       ),
+                      //     )
+                      child: ListView.builder(
+                        cacheExtent: 9999,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (ctx, index) {
+                          return ChangeNotifierProvider.value(
+                            value: products[index],
+                            child: Container(
+                              width: 300.0,
+                              child: BaltiItem(),
+                            ),
+                          );
+                        },
+                        itemCount: products.length,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
+            ),
 
       // body: Container(
       //   color: Colors.white,
