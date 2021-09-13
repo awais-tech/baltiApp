@@ -15,6 +15,318 @@ class _ProfileState extends State<Profile> {
     '03336557811',
     '***********'
   ];
+  Widget editName(BuildContext context, String title) {
+    return Padding(
+      padding: MediaQuery.of(context).viewInsets,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.grey.withOpacity(0.5),
+                width: 1.0,
+              ),
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            margin:
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+            child: Row(
+              children: <Widget>[
+                new Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                  child: Icon(
+                    Icons.person_add,
+                    color: Colors.pink[900],
+                  ),
+                ),
+                Container(
+                  height: 30.0,
+                  width: 1.0,
+                  color: Colors.grey.withOpacity(0.5),
+                  margin: const EdgeInsets.only(left: 00.0, right: 10.0),
+                ),
+                Expanded(
+                  child: TextField(
+                    keyboardType: TextInputType.streetAddress,
+                    decoration: InputDecoration(
+                      labelText: 'Edit First Name',
+                      border: InputBorder.none,
+                      hintText: 'Please start from uppercase letter',
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.grey.withOpacity(0.5),
+                width: 1.0,
+              ),
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            margin:
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+            child: Row(
+              children: <Widget>[
+                new Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                  child: Icon(
+                    Icons.person_add,
+                    color: Colors.pink[900],
+                  ),
+                ),
+                Container(
+                  height: 30.0,
+                  width: 1.0,
+                  color: Colors.grey.withOpacity(0.5),
+                  margin: const EdgeInsets.only(left: 00.0, right: 10.0),
+                ),
+                Expanded(
+                  child: TextField(
+                    keyboardType: TextInputType.streetAddress,
+                    decoration: InputDecoration(
+                      labelText: 'Edit Last Name',
+                      border: InputBorder.none,
+                      hintText: 'Please start from uppercase letter',
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 15),
+            ),
+            onPressed: () {},
+            child: const Text('Submit'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget editEmail(BuildContext context, String title) {
+    return Padding(
+      padding: MediaQuery.of(context).viewInsets,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.grey.withOpacity(0.5),
+                width: 1.0,
+              ),
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            margin:
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+            child: Row(
+              children: <Widget>[
+                new Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                  child: Icon(
+                    Icons.email_outlined,
+                    color: Colors.pink[900],
+                  ),
+                ),
+                Container(
+                  height: 30.0,
+                  width: 1.0,
+                  color: Colors.grey.withOpacity(0.5),
+                  margin: const EdgeInsets.only(left: 00.0, right: 10.0),
+                ),
+                Expanded(
+                  child: TextField(
+                    keyboardType: TextInputType.streetAddress,
+                    decoration: InputDecoration(
+                      labelText: 'Edit Email',
+                      border: InputBorder.none,
+                      hintText: 'Please follow the Email format',
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 15),
+            ),
+            onPressed: () {},
+            child: const Text('Submit'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget editPhone(BuildContext context, String title) {
+    return Padding(
+      padding: MediaQuery.of(context).viewInsets,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.grey.withOpacity(0.5),
+                width: 1.0,
+              ),
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            margin:
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+            child: Row(
+              children: <Widget>[
+                new Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                  child: Icon(
+                    Icons.add_call,
+                    color: Colors.pink[900],
+                  ),
+                ),
+                Container(
+                  height: 30.0,
+                  width: 1.0,
+                  color: Colors.grey.withOpacity(0.5),
+                  margin: const EdgeInsets.only(left: 00.0, right: 10.0),
+                ),
+                Expanded(
+                  child: TextField(
+                    keyboardType: TextInputType.streetAddress,
+                    decoration: InputDecoration(
+                      labelText: 'Edit Phone Number',
+                      border: InputBorder.none,
+                      hintText: 'Please enter phone with area code',
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 15),
+            ),
+            onPressed: () {},
+            child: const Text('Submit'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget editPassword(BuildContext context, String title) {
+    return Padding(
+      padding: MediaQuery.of(context).viewInsets,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.grey.withOpacity(0.5),
+                width: 1.0,
+              ),
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            margin:
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+            child: Row(
+              children: <Widget>[
+                new Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                  child: Icon(
+                    Icons.password,
+                    color: Colors.pink[900],
+                  ),
+                ),
+                Container(
+                  height: 30.0,
+                  width: 1.0,
+                  color: Colors.grey.withOpacity(0.5),
+                  margin: const EdgeInsets.only(left: 00.0, right: 10.0),
+                ),
+                Expanded(
+                  child: TextField(
+                    keyboardType: TextInputType.streetAddress,
+                    decoration: InputDecoration(
+                      labelText: 'Enter Current Password',
+                      border: InputBorder.none,
+                      hintText: 'Enter atleast 8 characters',
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.grey.withOpacity(0.5),
+                width: 1.0,
+              ),
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            margin:
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+            child: Row(
+              children: <Widget>[
+                new Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                  child: Icon(
+                    Icons.map_outlined,
+                    color: Colors.pink[900],
+                  ),
+                ),
+                Container(
+                  height: 30.0,
+                  width: 1.0,
+                  color: Colors.grey.withOpacity(0.5),
+                  margin: const EdgeInsets.only(left: 00.0, right: 10.0),
+                ),
+                Expanded(
+                  child: TextField(
+                    keyboardType: TextInputType.streetAddress,
+                    decoration: InputDecoration(
+                      labelText: 'Enter New Password',
+                      border: InputBorder.none,
+                      hintText: 'Please atleast 8 characters',
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 15),
+            ),
+            onPressed: () {},
+            child: const Text('Submit'),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +370,14 @@ class _ProfileState extends State<Profile> {
                 trailing: IconButton(
                   icon: Icon(Icons.edit),
                   color: Colors.pink[900],
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (context) {
+                          return editName(context, "newName");
+                        });
+                  },
                 ),
               ),
             );
