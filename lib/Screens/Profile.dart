@@ -1,3 +1,6 @@
+import 'package:balti/utlity/Bottommodaltitle.dart';
+import 'package:balti/utlity/Straightline.dart';
+import 'package:balti/utlity/inputborder.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -21,14 +24,9 @@ class _ProfileState extends State<Profile> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          Bottommodeltitle(title),
           Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey.withOpacity(0.5),
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(20.0),
-            ),
+            decoration: putborder(),
             margin:
                 const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
             child: Row(
@@ -41,12 +39,7 @@ class _ProfileState extends State<Profile> {
                     color: Colors.pink[900],
                   ),
                 ),
-                Container(
-                  height: 30.0,
-                  width: 1.0,
-                  color: Colors.grey.withOpacity(0.5),
-                  margin: const EdgeInsets.only(left: 00.0, right: 10.0),
-                ),
+                Straightline(),
                 Expanded(
                   child: TextField(
                     keyboardType: TextInputType.streetAddress,
@@ -62,13 +55,7 @@ class _ProfileState extends State<Profile> {
             ),
           ),
           Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey.withOpacity(0.5),
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(20.0),
-            ),
+            decoration: putborder(),
             margin:
                 const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
             child: Row(
@@ -81,12 +68,7 @@ class _ProfileState extends State<Profile> {
                     color: Colors.pink[900],
                   ),
                 ),
-                Container(
-                  height: 30.0,
-                  width: 1.0,
-                  color: Colors.grey.withOpacity(0.5),
-                  margin: const EdgeInsets.only(left: 00.0, right: 10.0),
-                ),
+                Straightline(),
                 Expanded(
                   child: TextField(
                     keyboardType: TextInputType.streetAddress,
@@ -119,14 +101,9 @@ class _ProfileState extends State<Profile> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          Bottommodeltitle(title),
           Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey.withOpacity(0.5),
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(20.0),
-            ),
+            decoration: putborder(),
             margin:
                 const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
             child: Row(
@@ -139,12 +116,7 @@ class _ProfileState extends State<Profile> {
                     color: Colors.pink[900],
                   ),
                 ),
-                Container(
-                  height: 30.0,
-                  width: 1.0,
-                  color: Colors.grey.withOpacity(0.5),
-                  margin: const EdgeInsets.only(left: 00.0, right: 10.0),
-                ),
+                Straightline(),
                 Expanded(
                   child: TextField(
                     keyboardType: TextInputType.streetAddress,
@@ -177,14 +149,9 @@ class _ProfileState extends State<Profile> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          Bottommodeltitle(title),
           Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey.withOpacity(0.5),
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(20.0),
-            ),
+            decoration: putborder(),
             margin:
                 const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
             child: Row(
@@ -197,12 +164,7 @@ class _ProfileState extends State<Profile> {
                     color: Colors.pink[900],
                   ),
                 ),
-                Container(
-                  height: 30.0,
-                  width: 1.0,
-                  color: Colors.grey.withOpacity(0.5),
-                  margin: const EdgeInsets.only(left: 00.0, right: 10.0),
-                ),
+                Straightline(),
                 Expanded(
                   child: TextField(
                     keyboardType: TextInputType.streetAddress,
@@ -235,14 +197,9 @@ class _ProfileState extends State<Profile> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          Bottommodeltitle(title),
           Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey.withOpacity(0.5),
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(20.0),
-            ),
+            decoration: putborder(),
             margin:
                 const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
             child: Row(
@@ -255,12 +212,7 @@ class _ProfileState extends State<Profile> {
                     color: Colors.pink[900],
                   ),
                 ),
-                Container(
-                  height: 30.0,
-                  width: 1.0,
-                  color: Colors.grey.withOpacity(0.5),
-                  margin: const EdgeInsets.only(left: 00.0, right: 10.0),
-                ),
+                Straightline(),
                 Expanded(
                   child: TextField(
                     keyboardType: TextInputType.streetAddress,
@@ -270,19 +222,14 @@ class _ProfileState extends State<Profile> {
                       hintText: 'Enter atleast 8 characters',
                       hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
                     ),
+                    obscureText: true,
                   ),
                 )
               ],
             ),
           ),
           Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey.withOpacity(0.5),
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(20.0),
-            ),
+            decoration: putborder(),
             margin:
                 const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
             child: Row(
@@ -295,12 +242,7 @@ class _ProfileState extends State<Profile> {
                     color: Colors.pink[900],
                   ),
                 ),
-                Container(
-                  height: 30.0,
-                  width: 1.0,
-                  color: Colors.grey.withOpacity(0.5),
-                  margin: const EdgeInsets.only(left: 00.0, right: 10.0),
-                ),
+                Straightline(),
                 Expanded(
                   child: TextField(
                     keyboardType: TextInputType.streetAddress,
@@ -310,6 +252,7 @@ class _ProfileState extends State<Profile> {
                       hintText: 'Please atleast 8 characters',
                       hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
                     ),
+                    obscureText: true,
                   ),
                 )
               ],
@@ -375,7 +318,14 @@ class _ProfileState extends State<Profile> {
                         context: context,
                         isScrollControlled: true,
                         builder: (context) {
-                          return editName(context, "newName");
+                          if (index == 0)
+                            return editName(context, "Enter New Name");
+                          else if (index == 1)
+                            return editEmail(context, "Enter new Email");
+                          else if (index == 2)
+                            return editPhone(context, "Enter new Phone no");
+                          else
+                            return editPassword(context, "Change Password");
                         });
                   },
                 ),

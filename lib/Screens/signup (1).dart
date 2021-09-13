@@ -209,6 +209,7 @@ class Mysignuppage extends StatelessWidget {
                               hintStyle:
                                   TextStyle(color: Colors.grey, fontSize: 10),
                             ),
+                            obscureText: true,
                           ),
                         )
                       ],
