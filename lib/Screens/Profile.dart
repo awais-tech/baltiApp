@@ -1,6 +1,6 @@
-import 'package:balti/utlity/Bottommodaltitle.dart';
-import 'package:balti/utlity/Straightline.dart';
-import 'package:balti/utlity/inputborder.dart';
+import 'package:balti/Utilities/Bottommodaltitle.dart';
+import 'package:balti/Utilities/Straightline.dart';
+import 'package:balti/Utilities/inputborder.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
