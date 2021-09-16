@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                      height: 280,
+                      height: 240,
                       child: ListView.builder(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
@@ -144,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           return ChangeNotifierProvider.value(
                               value: products[index],
                               child: Container(
-                                width: 300.0,
+                                width: 220.0,
                                 child: BaltiItem(),
                               ));
                         },
@@ -152,42 +152,51 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     Container(
-                      // child: Container(
-                      //     color: Colors.white,
-                      //     child: GridView.builder(
-                      //       shrinkWrap: true,
-                      //       physics: NeverScrollableScrollPhysics(),
-                      //       itemCount: allMenu.length,
-                      //       itemBuilder: (ctx, index) => BaltiItem(
-                      //           allMenu[index].id,
-                      //           allMenu[index].title,
-                      //           allMenu[index].imageUrl,
-                      //           allMenu[index].duration,
-                      //           allMenu[index].Dilvery,
-                      //           allMenu[index].Category,
-                      //           allMenu[index].ResturentName),
-                      //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      //         crossAxisCount: 2,
-                      //         childAspectRatio: 1,
-                      //         crossAxisSpacing: 4,
-                      //         mainAxisSpacing: 4,
-                      //       ),
-                      //     )
-                      child: ListView.builder(
-                        cacheExtent: 9999,
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (ctx, index) {
-                          return ChangeNotifierProvider.value(
-                            value: products[index],
-                            child: Container(
-                              width: 300.0,
-                              child: BaltiItem(),
+                      child: Container(
+                          color: Colors.white,
+                          child: OrientationBuilder(builder: (BuildContext context, Orientation orientation) { 
+
+         return new GridView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: products.length,
+                            itemBuilder: (ctx, index) 
+                            
+                            {
+                              return
+                            
+                            
+   ChangeNotifierProvider.value( value: products[index],child: BaltiItem(),);
+                              
+  },
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount:  MediaQuery.of(context).orientation  == Orientation.portrait?2:4,
+                              // MediaQuery.of(context).size.width /
+                    // (MediaQuery.of(context).size.height / 1.4)
+                              childAspectRatio: MediaQuery.of(context).orientation  == Orientation.portrait?1/1.3:1/1.1,
+                              crossAxisSpacing: 4,
+                              mainAxisSpacing: 4,
                             ),
                           );
-                        },
-                        itemCount: products.length,
-                      ),
+
+                           },)
+                          // child: ListView.builder(
+                          //   cacheExtent: 9999,
+                          //   shrinkWrap: true,
+                          //   physics: const NeverScrollableScrollPhysics(),
+                          //   itemBuilder: (ctx, index) {
+                          //     return ChangeNotifierProvider.value(
+                          //       value: products[index],
+                          //       child: Container(
+                          //         width: 300.0,
+                          //         child: BaltiItem(),
+                          //       ),
+                          //     );
+                          //   },
+                          //   itemCount: products.length,
+                          // ),
+                          ),
                     ),
                   ],
                 ),
