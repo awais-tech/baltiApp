@@ -299,6 +299,7 @@ class _ProfileState extends State<Profile> {
               margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               elevation: 5,
               child: ListTile(
+                onTap: () {},
                 title: Text(
                   "${myList[index]}",
                   style: TextStyle(fontSize: 15),
