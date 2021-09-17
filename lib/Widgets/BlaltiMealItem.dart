@@ -23,6 +23,7 @@ class BaltiItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double c_width = MediaQuery.of(context).size.width * 0.30;
     final loadedMenu = Provider.of<Meal>(
       context,
     );
@@ -48,7 +49,7 @@ class BaltiItem extends StatelessWidget {
                   ),
                   child: Image.network(
                     loadedMenu.imageUrl,
-                    height: 150,
+                    height: 120,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
@@ -111,10 +112,13 @@ class BaltiItem extends StatelessWidget {
             child: ListTile(
               // leading: Icon(Icons.ac_unit_outlined),
               title: Container(
+                width: double.infinity,
                 padding: EdgeInsets.symmetric(vertical: 4),
-                child: Text(
-                  loadedMenu.ResturentName,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                child: FittedBox(
+                  child: Text(
+                    loadedMenu.ResturentName,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
 
@@ -123,7 +127,11 @@ class BaltiItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    child: FittedBox(child: Text(loadedMenu.Category)),
+                    child: FittedBox(
+                      child: Text(
+                        loadedMenu.Category,
+                      ),
+                    ),
                     padding: EdgeInsets.symmetric(vertical: 2),
                   ),
                   Container(
