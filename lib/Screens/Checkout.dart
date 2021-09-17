@@ -229,8 +229,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                       ),
                                       ElevatedButton(
                                         child: Text('Yes'),
-                                        onPressed: () {
-                                          Provider.of<Orders>(context,
+                                        onPressed: () async {
+                                          await Provider.of<Orders>(context,
                                                   listen: false)
                                               .addOrder(
                                             cart.items.values.toList(),

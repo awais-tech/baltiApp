@@ -26,208 +26,65 @@ class Sellerdashboard extends StatelessWidget {
             ),
           ],
         ), //AppBar
-        body: Center(
-          child: Container(
-              child: Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: [
-                    Flexible(
-                      flex: 1,
-                      fit: FlexFit.tight,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ListTile(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          tileColor: Colors.blueGrey[50],
-                          onTap: () {},
-                          title: Text(
-                            "Hi, User",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+        body: LayoutBuilder(builder: (ctx, constraints) {
+          return Center(
+            child: Container(
+                child: Padding(
+              padding: const EdgeInsets.all(14.0),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: [
+                      Flexible(
+                        flex: 1,
+                        fit: FlexFit.tight,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ListTile(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
                             ),
-                          ),
-                          subtitle: Text(
-                            "There are 627 Businesses serving in your area. Be one of them",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          trailing: Icon(
-                            Icons.add_business_outlined,
-                            color: Colors.black,
-                            size: 36,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Flexible(
-                      flex: 1,
-                      fit: FlexFit.tight,
-                      child: Container(
-                        height: 175,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Card(
-                          color: Colors.pink,
-                          elevation: 8,
-                          child: InkWell(
+                            tileColor: Colors.blueGrey[50],
                             onTap: () {},
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Icon(
-                                  Icons.business_center_rounded,
-                                  size: 75,
-                                  color: Colors.white,
-                                ),
-                                Text(
-                                  "Businesses",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                      color: Colors.white),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ), //BoxDecoration
-                      ), //Container
-                    ), //Flexible
-                    SizedBox(
-                      width: 20,
-                    ), //SizedBox
-                    Flexible(
-                      flex: 1,
-                      fit: FlexFit.tight,
-                      child: Container(
-                        height: 175,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Card(
-                          elevation: 8,
-                          color: Colors.amber[400],
-                          child: InkWell(
-                            onTap: () {},
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Icon(
-                                  Icons.poll_rounded,
-                                  size: 75,
-                                ),
-                                Text(
-                                  "Orders",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                              ],
-                            ),
-                          ), //BoxDecoration
-                        ),
-                      ), //Container
-                    ) //Flexible
-                  ], //<Widget>[]
-                  mainAxisAlignment: MainAxisAlignment.center,
-                ), //Row
-                Flexible(
-                  flex: 1,
-                  fit: FlexFit.loose,
-                  child: Container(
-                    width: 380,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Card(
-                      elevation: 8,
-                      color: Colors.pink[200],
-                      child: InkWell(
-                        onTap: () {},
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Icon(
-                              Icons.sell,
-                              size: 75,
-                            ),
-                            Text(
-                              "Sales",
+                            title: Text(
+                              "Hi, User",
+                              textAlign: TextAlign.start,
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ],
-                        ),
-                      ),
-                    ), //BoxDecoration
-                  ), //Container
-                ), //Flexible
-                Row(
-                  children: <Widget>[
-                    Flexible(
-                      flex: 2,
-                      fit: FlexFit.tight,
-                      child: Container(
-                        width: 180,
-                        height: 175,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Card(
-                          elevation: 8,
-                          color: Colors.cyanAccent[400],
-                          child: InkWell(
-                            onTap: () {},
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Icon(
-                                  Icons.feedback_rounded,
-                                  size: 75,
-                                ),
-                                Text(
-                                  "Feedbacks",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                              ],
+                            subtitle: Text(
+                              "There are 627 Businesses serving in your area. Be one of them",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            trailing: Icon(
+                              Icons.add_business_outlined,
+                              color: Colors.black,
+                              size: 36,
                             ),
                           ),
-                        ), //BoxDecoration
+                        ),
                       ),
-                      //Container
-                    ), //Flexible
-                    SizedBox(
-                      width: 20,
-                    ), //SixedBox
-                    Flexible(
-                        flex: 2,
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Flexible(
+                        flex: 1,
                         fit: FlexFit.tight,
                         child: Container(
-                          width: 180,
-                          height: 175,
+                          height: constraints.maxHeight * 0.25,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Card(
+                            color: Colors.pink,
                             elevation: 8,
-                            color: Colors.deepOrange[700],
                             child: InkWell(
                               onTap: () {},
                               child: Column(
@@ -235,12 +92,12 @@ class Sellerdashboard extends StatelessWidget {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   Icon(
-                                    Icons.logout_rounded,
+                                    Icons.business_center_rounded,
                                     size: 75,
                                     color: Colors.white,
                                   ),
                                   Text(
-                                    "Logout",
+                                    "Businesses",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
@@ -250,18 +107,174 @@ class Sellerdashboard extends StatelessWidget {
                               ),
                             ),
                           ), //BoxDecoration
-                        ) //Container,
-                        ) //Flexible
-                  ], //<widget>[]
-                  mainAxisAlignment: MainAxisAlignment.center,
-                ), //Row
-              ], //<Widget>[]
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-            ), //Column
-          ) //Padding
-              ), //Container
-        ) //Center
+                        ), //Container
+                      ), //Flexible
+                      SizedBox(
+                        width: 20,
+                      ),
+                      //Flexible
+
+                      Flexible(
+                        flex: 1,
+                        fit: FlexFit.tight,
+                        child: Container(
+                          height: constraints.maxHeight * 0.25,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Card(
+                            elevation: 8,
+                            color: Colors.amber[400],
+                            child: InkWell(
+                              onTap: () {},
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Icon(
+                                    Icons.poll_rounded,
+                                    size: 75,
+                                  ),
+                                  Text(
+                                    "Orders",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16),
+                                  ),
+                                ],
+                              ),
+                            ), //BoxDecoration
+                          ),
+                        ),
+                      ), //Container
+                    ],
+                  ),
+                  //Row
+                  Row(
+                    children: [
+                      Flexible(
+                        flex: 1,
+                        fit: FlexFit.tight,
+                        child: Container(
+                          width: 380,
+                          height: constraints.maxHeight * 0.25,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Card(
+                            elevation: 8,
+                            color: Colors.pink[200],
+                            child: InkWell(
+                              onTap: () {},
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Icon(
+                                    Icons.sell,
+                                    size: 75,
+                                  ),
+                                  Text(
+                                    "Sales",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ), //BoxDecoration
+                        ), //Container
+                      ),
+                    ],
+                  ), //Flexible
+                  Row(
+                    children: <Widget>[
+                      Flexible(
+                        flex: 2,
+                        fit: FlexFit.tight,
+                        child: Container(
+                          width: 180,
+                          height: constraints.maxHeight * 0.25,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Card(
+                            elevation: 8,
+                            color: Colors.cyanAccent[400],
+                            child: InkWell(
+                              onTap: () {},
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Icon(
+                                    Icons.feedback_rounded,
+                                    size: 75,
+                                  ),
+                                  Text(
+                                    "Feedbacks",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ), //BoxDecoration
+                        ),
+                        //Container
+                      ), //Flexible
+                      SizedBox(
+                        width: 20,
+                      ), //SixedBox
+                      Flexible(
+                          flex: 2,
+                          fit: FlexFit.tight,
+                          child: Container(
+                            width: 180,
+                            height: constraints.maxHeight * 0.25,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Card(
+                              elevation: 8,
+                              color: Colors.deepOrange[700],
+                              child: InkWell(
+                                onTap: () {},
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Icon(
+                                      Icons.logout_rounded,
+                                      size: 75,
+                                      color: Colors.white,
+                                    ),
+                                    Text(
+                                      "Logout",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ), //BoxDecoration
+                          ) //Container,
+                          ) //Flexible
+                    ], //<widget>[]
+                    mainAxisAlignment: MainAxisAlignment.center,
+                  ), //Row
+                ], //<Widget>[]
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+              ), //Column
+            ) //Padding
+                ), //Container
+          );
+        }) //Center
         ); //Scaffold
   }
 }
