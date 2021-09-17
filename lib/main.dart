@@ -3,6 +3,7 @@ import 'package:balti/Provider/cart.dart';
 import 'package:balti/Provider/orders.dart';
 import 'package:balti/Screens/Address.dart';
 import 'package:balti/Screens/Checkout.dart';
+import 'package:balti/Screens/Dashboard.dart';
 import 'package:balti/Screens/DetailScreen.dart';
 import 'package:balti/Screens/HomepageScreen.dart';
 
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
               OrdersScreen.routeName: (ctx) => OrdersScreen(),
               AboutUs.routeName: (ctx) => AboutUs(),
               Address.routeName: (ctx) => Address(),
+              Sellerdashboard.routeName: (ctx) => Sellerdashboard(),
             }));
   }
 }

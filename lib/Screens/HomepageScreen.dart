@@ -1,5 +1,6 @@
 import 'package:balti/Model/meal.dart';
 import 'package:balti/Provider/MealsProvider.dart';
+import 'package:balti/Screens/Dashboard.dart';
 import 'package:balti/Widgets/BlaltiMealItem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -120,11 +121,14 @@ class _HomeScreenState extends State<HomeScreen> {
           //   color: Colors.yellow,
           // ),
           ElevatedButton(
-            onPressed: () => {},
+            onPressed: () => {
+              Navigator.of(context)
+                  .pushReplacementNamed(Sellerdashboard.routeName)
+            },
             style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.pink[900])),
-            child:
-                FittedBox(fit: BoxFit.fitWidth, child: Text('Switch to Buyer')),
+            child: FittedBox(
+                fit: BoxFit.fitWidth, child: Text('Switch to Seller')),
           ),
         ],
       ),
@@ -154,33 +158,39 @@ class _HomeScreenState extends State<HomeScreen> {
                     Container(
                       child: Container(
                           color: Colors.white,
-                          child: OrientationBuilder(builder: (BuildContext context, Orientation orientation) { 
-
-         return new GridView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: products.length,
-                            itemBuilder: (ctx, index) 
-                            
-                            {
-                              return
-                            
-                            
-   ChangeNotifierProvider.value( value: products[index],child: BaltiItem(),);
-                              
-  },
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount:  MediaQuery.of(context).orientation  == Orientation.portrait?2:4,
-                              // MediaQuery.of(context).size.width /
-                    // (MediaQuery.of(context).size.height / 1.4)
-                              childAspectRatio: MediaQuery.of(context).orientation  == Orientation.portrait?1/1.3:1/1.1,
-                              crossAxisSpacing: 4,
-                              mainAxisSpacing: 4,
-                            ),
-                          );
-
-                           },)
+                          child: OrientationBuilder(
+                            builder: (BuildContext context,
+                                Orientation orientation) {
+                              return new GridView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: products.length,
+                                itemBuilder: (ctx, index) {
+                                  return ChangeNotifierProvider.value(
+                                    value: products[index],
+                                    child: BaltiItem(),
+                                  );
+                                },
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount:
+                                      MediaQuery.of(context).orientation ==
+                                              Orientation.portrait
+                                          ? 2
+                                          : 4,
+                                  // MediaQuery.of(context).size.width /
+                                  // (MediaQuery.of(context).size.height / 1.4)
+                                  childAspectRatio:
+                                      MediaQuery.of(context).orientation ==
+                                              Orientation.portrait
+                                          ? 1 / 1.3
+                                          : 1 / 1.1,
+                                  crossAxisSpacing: 4,
+                                  mainAxisSpacing: 4,
+                                ),
+                              );
+                            },
+                          )
                           // child: ListView.builder(
                           //   cacheExtent: 9999,
                           //   shrinkWrap: true,
