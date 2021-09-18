@@ -126,6 +126,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   .pushReplacementNamed(Sellerdashboard.routeName)
             },
             style: ButtonStyle(
+                side: MaterialStateProperty.all(
+                    BorderSide(width: 1, color: Colors.black38)),
                 backgroundColor: MaterialStateProperty.all(Colors.pink[900])),
             child: FittedBox(
                 fit: BoxFit.fitWidth, child: Text('Switch to Seller')),

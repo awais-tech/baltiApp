@@ -279,18 +279,6 @@ class _ProfileState extends State<Profile> {
           'Profile',
           textAlign: TextAlign.center,
         ),
-        actions: <Widget>[
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.cancel_outlined,
-              size: 32,
-              color: Colors.pink[900],
-            ),
-          ),
-        ],
       ),
       body: ListView.builder(
           itemCount: myList.length,

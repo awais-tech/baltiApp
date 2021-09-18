@@ -6,15 +6,6 @@ import '../Widgets/cart_item_details.dart';
 
 class Mycart extends StatefulWidget {
   static final route = '/Cart';
-  static final List<String> productTitle = <String>[
-    'MilkPak',
-    'Nestle',
-    'Dalda',
-    'Pepsi',
-    'Dairy Milk'
-  ];
-  static final List<int> productPrice = <int>[140, 100, 300, 86, 55];
-
   @override
   _MycartState createState() => _MycartState();
 }
@@ -28,18 +19,6 @@ class _MycartState extends State<Mycart> {
       appBar: AppBar(
         backgroundColor: Colors.pink[900],
         title: Text('Balti Cart'),
-        actions: <Widget>[
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.cancel_outlined,
-              size: 32,
-              color: Colors.pink[900],
-            ),
-          ),
-        ],
       ),
       body: Container(
         height: MediaQuery.of(context).size.height * 0.9,

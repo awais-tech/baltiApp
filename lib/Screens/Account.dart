@@ -20,13 +20,13 @@ class _AccountState extends State<Account> {
     (Accountoption(
       title: 'Orders History',
       icons: Icons.shopping_basket,
-      color: Colors.amber,
+      color: Colors.pink,
       link: OrdersScreen.routeName,
     )),
     (Accountoption(
       title: 'Order Items',
       icons: Icons.wallet_giftcard_outlined,
-      color: Colors.amber,
+      color: Colors.pink,
       link: OrdersScreen.routeName,
     ))
   ];
@@ -34,37 +34,37 @@ class _AccountState extends State<Account> {
     (Accountoption(
       title: 'Edit Profile',
       icons: Icons.edit,
-      color: Colors.amber,
+      color: Colors.pink,
       link: Profile.routeName,
     )),
     (Accountoption(
       title: 'Information',
       icons: Icons.info_outline,
-      color: Colors.amber,
+      color: Colors.pink,
       link: information.routeName,
     )),
     (Accountoption(
       title: 'Address',
       icons: Icons.phone,
-      color: Colors.amber,
+      color: Colors.pink,
       link: 'Address',
     )),
     (Accountoption(
       title: 'Contact us',
       icons: Icons.contact_mail,
-      color: Colors.amber,
+      color: Colors.pink,
       link: ContactUs.routeName,
     )),
     (Accountoption(
       title: 'About us',
       icons: Icons.account_box_outlined,
-      color: Colors.amber,
+      color: Colors.pink,
       link: AboutUs.routeName,
     )),
     (Accountoption(
       title: 'Sign Out',
       icons: Icons.logout,
-      color: Colors.amber,
+      color: Colors.pink,
       link: '',
     ))
   ];

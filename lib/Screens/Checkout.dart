@@ -27,18 +27,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             'Checkout',
             textAlign: TextAlign.center,
           ),
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.cancel_outlined,
-                size: 32,
-                color: Colors.pink[900],
-              ),
-            ),
-          ],
         ),
         body: Container(
           child: Column(
@@ -102,11 +90,39 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                   color: Colors.pink[900],
                                   fontWeight: FontWeight.bold),
                             )),
-                        Card(
-                          margin:
-                              EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                          elevation: 5,
-                          child: Text("Billing Address"),
+                        Container(
+                          height: 100,
+                          width: double.infinity,
+                          child: Card(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 15),
+                            elevation: 5,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Home Address",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                          color: Colors.black87)),
+                                  Text(
+                                      "House No. 30 Block B PIA Housing Society",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                      )),
+                                  Text("Johar Town, Lahore 54782",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black54)),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
                         Button(context, "Add New Address"),
                       ])),

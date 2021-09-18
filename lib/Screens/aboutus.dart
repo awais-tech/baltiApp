@@ -11,18 +11,6 @@ class AboutUs extends StatelessWidget {
             'About Us',
             textAlign: TextAlign.center,
           ),
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.cancel_outlined,
-                size: 32,
-                color: Colors.pink[900],
-              ),
-            ),
-          ],
         ),
         body: Center(
           child: Container(

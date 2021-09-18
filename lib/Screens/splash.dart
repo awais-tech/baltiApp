@@ -57,7 +57,7 @@ class _SplashState extends State<Splash> {
                         // ..translate(-10.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Colors.pink.shade900,
+                          color: Colors.white,
                           boxShadow: [
                             BoxShadow(
                               blurRadius: 8,
