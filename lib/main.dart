@@ -1,20 +1,21 @@
 import 'package:balti/Provider/MealsProvider.dart';
 import 'package:balti/Provider/cart.dart';
 import 'package:balti/Provider/orders.dart';
-import 'package:balti/Screens/Address.dart';
-import 'package:balti/Screens/Checkout.dart';
-import 'package:balti/Screens/Dashboard.dart';
-import 'package:balti/Screens/DetailScreen.dart';
-import 'package:balti/Screens/HomepageScreen.dart';
+import 'package:balti/Screens/Buyer/Accounts/Address.dart';
+import 'package:balti/Screens/Buyer/checkout/Checkout.dart';
+import 'package:balti/Screens/Seller/AddProduct.dart';
+import 'package:balti/Screens/Seller/Dashboard.dart';
+import 'package:balti/Screens/Buyer/DetailScreen.dart';
+import 'package:balti/Screens/Buyer/HomepageScreen.dart';
 
-import 'package:balti/Screens/Orderstatus.dart';
-import 'package:balti/Screens/Profile.dart';
-import 'package:balti/Screens/aboutus.dart';
-import 'package:balti/Screens/addtocart.dart';
-import 'package:balti/Screens/login%20screen%201%20(2).dart';
-import 'package:balti/Screens/orders_screen.dart';
-import 'package:balti/Screens/signup%20(1).dart';
-import 'package:balti/Screens/splash.dart';
+import 'package:balti/Screens/Buyer/Accounts/Orderstatus.dart';
+import 'package:balti/Screens/Buyer/Accounts/Profile.dart';
+import 'package:balti/Screens/Buyer/Accounts/aboutus.dart';
+import 'package:balti/Screens/Buyer/checkout/addtocart.dart';
+import 'package:balti/Screens/Buyer/Accounts/orders_screen.dart';
+import 'package:balti/Screens/Buyer/AccountAuth/signup%20(1).dart';
+import 'package:balti/Screens/Buyer/AccountAuth/splash.dart';
+import 'package:balti/Screens/Seller/Manageproducts/Vieproducts.dart';
 import 'package:balti/Widgets/tab.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -57,6 +58,8 @@ class MyApp extends StatelessWidget {
               AboutUs.routeName: (ctx) => AboutUs(),
               Address.routeName: (ctx) => Address(),
               Sellerdashboard.routeName: (ctx) => Sellerdashboard(),
+              UserProductsScreen.routeName: (ctx) => UserProductsScreen(),
+              AddProductScreen.routeName: (ctx) => AddProductScreen()
             }));
   }
 }

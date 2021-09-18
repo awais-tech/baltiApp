@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:balti/Screens/login%20screen%201%20(2).dart';
+import 'package:balti/Screens/Buyer/AccountAuth/login%20screen%201%20(2).dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -57,7 +57,7 @@ class _SplashState extends State<Splash> {
                         // ..translate(-10.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Colors.white,
+                          color: Colors.pink,
                           boxShadow: [
                             BoxShadow(
                               blurRadius: 8,

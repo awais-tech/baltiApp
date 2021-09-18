@@ -1,4 +1,4 @@
-import 'package:balti/Screens/HomepageScreen.dart';
+import 'package:balti/Screens/Buyer/HomepageScreen.dart';
 import 'package:flutter/material.dart';
 
 class Mysignuppage extends StatelessWidget {

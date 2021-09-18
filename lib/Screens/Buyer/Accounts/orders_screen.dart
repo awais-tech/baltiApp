@@ -3,7 +3,7 @@ import 'package:balti/Provider/orders.dart' show Orders;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../widgets/order_item.dart';
+import '../../../widgets/order_item.dart';
 
 class OrdersScreen extends StatefulWidget {
   static const routeName = '/Orderhistory';

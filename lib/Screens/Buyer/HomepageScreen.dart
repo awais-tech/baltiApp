@@ -1,6 +1,6 @@
 import 'package:balti/Model/meal.dart';
 import 'package:balti/Provider/MealsProvider.dart';
-import 'package:balti/Screens/Dashboard.dart';
+import 'package:balti/Screens/Seller/Dashboard.dart';
 import 'package:balti/Widgets/BlaltiMealItem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

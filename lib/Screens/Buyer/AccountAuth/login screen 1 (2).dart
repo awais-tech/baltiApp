@@ -1,5 +1,5 @@
-import 'package:balti/Screens/HomepageScreen.dart';
-import 'package:balti/Screens/signup%20(1).dart';
+import 'package:balti/Screens/Buyer/HomepageScreen.dart';
+import 'package:balti/Screens/Buyer/AccountAuth/signup%20(1).dart';
 import 'package:flutter/material.dart';
 import 'package:sign_button/sign_button.dart';
 

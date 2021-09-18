@@ -5,76 +5,76 @@ import 'dart:convert';
 
 class BaltiMeals with ChangeNotifier {
   List<Meal> meals = [
-    Meal(
-      id: 'm1',
-      title: 'Chill out deals',
-      ResturentName: 'Subway',
-      Category: 'Chinese',
-      price: 20,
-      description:
-          'Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy nowIts new products you can buy now Its new products you can buy now Its new products you can buy now',
-      Dilvery: '45 Dilvery Fee',
-      imageUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',
-      duration: 20,
-    ),
-    Meal(
-      id: 'm1',
-      title: 'Chill out deals',
-      ResturentName: 'Subway',
-      Category: 'Chinese',
-      Dilvery: '45 Dilvery Fee',
-      price: 20,
-      description: 'Its new products you can buy now',
-      imageUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',
-      duration: 20,
-    ),
-    Meal(
-        id: 'm7',
-        title: 'Chill out deals',
-        ResturentName: 'Subway',
-        Category: 'Chinese',
-        Dilvery: '45 Dilvery Fee',
-        imageUrl:
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',
-        duration: 20,
-        price: 20,
-        description: 'Its new products you can buy now'),
-    Meal(
-      id: 'm2',
-      title: 'Chill out deals',
-      ResturentName: 'Subway',
-      Category: 'Chinese',
-      Dilvery: '45 Dilvery Fee',
-      imageUrl:
-          'https://cdn.pixabay.com/photo/2018/07/11/21/51/toast-3532016_1280.jpg',
-      duration: 10,
-      price: 20,
-      description: 'Its new products you can buy now',
-    ),
-    Meal(
-        id: 'm3',
-        title: 'Chill out deals',
-        ResturentName: 'Subway',
-        Category: 'Chinese',
-        Dilvery: '45 Dilvery Fee',
-        imageUrl:
-            'https://cdn.pixabay.com/photo/2014/10/23/18/05/burger-500054_1280.jpg',
-        duration: 45,
-        price: 20,
-        description: 'Its new products you can buy now'),
-    Meal(
-        id: 'm4',
-        title: 'Chill out deals',
-        ResturentName: 'Subway',
-        Category: 'Chinese',
-        Dilvery: '45 Dilvery Fee',
-        imageUrl:
-            'https://cdn.pixabay.com/photo/2018/03/31/19/29/schnitzel-3279045_1280.jpg',
-        duration: 60,
-        price: 20,
-        description: 'Its new products you can buy now')
+    // Meal(
+    //   id: 'm1',
+    //   title: 'Chill out deals',
+    //   ResturentName: 'Subway',
+    //   Category: 'Chinese',
+    //   price: 20,
+    //   description:
+    //       'Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy now Its new products you can buy nowIts new products you can buy now Its new products you can buy now Its new products you can buy now',
+    //   Dilvery: '45 Dilvery Fee',
+    //   imageUrl:
+    //       'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',
+    //   duration: 20,
+    // ),
+    // Meal(
+    //   id: 'm1',
+    //   title: 'Chill out deals',
+    //   ResturentName: 'Subway',
+    //   Category: 'Chinese',
+    //   Dilvery: '45 Dilvery Fee',
+    //   price: 20,
+    //   description: 'Its new products you can buy now',
+    //   imageUrl:
+    //       'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',
+    //   duration: 20,
+    // ),
+    // Meal(
+    //     id: 'm7',
+    //     title: 'Chill out deals',
+    //     ResturentName: 'Subway',
+    //     Category: 'Chinese',
+    //     Dilvery: '45 Dilvery Fee',
+    //     imageUrl:
+    //         'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',
+    //     duration: 20,
+    //     price: 20,
+    //     description: 'Its new products you can buy now'),
+    // Meal(
+    //   id: 'm2',
+    //   title: 'Chill out deals',
+    //   ResturentName: 'Subway',
+    //   Category: 'Chinese',
+    //   Dilvery: '45 Dilvery Fee',
+    //   imageUrl:
+    //       'https://cdn.pixabay.com/photo/2018/07/11/21/51/toast-3532016_1280.jpg',
+    //   duration: 10,
+    //   price: 20,
+    //   description: 'Its new products you can buy now',
+    // ),
+    // Meal(
+    //     id: 'm3',
+    //     title: 'Chill out deals',
+    //     ResturentName: 'Subway',
+    //     Category: 'Chinese',
+    //     Dilvery: '45 Dilvery Fee',
+    //     imageUrl:
+    //         'https://cdn.pixabay.com/photo/2014/10/23/18/05/burger-500054_1280.jpg',
+    //     duration: 45,
+    //     price: 20,
+    //     description: 'Its new products you can buy now'),
+    // Meal(
+    //     id: 'm4',
+    //     title: 'Chill out deals',
+    //     ResturentName: 'Subway',
+    //     Category: 'Chinese',
+    //     Dilvery: '45 Dilvery Fee',
+    //     imageUrl:
+    //         'https://cdn.pixabay.com/photo/2018/03/31/19/29/schnitzel-3279045_1280.jpg',
+    //     duration: 60,
+    //     price: 20,
+    //     description: 'Its new products you can buy now')
   ];
   List<Meal> get items {
     return [...meals];
@@ -100,22 +100,114 @@ class BaltiMeals with ChangeNotifier {
               loadedProducts.add(Meal(
                 id: prodData['_id'],
                 title: prodData['title'],
-                description: prodData['Description'],
+                description: prodData['description'],
                 price: prodData['price'],
                 isFavorite: true,
                 imageUrl: prodData['imageUrl'],
                 duration: prodData['duration'],
                 ResturentName: prodData['ResturentName'],
                 Category: prodData['Category'],
-                Dilvery: prodData[' Dilvery'],
+                Dilvery: prodData['Dilvery'],
               ));
             })
           : print(2);
 
-      meals = [...meals, ...loadedProducts];
+      meals = loadedProducts;
       notifyListeners();
     } catch (error) {
       throw (error);
+    }
+  }
+
+  Future<void> deleteProduct(String id) async {
+    print(2);
+    final url = Uri.parse('https://baltiapi.herokuapp.com/products/$id');
+    Map<String, String> headers = {"Content-type": "application/json"};
+    final existingProductIndex = meals.indexWhere((prod) => prod.id == id);
+
+    Meal? existingProduct = items[existingProductIndex];
+    print(existingProductIndex);
+    meals.removeAt(existingProductIndex);
+    notifyListeners();
+    final response = await http.delete(url, headers: headers);
+    if (response.statusCode >= 400) {
+      meals.insert(existingProductIndex, existingProduct);
+      notifyListeners();
+      throw 'Could not delete product.';
+    }
+    existingProduct = null;
+  }
+
+  Future<void> addProduct(product) async {
+    try {
+      final url = Uri.parse('https://baltiapi.herokuapp.com/products');
+      Map<String, String> headers = {"Content-type": "application/json"};
+      print(url);
+      var doc = await http.post(
+        url,
+        headers: headers,
+        body: json.encode({
+          'title': product.title,
+          'description': product.description,
+          'price': product.price,
+          'imageUrl': product.imageUrl,
+          'favourite': product.isFavorite,
+          'ResturentName': product.ResturentName,
+          'Category': product.Category,
+          'Dilvery': product.Dilvery,
+          'duration': product.duration,
+        }),
+      );
+
+      final newProduct = Meal(
+        id: json.decode(doc.body)['_id'],
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        imageUrl: product.imageUrl,
+        ResturentName: product.ResturentName,
+        Category: product.Category,
+        Dilvery: product.Dilvery,
+        duration: product.duration,
+      );
+      meals.add(newProduct);
+      notifyListeners();
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<void> updateProduct(Meal newProduct) async {
+    try {
+      final prodIndex = items.indexWhere((prod) => prod.id == newProduct.id);
+      print(prodIndex);
+      if (prodIndex >= 0) {
+        final url = Uri.parse(
+            'https://baltiapi.herokuapp.com/products/${newProduct.id}');
+        Map<String, String> headers = {"Content-type": "application/json"};
+        await http.put(url,
+            headers: headers,
+            body: json.encode({
+              'title': newProduct.title,
+              'description': newProduct.description,
+              'imageUrl': newProduct.imageUrl,
+              // 'favourite': newProduct.isFavorite,
+              'price': newProduct.price,
+              'ResturentName': newProduct.ResturentName,
+              'Category': newProduct.Category,
+              'Dilvery': newProduct.Dilvery,
+              'duration': newProduct.duration,
+            }));
+
+        meals[prodIndex] = newProduct;
+        print(newProduct.price);
+        print(items[prodIndex].price);
+        notifyListeners();
+      } else {
+        print('...');
+      }
+    } catch (e) {
+      print('...3');
     }
   }
 }

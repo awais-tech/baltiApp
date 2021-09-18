@@ -1,11 +1,11 @@
 import 'package:balti/Model/Accountoption.dart';
 
-import 'package:balti/Screens/Orderstatus.dart';
-import 'package:balti/Screens/Profile.dart';
-import 'package:balti/Screens/aboutus.dart';
-import 'package:balti/Screens/contactus.dart';
-import 'package:balti/Screens/informtion.dart';
-import 'package:balti/Screens/orders_screen.dart';
+import 'package:balti/Screens/Buyer/Accounts/Orderstatus.dart';
+import 'package:balti/Screens/Buyer/Accounts/Profile.dart';
+import 'package:balti/Screens/Buyer/Accounts/aboutus.dart';
+import 'package:balti/Screens/Buyer/Accounts/contactus.dart';
+import 'package:balti/Screens/Buyer/Accounts/informtion.dart';
+import 'package:balti/Screens/Buyer/Accounts/orders_screen.dart';
 import 'package:flutter/material.dart';
 
 class Account extends StatefulWidget {

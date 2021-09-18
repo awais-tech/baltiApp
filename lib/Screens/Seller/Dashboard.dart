@@ -1,4 +1,6 @@
-import 'package:balti/Screens/HomepageScreen.dart';
+import 'package:balti/Screens/Buyer/HomepageScreen.dart';
+import 'package:balti/Screens/Seller/AddProduct.dart';
+import 'package:balti/Screens/Seller/Manageproducts/Vieproducts.dart';
 import 'package:flutter/material.dart';
 
 class Sellerdashboard extends StatelessWidget {
@@ -45,7 +47,10 @@ class Sellerdashboard extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15.0),
                             ),
                             tileColor: Colors.blueGrey[50],
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context)
+                                  .pushNamed(AddProductScreen.routeName);
+                            },
                             title: Text(
                               "Hi, User",
                               textAlign: TextAlign.start,
@@ -86,7 +91,10 @@ class Sellerdashboard extends StatelessWidget {
                             color: Colors.pink,
                             elevation: 8,
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context)
+                                    .pushNamed(UserProductsScreen.routeName);
+                              },
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,

@@ -1,8 +1,8 @@
 import 'package:balti/Provider/cart.dart';
-import 'package:balti/Screens/Checkout.dart';
+import 'package:balti/Screens/Buyer/checkout/Checkout.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../Widgets/cart_item_details.dart';
+import '../../../Widgets/cart_item_details.dart';
 
 class Mycart extends StatefulWidget {
   static final route = '/Cart';

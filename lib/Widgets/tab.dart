@@ -1,8 +1,8 @@
 import 'package:balti/Provider/cart.dart';
-import 'package:balti/Screens/Account.dart';
-import 'package:balti/Screens/Explore.dart';
-import 'package:balti/Screens/HomepageScreen.dart';
-import 'package:balti/Screens/addtocart.dart';
+import 'package:balti/Screens/Buyer/Accounts/Account.dart';
+import 'package:balti/Screens/Buyer/Explore.dart';
+import 'package:balti/Screens/Buyer/HomepageScreen.dart';
+import 'package:balti/Screens/Buyer/checkout/addtocart.dart';
 import 'package:balti/Widgets/badge.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

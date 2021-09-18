@@ -1,6 +1,6 @@
 import 'package:balti/Model/meal.dart';
-import 'package:balti/Screens/DetailScreen.dart';
-import 'package:balti/Screens/addtocart.dart';
+import 'package:balti/Screens/Buyer/DetailScreen.dart';
+import 'package:balti/Screens/Buyer/checkout/addtocart.dart';
 
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
