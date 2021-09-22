@@ -7,7 +7,6 @@ import 'package:balti/Screens/Seller/AddProduct.dart';
 import 'package:balti/Screens/Seller/Dashboard.dart';
 import 'package:balti/Screens/Buyer/DetailScreen.dart';
 import 'package:balti/Screens/Buyer/HomepageScreen.dart';
-
 import 'package:balti/Screens/Buyer/Accounts/Orderstatus.dart';
 import 'package:balti/Screens/Buyer/Accounts/Profile.dart';
 import 'package:balti/Screens/Buyer/Accounts/aboutus.dart';
@@ -16,6 +15,7 @@ import 'package:balti/Screens/Buyer/Accounts/orders_screen.dart';
 import 'package:balti/Screens/Buyer/AccountAuth/signup%20(1).dart';
 import 'package:balti/Screens/Buyer/AccountAuth/splash.dart';
 import 'package:balti/Screens/Seller/Manageproducts/Vieproducts.dart';
+import 'package:balti/Screens/Seller/feedbacks.dart';
 import 'package:balti/Widgets/tab.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
               Address.routeName: (ctx) => Address(),
               Sellerdashboard.routeName: (ctx) => Sellerdashboard(),
               UserProductsScreen.routeName: (ctx) => UserProductsScreen(),
-              AddProductScreen.routeName: (ctx) => AddProductScreen()
+              AddProductScreen.routeName: (ctx) => AddProductScreen(),
             }));
   }
 }
