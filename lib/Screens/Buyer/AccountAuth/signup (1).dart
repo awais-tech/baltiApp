@@ -1,5 +1,6 @@
 import 'package:balti/Screens/Buyer/HomepageScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:balti/Screens/Buyer/AccountAuth/login%20screen%201%20(2).dart';
 
 class Mysignuppage extends StatelessWidget {
   static final route = '/SignUp';
@@ -279,9 +280,10 @@ class Mysignuppage extends StatelessWidget {
                                   fontSize: 10, color: Colors.pink),
                             ),
                             onPressed: () {
-                              Navigator.of(context).pushNamed(
-                                '/',
-                              );
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginScreen1()));
                             },
                             child: const Text('Sign in'),
                           ),

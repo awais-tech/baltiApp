@@ -6,7 +6,7 @@ import 'dart:convert';
 
 class OrderItem {
   final String id;
-  final double amount;
+  final int amount;
   final List<CartItem> products;
   final DateTime dateTime;
 
@@ -57,7 +57,7 @@ class Orders with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addOrder(List<CartItem> cartProducts, double total) async {
+  Future<void> addOrder(List<CartItem> cartProducts, int total) async {
     var url = Uri.parse('https://baltiapi.herokuapp.com/orders');
     Map<String, String> headers = {"Content-type": "application/json"};
     final timestamp = DateTime.now();
