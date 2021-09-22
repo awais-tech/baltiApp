@@ -9,8 +9,6 @@ enum SingingCharacter { comments, bugs, questions }
 
 class _FeedbackScreenState extends State<FeedbackScreen> {
   @override
-  static const routeName = '/FeedbackScreen';
-
   SingingCharacter? _character = SingingCharacter.comments;
 
   Widget _buildFirstName() {
