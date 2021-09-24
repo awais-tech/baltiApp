@@ -8,7 +8,6 @@ class FeedbackScreen extends StatefulWidget {
 enum SingingCharacter { comments, bugs, questions }
 
 class _FeedbackScreenState extends State<FeedbackScreen> {
-  @override
   SingingCharacter? _character = SingingCharacter.comments;
 
   Widget _buildFirstName() {
