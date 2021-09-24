@@ -1,6 +1,7 @@
 import 'package:balti/Screens/Buyer/HomepageScreen.dart';
 import 'package:balti/Screens/Seller/AddProduct.dart';
 import 'package:balti/Screens/Seller/Manageproducts/Vieproducts.dart';
+import 'package:balti/Screens/Seller/manageorders/orderstabscreen.dart';
 import 'package:flutter/material.dart';
 
 class Sellerdashboard extends StatelessWidget {
@@ -134,7 +135,10 @@ class Sellerdashboard extends StatelessWidget {
                             elevation: 8,
                             color: Colors.amber[400],
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context)
+                                    .pushNamed(OrdersApprovalScreen.routeName);
+                              },
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
