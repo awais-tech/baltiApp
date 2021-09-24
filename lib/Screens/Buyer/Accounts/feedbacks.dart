@@ -1,69 +1,96 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+
+enum SingingCharacter { comments, bugs, questions }
 
 class FeedbackScreen extends StatefulWidget {
   static final routename = 'feedback';
+
   @override
   _FeedbackScreenState createState() => _FeedbackScreenState();
 }
 
-enum SingingCharacter { comments, bugs, questions }
-
 class _FeedbackScreenState extends State<FeedbackScreen> {
   SingingCharacter? _character = SingingCharacter.comments;
 
-  Widget _buildFirstName() {
-    return TextFormField(
-      keyboardType: TextInputType.text,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-          labelText: 'First Name',
-          hintText: 'Enter Your First Name',
-          labelStyle: TextStyle(fontSize: 16.0, color: Colors.black87)),
+  Widget buildFirstName() {
+    return Container(
+      width: double.infinity,
+      child: TextField(
+        keyboardType: TextInputType.text,
+        decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.pink, width: 2.0),
+            ),
+            contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+            labelText: 'First Name',
+            hintText: 'Enter Your First Name',
+            labelStyle: TextStyle(fontSize: 16.0, color: Colors.black87)),
+      ),
     );
   }
 
-  Widget _buildLastName() {
-    return TextFormField(
-      keyboardType: TextInputType.text,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-          hintText: 'Enter Your Last Name',
-          labelText: 'Last Name',
-          labelStyle: TextStyle(fontSize: 16.0, color: Colors.black87)),
+  Widget buildLastName() {
+    return Container(
+      width: double.infinity,
+      child: TextField(
+        keyboardType: TextInputType.text,
+        decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.pink, width: 2.0),
+            ),
+            contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+            hintText: 'Enter Your Last Name',
+            labelText: 'Last Name',
+            labelStyle: TextStyle(fontSize: 16.0, color: Colors.black87)),
+      ),
     );
   }
 
-  Widget _buildEmail() {
-    return TextFormField(
-      keyboardType: TextInputType.text,
-      onChanged: (String value) {},
-      readOnly: true,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-          labelText: 'Email',
-          labelStyle: TextStyle(fontSize: 16.0, color: Colors.black87)),
+  Widget buildEmail() {
+    return Container(
+      width: double.infinity,
+      child: TextField(
+        keyboardType: TextInputType.text,
+        onChanged: (String value) {},
+        decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.pink, width: 2.0),
+            ),
+            contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+            labelText: 'Email',
+            labelStyle: TextStyle(fontSize: 16.0, color: Colors.black87)),
+      ),
     );
   }
 
-  Widget _buildDescription() {
-    return TextFormField(
-      keyboardType: TextInputType.text,
-      maxLines: 2,
-      decoration: InputDecoration(
-          labelText: 'Description',
-          border: OutlineInputBorder(),
-          contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-          labelStyle: TextStyle(fontSize: 16.0, color: Colors.black87)),
+  Widget buildDescription() {
+    return Container(
+      width: double.infinity,
+      child: TextField(
+        keyboardType: TextInputType.text,
+        maxLines: 2,
+        decoration: InputDecoration(
+            labelText: 'Description',
+            border: OutlineInputBorder(),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.pink, width: 2.0),
+            ),
+            contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+            labelStyle: TextStyle(fontSize: 16.0, color: Colors.black87)),
+      ),
     );
   }
 
-  Widget _buildFeedbackType() {
-    return Row(
+  Widget buildFeedbackType() {
+    return Column(
       children: <Widget>[
         RadioListTile(
+          activeColor: Colors.pink,
           groupValue: _character,
           title: const Text('Comments'),
           value: SingingCharacter.comments,
@@ -72,12 +99,13 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
               _character = value;
             });
           },
-          secondary: const Icon(Icons.attach_money),
-        ),
-        SizedBox(
-          width: 8,
+          secondary: const Icon(
+            Icons.comment,
+            color: Colors.pink,
+          ),
         ),
         RadioListTile(
+          activeColor: Colors.pink,
           groupValue: _character,
           title: const Text('Bug Reports'),
           value: SingingCharacter.bugs,
@@ -86,12 +114,13 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
               _character = value;
             });
           },
-          secondary: const Icon(Icons.attach_money),
-        ),
-        SizedBox(
-          width: 8,
+          secondary: const Icon(
+            Icons.bug_report_rounded,
+            color: Colors.pink,
+          ),
         ),
         RadioListTile(
+          activeColor: Colors.pink,
           groupValue: _character,
           title: const Text('Questions'),
           value: SingingCharacter.questions,
@@ -100,80 +129,94 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
               _character = value;
             });
           },
-          secondary: const Icon(Icons.attach_money),
+          secondary: const Icon(
+            Icons.question_answer_rounded,
+            color: Colors.pink,
+          ),
         ),
       ],
     );
   }
 
   Widget buildSubmitBtn() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8 * 3),
-      child: TextButton(
-        onPressed: () => null,
-        child: Text('SAVE'),
+    return Center(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 8 * 3),
+        child: TextButton(
+          onPressed: () {},
+          child: Text(
+            'SAVE',
+            style: TextStyle(color: Colors.pink[900]),
+          ),
+        ),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: null,
-      child: Scaffold(
-        appBar: AppBar(
-          elevation: 0.0,
-          title: Text("Feedback"),
-          centerTitle: true,
-        ),
-        backgroundColor: Colors.grey[50],
-        body: ListView(
-          scrollDirection: Axis.vertical,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8 * 2, vertical: 8 * 3),
-              child: Text(
-                "We would love to hear your thoughts, concerns and problem with anything, so we can improve.",
-                style: Theme.of(context).textTheme.subtitle1,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Feedback"),
+        backgroundColor: Colors.pink[900],
+      ),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: 8 * 2, vertical: 8 * 3),
+                child: Text(
+                  "We would love to hear your thoughts, concerns and problem with anything, so we can improve.",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            SizedBox(
-              height: 15.0,
-            ),
-            Container(
-              padding: EdgeInsets.all(8 * 2),
-              child: Form(
+              Container(
+                  padding: EdgeInsets.all(8 * 2),
                   child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text("Feedback Type"),
-                  _buildFeedbackType(),
-                  SizedBox(
-                    height: 8 * 3,
-                  ),
-                  _buildFirstName(),
-                  SizedBox(
-                    height: 8 * 3,
-                  ),
-                  _buildLastName(),
-                  SizedBox(
-                    height: 8 * 3,
-                  ),
-                  _buildEmail(),
-                  SizedBox(
-                    height: 8 * 3,
-                  ),
-                  _buildDescription(),
-                  SizedBox(
-                    height: 8 * 3,
-                  ),
-                  SizedBox(
-                    height: 8 * 4,
-                  ),
-                ],
-              )),
-            ),
-          ],
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Text(
+                          "Feedback Type",
+                          style: TextStyle(
+                              color: Colors.pink[900],
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                      ),
+                      buildFeedbackType(),
+                      SizedBox(
+                        height: 8 * 3,
+                      ),
+                      buildFirstName(),
+                      SizedBox(
+                        height: 8 * 3,
+                      ),
+                      buildLastName(),
+                      SizedBox(
+                        height: 8 * 3,
+                      ),
+                      buildEmail(),
+                      SizedBox(
+                        height: 8 * 3,
+                      ),
+                      buildDescription(),
+                      SizedBox(
+                        height: 8 * 3,
+                      ),
+                      buildSubmitBtn(),
+                      SizedBox(
+                        height: 8 * 4,
+                      ),
+                    ],
+                  )),
+            ],
+          ),
         ),
       ),
     );
