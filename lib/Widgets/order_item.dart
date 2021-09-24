@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:balti/Screens/Buyer/Accounts/feedbacks.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -26,6 +27,11 @@ class _OrderItemState extends State<OrderItem> {
       child: Column(
         children: <Widget>[
           ListTile(
+            leading: IconButton(
+              icon: Icon(Icons.feedback_outlined, color: Colors.pinkAccent),
+              onPressed: () => Navigator.of(context)
+                  .pushReplacementNamed(FeedbackScreen.routename),
+            ),
             title: Text('\Rs.${widget.order.amount}'),
             subtitle: Text(
               DateFormat('dd/MM/yyyy hh:mm').format(widget.order.dateTime),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FeedbackScreen extends StatefulWidget {
+  static final routename = 'feedback';
   @override
   _FeedbackScreenState createState() => _FeedbackScreenState();
 }
