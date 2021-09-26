@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 enum SingingCharacter { comments, bugs, questions }
 
@@ -119,21 +120,6 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
             color: Colors.pink,
           ),
         ),
-        RadioListTile(
-          activeColor: Colors.pink,
-          groupValue: _character,
-          title: const Text('Questions'),
-          value: SingingCharacter.questions,
-          onChanged: (SingingCharacter? value) {
-            setState(() {
-              _character = value;
-            });
-          },
-          secondary: const Icon(
-            Icons.question_answer_rounded,
-            color: Colors.pink,
-          ),
-        ),
       ],
     );
   }
@@ -190,6 +176,60 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         ),
                       ),
                       buildFeedbackType(),
+                      SizedBox(
+                        height: 8 * 3,
+                      ),
+                      Container(
+                        width: double.infinity,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text('Tell us how you feel about your order'),
+                            RatingBar.builder(
+                              initialRating: 1,
+                              itemCount: 5,
+                              itemBuilder: (context, index) {
+                                switch (index) {
+                                  case 0:
+                                    return Icon(
+                                      Icons.sentiment_very_dissatisfied,
+                                      color: Colors.red,
+                                    );
+                                  case 1:
+                                    return Icon(
+                                      Icons.sentiment_dissatisfied,
+                                      color: Colors.redAccent,
+                                    );
+                                  case 2:
+                                    return Icon(
+                                      Icons.sentiment_neutral,
+                                      color: Colors.amber,
+                                    );
+                                  case 3:
+                                    return Icon(
+                                      Icons.sentiment_satisfied,
+                                      color: Colors.lightGreen,
+                                    );
+                                  case 4:
+                                    return Icon(
+                                      Icons.sentiment_very_satisfied,
+                                      color: Colors.green,
+                                    );
+                                  default:
+                                    return Icon(
+                                      Icons.sentiment_neutral,
+                                      color: Colors.amber,
+                                    );
+                                }
+                              },
+                              onRatingUpdate: (rating) {
+                                print(rating);
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
                       SizedBox(
                         height: 8 * 3,
                       ),
