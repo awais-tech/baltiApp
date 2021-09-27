@@ -7,6 +7,7 @@ class Mysignuppage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
