@@ -32,8 +32,6 @@ class _OrdersProcessState extends State<OrdersProcess> {
             title: Row(
               children: [
                 Text(' \Rs.${widget.order.amount} '),
-                Text('Status: In Process',
-                    style: TextStyle(fontWeight: FontWeight.bold))
               ],
             ),
             subtitle: Text(

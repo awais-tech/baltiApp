@@ -141,11 +141,13 @@ class _ExploreState extends State<Explore> {
                 child: Container(
                   margin: EdgeInsets.only(left: 5, right: 5),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Row(
                         children: [
                           Container(
+                            padding: EdgeInsets.only(left: 10),
                             child: Icon(Icons.search),
                           ),
                           SizedBox(
@@ -153,28 +155,32 @@ class _ExploreState extends State<Explore> {
                           ), //
                           Expanded(
                             child: Container(
-                              margin: EdgeInsets.only(top: 20, bottom: 20),
+                              margin: EdgeInsets.only(
+                                  top: 20, bottom: 20, right: 10),
                               child: TextField(
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
-                                    fillColor: Colors.blueAccent[50],
-                                    filled: true,
-                                    labelText: 'Search',
-                                    border: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.blue)),
-                                    labelStyle: TextStyle(
-                                        fontSize: 16.0, color: Colors.black87),
-                                    prefixIcon: Icon(Icons.search)),
+                                  fillColor: Colors.blueAccent[50],
+                                  filled: true,
+                                  labelText: 'Search',
+                                  border: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.blue)),
+                                  labelStyle: TextStyle(
+                                      fontSize: 16.0, color: Colors.black87),
+                                ),
                               ),
                             ),
                           ),
                         ],
                       ),
-                      Text(
-                        'Best Selling Items',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 30),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          'Best Selling Items',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 24),
+                        ),
                       ),
                       Container(
                         child: Container(

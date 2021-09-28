@@ -39,7 +39,7 @@ class _OrderpendingState extends State<Orderpending> {
               DateFormat('dd/MM/yyyy hh:mm').format(widget.order.dateTime),
             ),
             trailing: Container(
-              width: 180,
+              width: 200,
               child: Expanded(
                 child: Row(
                   children: <Widget>[

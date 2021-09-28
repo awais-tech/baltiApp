@@ -37,8 +37,6 @@ class _OrdersCompleteState extends State<OrdersComplete> {
             title: Row(
               children: [
                 Text(' \Rs.${widget.order.amount} '),
-                Text('Status: Complete',
-                    style: TextStyle(fontWeight: FontWeight.bold))
               ],
             ),
             subtitle: Text(
