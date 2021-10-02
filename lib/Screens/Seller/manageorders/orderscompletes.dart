@@ -35,7 +35,9 @@ class _OrdersCompletesState extends State<OrdersCompletes> {
       body: Consumer<Orders>(
         builder: (ctx, orderData, child) => ListView.builder(
           itemCount: orderData.orders.length,
-          itemBuilder: (ctx, i) => OrdersComplete(orderData.orders[i]),
+          itemBuilder: (ctx, i) => orderData.orders[i].status == 'complete'
+              ? OrdersComplete(orderData.orders[i])
+              : Container(),
         ),
       ),
     );

@@ -35,7 +35,9 @@ class _OrderspendingsState extends State<Orderspendings> {
       body: Consumer<Orders>(
         builder: (ctx, orderData, child) => ListView.builder(
           itemCount: orderData.orders.length,
-          itemBuilder: (ctx, i) => Orderpending(orderData.orders[i]),
+          itemBuilder: (ctx, i) => orderData.orders[i].status == 'pending'
+              ? Orderpending(orderData.orders[i])
+              : Container(),
         ),
       ),
     );

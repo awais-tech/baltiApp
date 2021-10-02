@@ -2,6 +2,7 @@ import 'package:balti/Provider/MealsProvider.dart';
 import 'package:balti/Provider/cart.dart';
 import 'package:balti/Provider/orders.dart';
 import 'package:balti/Screens/Buyer/Accounts/Address.dart';
+import 'package:balti/Screens/Buyer/Accounts/orders_screenprocess.dart';
 import 'package:balti/Screens/Buyer/checkout/Checkout.dart';
 import 'package:balti/Screens/Seller/AddProduct.dart';
 import 'package:balti/Screens/Seller/Dashboard.dart';
@@ -65,6 +66,8 @@ class MyApp extends StatelessWidget {
               FeedbackScreen.routename: (ctx) => FeedbackScreen(),
               ManageFeedbacks.routeName: (ctx) => ManageFeedbacks(),
               OrdersApprovalScreen.routeName: (ctx) => OrdersApprovalScreen(),
+              OrdersScreenprocessprocess.routeName: (ctx) =>
+                  OrdersScreenprocessprocess()
             }));
   }
 }

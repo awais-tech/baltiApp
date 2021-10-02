@@ -1,5 +1,6 @@
 import 'package:balti/Provider/cart.dart';
 import 'package:balti/Provider/orders.dart';
+import 'package:balti/Screens/Buyer/Accounts/orders_screenprocess.dart';
 import 'package:balti/Widgets/NewAdress.dart';
 import 'package:balti/Widgets/NewCard.dart';
 import 'package:flutter/material.dart';
@@ -172,7 +173,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                                 MediaQuery.of(context)
                                                     .padding
                                                     .top) *
-                                            0.07),
+                                            0.05),
                               ),
                             ),
                             new Transform.translate(
@@ -254,6 +255,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                           );
                                           cart.clear();
                                           Navigator.of(ctx).pop(true);
+                                          Navigator.of(ctx)
+                                              .pushReplacementNamed(
+                                                  OrdersScreenprocessprocess
+                                                      .routeName);
                                         },
                                       ),
                                     ],

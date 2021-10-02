@@ -32,7 +32,12 @@ class _OrderItemState extends State<OrderItem> {
               onPressed: () => Navigator.of(context)
                   .pushReplacementNamed(FeedbackScreen.routename),
             ),
-            title: Text('\Rs.${widget.order.amount}'),
+            title: Row(
+              children: [
+                Text('\Rs.${widget.order.amount} '),
+                Text(' ${widget.order.status}'),
+              ],
+            ),
             subtitle: Text(
               DateFormat('dd/MM/yyyy hh:mm').format(widget.order.dateTime),
             ),

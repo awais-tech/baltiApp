@@ -36,7 +36,9 @@ class _OrdersInProcessState extends State<OrdersInProcess> {
       body: Consumer<Orders>(
         builder: (ctx, orderData, child) => ListView.builder(
           itemCount: orderData.orders.length,
-          itemBuilder: (ctx, i) => OrdersProcess(orderData.orders[i]),
+          itemBuilder: (ctx, i) => orderData.orders[i].status == 'process'
+              ? OrdersProcess(orderData.orders[i])
+              : Container(),
         ),
       ),
     );

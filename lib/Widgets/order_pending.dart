@@ -6,6 +6,7 @@ import 'package:balti/Utilities/Straightline.dart';
 import 'package:balti/Utilities/inputborder.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../Provider/orders.dart' as ord;
 
@@ -23,6 +24,7 @@ class _OrderpendingState extends State<Orderpending> {
 
   @override
   Widget build(BuildContext context) {
+    var orders = Provider.of<ord.Orders>(context, listen: false);
     print(widget.order.products);
     return Card(
       elevation: 6,
@@ -62,7 +64,11 @@ class _OrderpendingState extends State<Orderpending> {
                                 },
                               ),
                               TextButton(
-                                  child: Text('Yes'), onPressed: () async {}),
+                                  child: Text('Yes'),
+                                  onPressed: () async {
+                                    orders.update('process', widget.order.id);
+                                    Navigator.of(ctx).pop(true);
+                                  }),
                             ],
                           ),
                         );
@@ -83,8 +89,8 @@ class _OrderpendingState extends State<Orderpending> {
                               TextButton(
                                 child: Text('No'),
                                 onPressed: () {
-                                  Navigator.of(ctx).pop(false);
-                                  print(2);
+                                  orders.update('cancel', widget.order.id);
+                                  Navigator.of(ctx).pop(true);
                                 },
                               ),
                               TextButton(

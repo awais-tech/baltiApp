@@ -6,6 +6,7 @@ import 'package:balti/Screens/Buyer/Accounts/aboutus.dart';
 import 'package:balti/Screens/Buyer/Accounts/contactus.dart';
 import 'package:balti/Screens/Buyer/Accounts/informtion.dart';
 import 'package:balti/Screens/Buyer/Accounts/orders_screen.dart';
+import 'package:balti/Screens/Buyer/Accounts/orders_screenprocess.dart';
 import 'package:flutter/material.dart';
 
 class Account extends StatefulWidget {
@@ -27,7 +28,7 @@ class _AccountState extends State<Account> {
       title: 'Order Items',
       icons: Icons.wallet_giftcard_outlined,
       color: Colors.pink,
-      link: OrdersScreen.routeName,
+      link: OrdersScreenprocessprocess.routeName,
     ))
   ];
   List<Accountoption> acounts = [

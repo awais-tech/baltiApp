@@ -5,6 +5,7 @@ import 'package:balti/Utilities/Bottommodaltitle.dart';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../Provider/orders.dart' as ord;
 
@@ -22,6 +23,7 @@ class _OrdersProcessState extends State<OrdersProcess> {
 
   @override
   Widget build(BuildContext context) {
+    var orders = Provider.of<ord.Orders>(context, listen: false);
     print(widget.order.products);
     return Card(
       elevation: 6,
@@ -38,10 +40,66 @@ class _OrdersProcessState extends State<OrdersProcess> {
               DateFormat('dd/MM/yyyy hh:mm').format(widget.order.dateTime),
             ),
             trailing: Container(
-              width: 100,
+              width: 200,
               child: Expanded(
                 child: Row(
                   children: <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.check_outlined),
+                      onPressed: () async {
+                        showDialog(
+                          context: context,
+                          builder: (ctx) => AlertDialog(
+                            title: Text('Are you sure?'),
+                            content: Text(
+                              'Do you want to Complete the order ?',
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                child: Text('No'),
+                                onPressed: () {
+                                  Navigator.of(ctx).pop(false);
+                                  print(2);
+                                },
+                              ),
+                              TextButton(
+                                  child: Text('Yes'),
+                                  onPressed: () async {
+                                    orders.update('complete', widget.order.id);
+                                    Navigator.of(ctx).pop(true);
+                                  }),
+                            ],
+                          ),
+                        );
+                      },
+                      color: Theme.of(context).errorColor,
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.cancel_outlined),
+                      onPressed: () async {
+                        showDialog(
+                          context: context,
+                          builder: (ctx) => AlertDialog(
+                            title: Text('Are you sure?'),
+                            content: Text(
+                              'Do you want to Disapprove the order ?',
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                child: Text('No'),
+                                onPressed: () {
+                                  Navigator.of(ctx).pop(false);
+                                  print(2);
+                                },
+                              ),
+                              TextButton(
+                                  child: Text('Yes'), onPressed: () async {}),
+                            ],
+                          ),
+                        );
+                      },
+                      color: Theme.of(context).errorColor,
+                    ),
                     IconButton(
                       icon: Icon(Icons.details_outlined),
                       onPressed: () {

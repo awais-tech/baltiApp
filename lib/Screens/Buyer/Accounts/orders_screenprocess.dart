@@ -5,14 +5,16 @@ import 'package:provider/provider.dart';
 
 import '../../../widgets/order_item.dart';
 
-class OrdersScreen extends StatefulWidget {
-  static const routeName = '/Orderhistory';
+class OrdersScreenprocessprocess extends StatefulWidget {
+  static const routeName = '/OrdersScreenprocessprocess';
 
   @override
-  _OrdersScreenState createState() => _OrdersScreenState();
+  _OrdersScreenprocessprocessState createState() =>
+      _OrdersScreenprocessprocessState();
 }
 
-class _OrdersScreenState extends State<OrdersScreen> {
+class _OrdersScreenprocessprocessState
+    extends State<OrdersScreenprocessprocess> {
   var _isLoading = false;
 
   @override
@@ -56,7 +58,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
             Consumer<Orders>(
           builder: (ctx, orderData, child) => ListView.builder(
             itemCount: orderData.orders.length,
-            itemBuilder: (ctx, i) => orderData.orders[i].status == 'complete'
+            itemBuilder: (ctx, i) => orderData.orders[i].status == 'process' ||
+                    orderData.orders[i].status == 'pending'
                 ? OrderItem(orderData.orders[i])
                 : Container(),
           ),

@@ -9,12 +9,14 @@ class OrderItem {
   final int amount;
   final List<CartItem> products;
   final DateTime dateTime;
+  var status;
 
   OrderItem({
     required this.id,
     required this.amount,
     required this.products,
     required this.dateTime,
+    required this.status,
   });
 }
 
@@ -40,6 +42,7 @@ class Orders with ChangeNotifier {
           id: orderData['_id'],
           amount: orderData['amount'],
           dateTime: DateTime.parse(orderData['dateTime']),
+          status: orderData['status'],
           products: (orderData['products'] as List<dynamic>)
               .map(
                 (item) => CartItem(
@@ -68,6 +71,7 @@ class Orders with ChangeNotifier {
       body: json.encode({
         'amount': total,
         'dateTime': timestamp.toIso8601String(),
+        'status': 'pending',
         'products': cartProducts
             .map((cp) => {
                   'id': cp.id,
@@ -86,8 +90,41 @@ class Orders with ChangeNotifier {
         amount: total,
         dateTime: timestamp,
         products: cartProducts,
+        status: 'pending',
       ),
     );
+    notifyListeners();
+  }
+
+  Future<void> update(status, id) async {
+    var url = Uri.parse('https://baltiapi.herokuapp.com/orders/${id}');
+    Map<String, String> headers = {"Content-type": "application/json"};
+
+    final response = await http.put(
+      url,
+      headers: headers,
+      body: json.encode({
+        'status': status,
+      }),
+    );
+    _orders[(_orders.indexWhere((element) => element.id == id))].status =
+        status;
+    // var s = _orders
+    //     .map(
+    //       (val) => val.id == id
+    //           ? OrderItem(
+    //               id: val.id,
+    //               amount: val.amount,
+    //               dateTime: val.dateTime,
+    //               products: val.products,
+    //               status: status,
+    //             )
+    //           : val,
+    //     )
+    //     .toList();
+    // _orders = s;
+    // print(_orders[0].status);
+    // print(_orders[5].status);
     notifyListeners();
   }
 }
