@@ -2,6 +2,8 @@ import 'package:balti/Utilities/Bottommodaltitle.dart';
 import 'package:balti/Utilities/Straightline.dart';
 import 'package:balti/Utilities/inputborder.dart';
 import 'package:flutter/material.dart';
+import 'package:progress_state_button/iconed_button.dart';
+import 'package:progress_state_button/progress_button.dart';
 
 class Profile extends StatefulWidget {
   static const routeName = '/Profile';
@@ -18,6 +20,28 @@ class _ProfileState extends State<Profile> {
     '03336557811',
     '***********'
   ];
+  Widget progessButton() {
+    return ProgressButton.icon(iconedButtons: {
+      ButtonState.idle: IconedButton(
+          text: "Save Changes",
+          icon: Icon(Icons.save_alt_rounded, color: Colors.white),
+          color: Colors.pink.shade900),
+      ButtonState.loading:
+          IconedButton(text: "Loading", color: Colors.pink.shade900),
+      ButtonState.fail: IconedButton(
+          text: "Failed",
+          icon: Icon(Icons.cancel, color: Colors.white),
+          color: Colors.red.shade300),
+      ButtonState.success: IconedButton(
+          text: "Success",
+          icon: Icon(
+            Icons.check_circle,
+            color: Colors.white,
+          ),
+          color: Colors.green.shade400)
+    }, onPressed: () {});
+  }
+
   Widget editName(BuildContext context, String title) {
     return Padding(
       padding: MediaQuery.of(context).viewInsets,
@@ -25,6 +49,9 @@ class _ProfileState extends State<Profile> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Bottommodeltitle(title),
+          Divider(
+            thickness: 2,
+          ),
           Container(
             decoration: putborder(),
             margin:
@@ -35,7 +62,7 @@ class _ProfileState extends State<Profile> {
                   padding:
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                   child: Icon(
-                    Icons.person_add,
+                    Icons.person_add_alt,
                     color: Colors.pink[900],
                   ),
                 ),
@@ -64,7 +91,7 @@ class _ProfileState extends State<Profile> {
                   padding:
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                   child: Icon(
-                    Icons.person_add,
+                    Icons.person_add_alt,
                     color: Colors.pink[900],
                   ),
                 ),
@@ -83,12 +110,9 @@ class _ProfileState extends State<Profile> {
               ],
             ),
           ),
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: const TextStyle(fontSize: 15),
-            ),
-            onPressed: () {},
-            child: const Text('Submit'),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: progessButton(),
           ),
         ],
       ),
@@ -102,6 +126,9 @@ class _ProfileState extends State<Profile> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Bottommodeltitle(title),
+          Divider(
+            thickness: 2,
+          ),
           Container(
             decoration: putborder(),
             margin:
@@ -131,12 +158,9 @@ class _ProfileState extends State<Profile> {
               ],
             ),
           ),
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: const TextStyle(fontSize: 15),
-            ),
-            onPressed: () {},
-            child: const Text('Submit'),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: progessButton(),
           ),
         ],
       ),
@@ -150,6 +174,9 @@ class _ProfileState extends State<Profile> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Bottommodeltitle(title),
+          Divider(
+            thickness: 2,
+          ),
           Container(
             decoration: putborder(),
             margin:
@@ -179,12 +206,9 @@ class _ProfileState extends State<Profile> {
               ],
             ),
           ),
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: const TextStyle(fontSize: 15),
-            ),
-            onPressed: () {},
-            child: const Text('Submit'),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: progessButton(),
           ),
         ],
       ),
@@ -198,6 +222,9 @@ class _ProfileState extends State<Profile> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Bottommodeltitle(title),
+          Divider(
+            thickness: 2,
+          ),
           Container(
             decoration: putborder(),
             margin:
@@ -258,12 +285,9 @@ class _ProfileState extends State<Profile> {
               ],
             ),
           ),
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: const TextStyle(fontSize: 15),
-            ),
-            onPressed: () {},
-            child: const Text('Submit'),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: progessButton(),
           ),
         ],
       ),
@@ -304,15 +328,20 @@ class _ProfileState extends State<Profile> {
                   color: Colors.pink[900],
                   onPressed: () {
                     showModalBottomSheet(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(15.0),
+                              topRight: Radius.circular(15.0)),
+                        ),
                         context: context,
                         isScrollControlled: true,
                         builder: (context) {
                           if (index == 0)
-                            return editName(context, "Enter New Name");
+                            return editName(context, "Edit Name");
                           else if (index == 1)
-                            return editEmail(context, "Enter new Email");
+                            return editEmail(context, "Edit Email");
                           else if (index == 2)
-                            return editPhone(context, "Enter new Phone no");
+                            return editPhone(context, "Edit Phone");
                           else
                             return editPassword(context, "Change Password");
                         });
