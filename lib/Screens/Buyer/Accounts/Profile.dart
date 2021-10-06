@@ -2,8 +2,8 @@ import 'package:balti/Utilities/Bottommodaltitle.dart';
 import 'package:balti/Utilities/Straightline.dart';
 import 'package:balti/Utilities/inputborder.dart';
 import 'package:flutter/material.dart';
-import 'package:progress_state_button/iconed_button.dart';
-import 'package:progress_state_button/progress_button.dart';
+// import 'package:progress_state_button/iconed_button.dart';
+// import 'package:progress_state_button/progress_button.dart';
 
 class Profile extends StatefulWidget {
   static const routeName = '/Profile';
@@ -21,25 +21,26 @@ class _ProfileState extends State<Profile> {
     '***********'
   ];
   Widget progessButton() {
-    return ProgressButton.icon(iconedButtons: {
-      ButtonState.idle: IconedButton(
-          text: "Save Changes",
-          icon: Icon(Icons.save_alt_rounded, color: Colors.white),
-          color: Colors.pink.shade900),
-      ButtonState.loading:
-          IconedButton(text: "Loading", color: Colors.pink.shade900),
-      ButtonState.fail: IconedButton(
-          text: "Failed",
-          icon: Icon(Icons.cancel, color: Colors.white),
-          color: Colors.red.shade300),
-      ButtonState.success: IconedButton(
-          text: "Success",
-          icon: Icon(
-            Icons.check_circle,
-            color: Colors.white,
-          ),
-          color: Colors.green.shade400)
-    }, onPressed: () {});
+    return Container();
+    // return ProgressButton.icon(iconedButtons: {
+    //   ButtonState.idle: IconedButton(
+    //       text: "Save Changes",
+    //       icon: Icon(Icons.save_alt_rounded, color: Colors.white),
+    //       color: Colors.pink.shade900),
+    //   ButtonState.loading:
+    //       IconedButton(text: "Loading", color: Colors.pink.shade900),
+    //   ButtonState.fail: IconedButton(
+    //       text: "Failed",
+    //       icon: Icon(Icons.cancel, color: Colors.white),
+    //       color: Colors.red.shade300),
+    //   ButtonState.success: IconedButton(
+    //       text: "Success",
+    //       icon: Icon(
+    //         Icons.check_circle,
+    //         color: Colors.white,
+    //       ),
+    //       color: Colors.green.shade400)
+    // }, onPressed: () {});
   }
 
   Widget editName(BuildContext context, String title) {

@@ -1,3 +1,4 @@
+import 'package:balti/Provider/AuthP.dart';
 import 'package:balti/Provider/MealsProvider.dart';
 import 'package:balti/Provider/cart.dart';
 import 'package:balti/Provider/orders.dart';
@@ -34,14 +35,31 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(
-            create: (ctx) => BaltiMeals(),
+            create: (ctx) => Auth(),
+          ),
+
+          ChangeNotifierProxyProvider<Auth, Orders>(
+            create: (ctx) => Orders('', '', []),
+            update: (ctx, auth, previousOrders) => Orders(
+              auth.token!,
+              auth.userid,
+              previousOrders!.orders,
+            ),
+          ),
+          ChangeNotifierProxyProvider<Auth, BaltiMeals>(
+            create: (ctx) => BaltiMeals('', [], ''),
+            update: (ctx, auth, previousProducts) => BaltiMeals(
+              auth.token!,
+              previousProducts == null ? [] : previousProducts.items,
+              auth.userid,
+            ),
           ),
           ChangeNotifierProvider(
             create: (ctx) => Cart(),
           ),
-          ChangeNotifierProvider(
-            create: (ctx) => Orders(),
-          ),
+          // ChangeNotifierProvider(
+          //   create: (ctx) => Orders(),
+          // ),
         ],
         child: MaterialApp(
             title: 'BaltiApp',

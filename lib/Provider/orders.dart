@@ -23,15 +23,19 @@ class OrderItem {
 class Orders with ChangeNotifier {
   List<OrderItem> _orders = [];
 
+  final String auth;
+  final String userId;
+  Orders(this.auth, this.userId, this._orders);
   List<OrderItem> get orders {
     return [..._orders];
   }
 
   Future<void> fetchAndSetOrders() async {
-    final url = Uri.parse('https://baltiapi.herokuapp.com/orders');
+    final url = Uri.parse('https://baltiapi.herokuapp.com/orders/$userId');
     final response = await http.get(url);
     final List<OrderItem> loadedOrders = [];
-    final extractedData = json.decode(response.body);
+    final extracted = json.decode(response.body);
+    final extractedData = extracted['UserId'];
     if (extractedData == null) {
       return;
     }
@@ -61,7 +65,7 @@ class Orders with ChangeNotifier {
   }
 
   Future<void> addOrder(List<CartItem> cartProducts, int total) async {
-    var url = Uri.parse('https://baltiapi.herokuapp.com/orders');
+    var url = Uri.parse('https://baltiapi.herokuapp.com/orders/$userId');
     Map<String, String> headers = {"Content-type": "application/json"};
     final timestamp = DateTime.now();
     print(total);
@@ -82,7 +86,7 @@ class Orders with ChangeNotifier {
             .toList(),
       }),
     );
-
+    // print(json.decode(response.body));
     _orders.insert(
       0,
       OrderItem(
@@ -97,34 +101,38 @@ class Orders with ChangeNotifier {
   }
 
   Future<void> update(status, id) async {
-    var url = Uri.parse('https://baltiapi.herokuapp.com/orders/${id}');
-    Map<String, String> headers = {"Content-type": "application/json"};
+    try {
+      var url = Uri.parse('https://baltiapi.herokuapp.com/orders/${id}');
+      Map<String, String> headers = {"Content-type": "application/json"};
 
-    final response = await http.put(
-      url,
-      headers: headers,
-      body: json.encode({
-        'status': status,
-      }),
-    );
-    _orders[(_orders.indexWhere((element) => element.id == id))].status =
-        status;
-    // var s = _orders
-    //     .map(
-    //       (val) => val.id == id
-    //           ? OrderItem(
-    //               id: val.id,
-    //               amount: val.amount,
-    //               dateTime: val.dateTime,
-    //               products: val.products,
-    //               status: status,
-    //             )
-    //           : val,
-    //     )
-    //     .toList();
-    // _orders = s;
-    // print(_orders[0].status);
-    // print(_orders[5].status);
-    notifyListeners();
+      final response = await http.put(
+        url,
+        headers: headers,
+        body: json.encode({
+          'status': status,
+        }),
+      );
+      _orders[(_orders.indexWhere((element) => element.id == id))].status =
+          status;
+      // var s = _orders
+      //     .map(
+      //       (val) => val.id == id
+      //           ? OrderItem(
+      //               id: val.id,
+      //               amount: val.amount,
+      //               dateTime: val.dateTime,
+      //               products: val.products,
+      //               status: status,
+      //             )
+      //           : val,
+      //     )
+      //     .toList();
+      // _orders = s;
+      // print(_orders[0].status);
+      // print(_orders[5].status);
+      notifyListeners();
+    } catch (e) {
+      print(e);
+    }
   }
 }

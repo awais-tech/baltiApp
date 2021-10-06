@@ -4,6 +4,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class BaltiMeals with ChangeNotifier {
+  String Auth;
+  String userid;
+  BaltiMeals(this.Auth, this.meals, this.userid);
   List<Meal> meals = [
     // Meal(
     //   id: 'm1',
@@ -156,6 +159,7 @@ class BaltiMeals with ChangeNotifier {
           'Category': product.Category,
           'Dilvery': product.Dilvery,
           'duration': product.duration,
+          'createdby': userid,
         }),
       );
 
