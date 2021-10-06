@@ -135,7 +135,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Edit Product'),
-        backgroundColor: Colors.pink[900],
+        backgroundColor: Color(0xffB788E5),
         actions: [IconButton(onPressed: saveform, icon: Icon(Icons.save))],
       ),
       body: loading

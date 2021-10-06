@@ -25,7 +25,7 @@ class _LoginScreen1State extends State<LoginScreen1> {
         title: Text(message),
         content: Text(message),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             child: Text('Okay'),
             onPressed: () {
               Navigator.of(ctx).pop();
@@ -102,15 +102,13 @@ class _LoginScreen1State extends State<LoginScreen1> {
                               child: Text(
                                 "WELCOME TO BALTI",
                                 style: TextStyle(
-                                    fontStyle: FontStyle.italic,
-                                    fontSize:
-                                        (MediaQuery.of(context).size.width -
-                                                MediaQuery.of(context)
-                                                    .padding
-                                                    .top) *
-                                            0.060,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.pink[900]),
+                                  fontStyle: FontStyle.italic,
+                                  fontSize: (MediaQuery.of(context).size.width -
+                                          MediaQuery.of(context).padding.top) *
+                                      0.060,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff8d43d6),
+                                ),
                                 textAlign: TextAlign.center,
                               ),
                             ),
@@ -132,7 +130,7 @@ class _LoginScreen1State extends State<LoginScreen1> {
                                       vertical: 10.0, horizontal: 15.0),
                                   child: Icon(
                                     Icons.person_outline,
-                                    color: Colors.pink[900],
+                                    color: Color(0xff8d43d6),
                                   ),
                                 ),
                                 Container(
@@ -183,7 +181,7 @@ class _LoginScreen1State extends State<LoginScreen1> {
                                       vertical: 10.0, horizontal: 15.0),
                                   child: Icon(
                                     Icons.lock_open,
-                                    color: Colors.pink[900],
+                                    color: Color(0xff8d43d6),
                                   ),
                                 ),
                                 Container(
@@ -250,14 +248,14 @@ class _LoginScreen1State extends State<LoginScreen1> {
                                                               .top) *
                                               0.08),
                                       backgroundColor:
-                                          MaterialStateProperty.all(Colors
-                                              .pink[900]), // <-- Button color
+                                          MaterialStateProperty.all(Color(
+                                              0xff8d43d6)), // <-- Button color
                                       overlayColor: MaterialStateProperty
                                           .resolveWith<Color?>((states) {
                                         if (states
                                             .contains(MaterialState.pressed))
-                                          return Colors
-                                              .pink[700]; // <-- Splash color
+                                          return Color(
+                                              0xffB788E5); // <-- Splash color
                                       }),
                                     ),
                                     child: FittedBox(

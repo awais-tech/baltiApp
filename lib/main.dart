@@ -64,7 +64,9 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
             title: 'BaltiApp',
             theme: ThemeData(
-              primarySwatch: Colors.blue,
+              primaryColor: Color(0xffB788E5),
+              accentColor: Color(0xff8d43d6),
+              fontFamily: 'Georgia',
             ),
             home: Splash(),
             routes: {

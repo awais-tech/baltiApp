@@ -30,7 +30,7 @@ class _OrdersCompleteState extends State<OrdersComplete> {
         children: <Widget>[
           ListTile(
             leading: IconButton(
-              icon: Icon(Icons.feedback_outlined, color: Colors.pinkAccent),
+              icon: Icon(Icons.feedback_outlined, color: Color(0xff8d43d6)),
               onPressed: () => Navigator.of(context)
                   .pushReplacementNamed(FeedbackScreen.routename),
             ),

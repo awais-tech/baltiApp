@@ -13,7 +13,7 @@ class OrdersApprovalScreen extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.pink[900],
+          backgroundColor: Color(0xffB788E5),
           title: Text('Orders'),
           bottom: TabBar(
             tabs: [

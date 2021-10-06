@@ -23,7 +23,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
         decoration: InputDecoration(
             border: OutlineInputBorder(),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.pink, width: 2.0),
+              borderSide: BorderSide(color: Color(0xffB788E5), width: 2.0),
             ),
             contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
             labelText: 'First Name',
@@ -41,7 +41,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
         decoration: InputDecoration(
             border: OutlineInputBorder(),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.pink, width: 2.0),
+              borderSide: BorderSide(color: Color(0xffB788E5), width: 2.0),
             ),
             contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
             hintText: 'Enter Your Last Name',
@@ -60,7 +60,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
         decoration: InputDecoration(
             border: OutlineInputBorder(),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.pink, width: 2.0),
+              borderSide: BorderSide(color: Color(0xffB788E5), width: 2.0),
             ),
             contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
             labelText: 'Email',
@@ -79,7 +79,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
             labelText: 'Description',
             border: OutlineInputBorder(),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.pink, width: 2.0),
+              borderSide: BorderSide(color: Color(0xffB788E5), width: 2.0),
             ),
             contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
             labelStyle: TextStyle(fontSize: 16.0, color: Colors.black87)),
@@ -91,7 +91,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
     return Column(
       children: <Widget>[
         RadioListTile(
-          activeColor: Colors.pink,
+          activeColor: Color(0xff8d43d6),
           groupValue: _character,
           title: const Text('Comments'),
           value: SingingCharacter.comments,
@@ -102,11 +102,11 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
           },
           secondary: const Icon(
             Icons.comment,
-            color: Colors.pink,
+            color: Color(0xff8d43d6),
           ),
         ),
         RadioListTile(
-          activeColor: Colors.pink,
+          activeColor: Color(0xff8d43d6),
           groupValue: _character,
           title: const Text('Bug Reports'),
           value: SingingCharacter.bugs,
@@ -117,7 +117,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
           },
           secondary: const Icon(
             Icons.bug_report_rounded,
-            color: Colors.pink,
+            color: Color(0xff8d43d6),
           ),
         ),
       ],
@@ -132,7 +132,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
           onPressed: () {},
           child: Text(
             'SAVE',
-            style: TextStyle(color: Colors.pink[900]),
+            style: TextStyle(color: Color(0xff8d43d6)),
           ),
         ),
       ),
@@ -144,7 +144,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Feedback"),
-        backgroundColor: Colors.pink[900],
+        backgroundColor: Color(0xffB788E5),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -170,7 +170,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         child: Text(
                           "Feedback Type",
                           style: TextStyle(
-                              color: Colors.pink[900],
+                              color: Color(0xff8d43d6),
                               fontWeight: FontWeight.bold,
                               fontSize: 16),
                         ),

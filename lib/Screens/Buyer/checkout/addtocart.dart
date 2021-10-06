@@ -17,7 +17,7 @@ class _MycartState extends State<Mycart> {
     var screenWidth = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pink[900],
+        backgroundColor: Color(0xffB788E5),
         title: Text('Balti Cart'),
       ),
       body: Container(
@@ -51,7 +51,7 @@ class _MycartState extends State<Mycart> {
                             child: ListTile(
                               leading: Icon(
                                 Icons.delivery_dining,
-                                color: Colors.pink[900],
+                                color: Color(0xff8d43d6),
                                 size: 50,
                               ),
                               title: const Text('Estimated delivery'),
@@ -176,11 +176,11 @@ class _MycartState extends State<Mycart> {
                                 MediaQuery.of(context).padding.top) *
                         0.2),
                     backgroundColor: MaterialStateProperty.all(
-                        Colors.pink[900]), // <-- Button color
+                        Color(0xff8d43d6)), // <-- Button color
                     overlayColor:
                         MaterialStateProperty.resolveWith<Color?>((states) {
                       if (states.contains(MaterialState.pressed))
-                        return Colors.red; // <-- Splash color
+                        return Color(0xffB788E5); // <-- Splash color
                     }),
                   ),
                   child: FittedBox(

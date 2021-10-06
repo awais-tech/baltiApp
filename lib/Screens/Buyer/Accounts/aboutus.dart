@@ -6,7 +6,7 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.pink[900],
+          backgroundColor: Color(0xffB788E5),
           title: Text(
             'About Us',
             textAlign: TextAlign.center,

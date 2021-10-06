@@ -34,7 +34,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Your Orders'),
-          backgroundColor: Colors.pink[900],
+          backgroundColor: Color(0xffB788E5),
         ),
         body:
             // FutureBuilder(

@@ -23,7 +23,7 @@ class ProductDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(loadedProduct.title),
-        backgroundColor: Colors.pink[900],
+        backgroundColor: Color(0xffB788E5),
       ),
       body: Column(
         children: <Widget>[
@@ -92,10 +92,10 @@ class ProductDetailScreen extends StatelessWidget {
                   EdgeInsets.only(left: 30, right: 30, top: 20, bottom: 20)),
 
               backgroundColor: MaterialStateProperty.all(
-                  Colors.pink[900]), // <-- Button color
+                  Color(0xff8d43d6)), // <-- Button color
               overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
                 if (states.contains(MaterialState.pressed))
-                  return Colors.red; // <-- Splash color
+                  return Color(0xffB788E5); // <-- Splash color
               }),
             ),
             child: Text(

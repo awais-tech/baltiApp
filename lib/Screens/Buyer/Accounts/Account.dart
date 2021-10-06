@@ -21,13 +21,13 @@ class _AccountState extends State<Account> {
     (Accountoption(
       title: 'Orders History',
       icons: Icons.shopping_basket,
-      color: Colors.pink,
+      color: Color(0xff8d43d6),
       link: OrdersScreen.routeName,
     )),
     (Accountoption(
       title: 'Order Items',
       icons: Icons.wallet_giftcard_outlined,
-      color: Colors.pink,
+      color: Color(0xff8d43d6),
       link: OrdersScreenprocessprocess.routeName,
     ))
   ];
@@ -35,37 +35,37 @@ class _AccountState extends State<Account> {
     (Accountoption(
       title: 'Edit Profile',
       icons: Icons.edit,
-      color: Colors.pink,
+      color: Color(0xff8d43d6),
       link: Profile.routeName,
     )),
     (Accountoption(
       title: 'Information',
       icons: Icons.info_outline,
-      color: Colors.pink,
+      color: Color(0xff8d43d6),
       link: information.routeName,
     )),
     (Accountoption(
       title: 'Address',
       icons: Icons.phone,
-      color: Colors.pink,
+      color: Color(0xff8d43d6),
       link: 'Address',
     )),
     (Accountoption(
       title: 'Contact us',
       icons: Icons.contact_mail,
-      color: Colors.pink,
+      color: Color(0xff8d43d6),
       link: ContactUs.routeName,
     )),
     (Accountoption(
       title: 'About us',
       icons: Icons.account_box_outlined,
-      color: Colors.pink,
+      color: Color(0xff8d43d6),
       link: AboutUs.routeName,
     )),
     (Accountoption(
       title: 'Sign Out',
       icons: Icons.logout,
-      color: Colors.pink,
+      color: Color(0xff8d43d6),
       link: '',
     ))
   ];
@@ -98,7 +98,7 @@ class _AccountState extends State<Account> {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
-                                  color: Colors.pink[900])),
+                                  color: Color(0xffB788E5))),
                         ),
                       ],
                     ),

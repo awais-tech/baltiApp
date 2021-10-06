@@ -64,7 +64,7 @@ class _ProfileState extends State<Profile> {
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                   child: Icon(
                     Icons.person_add_alt,
-                    color: Colors.pink[900],
+                    color: Color(0xff8d43d6),
                   ),
                 ),
                 Straightline(),
@@ -93,7 +93,7 @@ class _ProfileState extends State<Profile> {
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                   child: Icon(
                     Icons.person_add_alt,
-                    color: Colors.pink[900],
+                    color: Color(0xff8d43d6),
                   ),
                 ),
                 Straightline(),
@@ -141,7 +141,7 @@ class _ProfileState extends State<Profile> {
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                   child: Icon(
                     Icons.email_outlined,
-                    color: Colors.pink[900],
+                    color: Color(0xff8d43d6),
                   ),
                 ),
                 Straightline(),
@@ -189,7 +189,7 @@ class _ProfileState extends State<Profile> {
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                   child: Icon(
                     Icons.add_call,
-                    color: Colors.pink[900],
+                    color: Color(0xff8d43d6),
                   ),
                 ),
                 Straightline(),
@@ -237,7 +237,7 @@ class _ProfileState extends State<Profile> {
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                   child: Icon(
                     Icons.password,
-                    color: Colors.pink[900],
+                    color: Color(0xff8d43d6),
                   ),
                 ),
                 Straightline(),
@@ -267,7 +267,7 @@ class _ProfileState extends State<Profile> {
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                   child: Icon(
                     Icons.map_outlined,
-                    color: Colors.pink[900],
+                    color: Color(0xff8d43d6),
                   ),
                 ),
                 Straightline(),
@@ -299,7 +299,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pink[900],
+        backgroundColor: Color(0xffB788E5),
         title: Text(
           'Profile',
           textAlign: TextAlign.center,
@@ -326,7 +326,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 trailing: IconButton(
                   icon: Icon(Icons.edit),
-                  color: Colors.pink[900],
+                  color: Color(0xff8d43d6),
                   onPressed: () {
                     showModalBottomSheet(
                         shape: RoundedRectangleBorder(

@@ -12,7 +12,7 @@ class Sellerdashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.pink[900],
+          backgroundColor: Color(0xffB788E5),
           title:
               FittedBox(fit: BoxFit.fitWidth, child: Text('Seller Dashboard')),
           actions: <Widget>[
@@ -23,7 +23,7 @@ class Sellerdashboard extends StatelessWidget {
               style: ButtonStyle(
                 side: MaterialStateProperty.all(
                     BorderSide(width: 1, color: Colors.black38)),
-                backgroundColor: MaterialStateProperty.all(Colors.pink[900]),
+                backgroundColor: MaterialStateProperty.all(Color(0xff8d43d6)),
               ),
               child: FittedBox(
                   fit: BoxFit.fitWidth, child: Text('Switch to Consumer')),

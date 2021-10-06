@@ -29,7 +29,7 @@ class NewCard extends StatelessWidget {
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                   child: Icon(
                     Icons.credit_card,
-                    color: Colors.pink[900],
+                    color: Color(0xff8d43d6),
                   ),
                 ),
                 Container(
@@ -69,7 +69,7 @@ class NewCard extends StatelessWidget {
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                   child: Icon(
                     Icons.calendar_today_outlined,
-                    color: Colors.pink[900],
+                    color: Color(0xff8d43d6),
                   ),
                 ),
                 Container(
@@ -109,7 +109,7 @@ class NewCard extends StatelessWidget {
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                   child: Icon(
                     Icons.password,
-                    color: Colors.pink[900],
+                    color: Color(0xff8d43d6),
                   ),
                 ),
                 Container(
@@ -149,7 +149,7 @@ class NewCard extends StatelessWidget {
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                   child: Icon(
                     Icons.person,
-                    color: Colors.pink[900],
+                    color: Color(0xff8d43d6),
                   ),
                 ),
                 Container(

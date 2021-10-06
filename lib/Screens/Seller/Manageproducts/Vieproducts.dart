@@ -40,7 +40,7 @@ class UserProductsScreen extends StatelessWidget {
     final productsData = Provider.of<BaltiMeals>(context);
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.pink[900],
+          backgroundColor: Color(0xffB788E5),
           title: const Text('Your Products'),
           actions: <Widget>[
             IconButton(

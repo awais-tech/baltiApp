@@ -47,7 +47,7 @@ class _ExploreState extends State<Explore> {
         _showOnlyFavorites ? loadedMenu.favoriteItems : loadedMenu.items;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pink[900],
+        backgroundColor: Color(0xffB788E5),
         title: FittedBox(fit: BoxFit.fitWidth, child: Text('Home')),
         actions: <Widget>[
           PopupMenuButton(
@@ -81,7 +81,7 @@ class _ExploreState extends State<Explore> {
             ],
           ),
           PopupMenuButton(
-            color: Colors.pink,
+            color: Color(0xff8d43d6),
             onSelected: (FilterOptions selectedValue) {
               setState(() {
                 if (selectedValue == FilterOptions.Favorites) {
@@ -128,7 +128,7 @@ class _ExploreState extends State<Explore> {
             style: ButtonStyle(
                 side: MaterialStateProperty.all(
                     BorderSide(width: 1, color: Colors.black38)),
-                backgroundColor: MaterialStateProperty.all(Colors.pink[900])),
+                backgroundColor: MaterialStateProperty.all(Color(0xff8d43d6))),
             child: FittedBox(
                 fit: BoxFit.fitWidth, child: Text('Switch to Seller')),
           ),

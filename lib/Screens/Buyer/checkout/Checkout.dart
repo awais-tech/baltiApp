@@ -23,7 +23,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     final cart = Provider.of<Cart>(context);
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.pink[900],
+          backgroundColor: Color(0xffB788E5),
           title: Text(
             'Checkout',
             textAlign: TextAlign.center,
@@ -43,7 +43,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         "Payment Methods",
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                            color: Colors.pink[900],
+                            color: Color(0xff8d43d6),
                             fontWeight: FontWeight.bold),
                       )),
                   Card(
@@ -88,7 +88,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                               "Delivery Address",
                               //textAlign: TextAlign.start,
                               style: TextStyle(
-                                  color: Colors.pink[900],
+                                  color: Color(0xff8d43d6),
                                   fontWeight: FontWeight.bold),
                             )),
                         Container(
@@ -147,11 +147,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                     MediaQuery.of(context).padding.top) *
                             0.35),
                         backgroundColor: MaterialStateProperty.all(
-                            Colors.pink[900]), // <-- Button color
+                            Color(0xff8d43d6)), // <-- Button color
                         overlayColor:
                             MaterialStateProperty.resolveWith<Color?>((states) {
                           if (states.contains(MaterialState.pressed))
-                            return Colors.red; // <-- Splash color
+                            return Color(0xffB788E5); // <-- Splash color
                         }),
                       ),
                       child: FittedBox(
@@ -296,11 +296,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             MediaQuery.of(context).padding.top) *
                     0.2),
                 backgroundColor: MaterialStateProperty.all(
-                    Colors.pink[900]), // <-- Button color
+                    Color(0xff8d43d6)), // <-- Button color
                 overlayColor:
                     MaterialStateProperty.resolveWith<Color?>((states) {
                   if (states.contains(MaterialState.pressed))
-                    return Colors.red; // <-- Splash color
+                    return Color(0xffB788E5); // <-- Splash color
                 }),
               ),
               child: FittedBox(

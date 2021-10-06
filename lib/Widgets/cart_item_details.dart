@@ -100,7 +100,7 @@ class _CartItemDetailState extends State<CartItemDetail> {
                       width: 30,
                       child: IconButton(
                         icon: Icon(Icons.delete_rounded),
-                        color: Colors.pink[900],
+                        color: Color(0xff8d43d6),
                         iconSize: MediaQuery.of(context).size.width * 0.04,
                         onPressed: () {
                           cart.removeItem(widget.keys);

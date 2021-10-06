@@ -29,7 +29,7 @@ class NewAddress extends StatelessWidget {
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                   child: Icon(
                     Icons.map_outlined,
-                    color: Colors.pink[900],
+                    color: Color(0xff8d43d6),
                   ),
                 ),
                 Container(

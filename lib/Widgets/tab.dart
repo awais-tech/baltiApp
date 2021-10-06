@@ -51,24 +51,24 @@ class _TabsScreenState extends State<TabsScreen> {
       body: _pages[_selectedPageIndex]['Pages'] as Widget,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
-        backgroundColor: Colors.pink[900],
+        backgroundColor: Color(0xffB788E5),
         unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.amber,
+        selectedItemColor: Color(0xff8d43d6),
         currentIndex: _selectedPageIndex,
         // type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-            backgroundColor: Colors.pink[900],
+            backgroundColor: Color(0xffB788E5),
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.pink[900],
+            backgroundColor: Color(0xffB788E5),
             icon: Icon(Icons.explore),
             label: 'Explore',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.pink[900],
+            backgroundColor: Color(0xffB788E5),
             icon: Consumer<Cart>(
               builder: (_, cart, ch) => Badge(
                 child: ch,
@@ -82,7 +82,7 @@ class _TabsScreenState extends State<TabsScreen> {
             label: 'Cart',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.pink[900],
+            backgroundColor: Color(0xffB788E5),
             icon: Icon(Icons.settings),
             label: 'Account',
           ),
