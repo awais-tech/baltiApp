@@ -36,7 +36,7 @@ class VerifyEmail extends StatelessWidget {
                 ),
               ),
               Container(
-                  padding: EdgeInsets.only(bottom: 20),
+                  padding: EdgeInsets.only(bottom: 10),
                   child: TextButton(
                       onPressed: () {},
                       child: Text(
