@@ -1,5 +1,7 @@
 import 'package:balti/Model/Http_exception.dart';
 import 'package:balti/Provider/AuthP.dart';
+import 'package:balti/Screens/Buyer/AccountAuth/ForgotPassword/ForgotPasswordScreen.dart';
+import 'package:balti/Screens/Buyer/AccountAuth/ForgotPassword/VerifyEmail.dart';
 import 'package:balti/Screens/Buyer/HomepageScreen.dart';
 import 'package:balti/Screens/Buyer/AccountAuth/signup%20(1).dart';
 import 'package:flutter/material.dart';
@@ -219,7 +221,11 @@ class _LoginScreen1State extends State<LoginScreen1> {
                               style: TextButton.styleFrom(
                                 textStyle: const TextStyle(fontSize: 10),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).pushNamed(
+                                  ForgotPasswordScreen.route,
+                                );
+                              },
                               child: const Text('Forgot Password?'),
                             ),
                           ),

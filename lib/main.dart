@@ -2,6 +2,9 @@ import 'package:balti/Provider/AuthP.dart';
 import 'package:balti/Provider/MealsProvider.dart';
 import 'package:balti/Provider/cart.dart';
 import 'package:balti/Provider/orders.dart';
+import 'package:balti/Screens/Buyer/AccountAuth/ForgotPassword/ForgotPasswordScreen.dart';
+import 'package:balti/Screens/Buyer/AccountAuth/ForgotPassword/ResetPassword.dart';
+import 'package:balti/Screens/Buyer/AccountAuth/ForgotPassword/VerifyEmail.dart';
 import 'package:balti/Screens/Buyer/Accounts/Address.dart';
 import 'package:balti/Screens/Buyer/Accounts/orders_screenprocess.dart';
 import 'package:balti/Screens/Buyer/checkout/Checkout.dart';
@@ -66,11 +69,13 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primaryColor: Color(0xffB788E5),
               accentColor: Color(0xff8d43d6),
-              fontFamily: 'Georgia',
             ),
             home: Splash(),
             routes: {
               Mysignuppage.route: (ctx) => Mysignuppage(),
+              ForgotPasswordScreen.route: (ctx) => ForgotPasswordScreen(),
+              ResetPassword.route: (ctx) => ResetPassword(),
+              VerifyEmail.route: (ctx) => VerifyEmail(),
               HomeScreen.route: (ctx) => TabsScreen(),
               Mycart.route: (ctx) => Mycart(),
               ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
