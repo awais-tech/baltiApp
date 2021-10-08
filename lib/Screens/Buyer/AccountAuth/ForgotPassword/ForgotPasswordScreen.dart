@@ -1,8 +1,11 @@
+import 'package:balti/Provider/AuthP.dart';
 import 'package:balti/Screens/Buyer/AccountAuth/ForgotPassword/VerifyEmail.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   static final route = '/ForgotPasswordScreen';
+  final email = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +38,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                     hintText: 'Email',
                     hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
                   ),
+                  controller: email,
                   keyboardType: TextInputType.emailAddress,
                 ),
               ),
@@ -42,8 +46,29 @@ class ForgotPasswordScreen extends StatelessWidget {
                   height: 45,
                   width: 200,
                   child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(VerifyEmail.route);
+                      onPressed: () async {
+                        try {
+                          await Provider.of<Auth>(context, listen: false)
+                              .ChangePassword(email.text);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Email is sent to ${email.text}on that email ',
+                              ),
+                              duration: Duration(seconds: 2),
+                            ),
+                          );
+                        } catch (e) {
+                          showDialog(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              title: Text('Alert'),
+                              content: Text(
+                                '${e.toString()}',
+                              ),
+                            ),
+                          );
+                        }
                       },
                       child: Text('Verify Email'),
                       style: ButtonStyle(

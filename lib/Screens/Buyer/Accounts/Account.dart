@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:balti/Model/Accountoption.dart';
+import 'package:balti/Provider/AuthP.dart';
 
 import 'package:balti/Screens/Buyer/Accounts/Orderstatus.dart';
 import 'package:balti/Screens/Buyer/Accounts/Profile.dart';
@@ -7,7 +10,9 @@ import 'package:balti/Screens/Buyer/Accounts/contactus.dart';
 import 'package:balti/Screens/Buyer/Accounts/informtion.dart';
 import 'package:balti/Screens/Buyer/Accounts/orders_screen.dart';
 import 'package:balti/Screens/Buyer/Accounts/orders_screenprocess.dart';
+import 'package:balti/Screens/Constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Account extends StatefulWidget {
   const Account({Key? key}) : super(key: key);
@@ -17,6 +22,7 @@ class Account extends StatefulWidget {
 }
 
 class _AccountState extends State<Account> {
+  var user;
   List<Accountoption> acountinfo = [
     (Accountoption(
       title: 'Orders History',
@@ -69,6 +75,7 @@ class _AccountState extends State<Account> {
       link: '',
     ))
   ];
+
   @override
   Widget build(BuildContext context) {
     void changescreen(BuildContext context, String link) {
@@ -94,7 +101,8 @@ class _AccountState extends State<Account> {
                         Container(
                           margin:
                               EdgeInsets.symmetric(vertical: 2, horizontal: 8),
-                          child: Text('Awais Shahbaz',
+                          child: Text(
+                              '${json.decode(Constants.prefs.getString('userinfo') as String)['name']}',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,

@@ -8,6 +8,7 @@ import 'package:balti/Screens/Buyer/AccountAuth/ForgotPassword/VerifyEmail.dart'
 import 'package:balti/Screens/Buyer/Accounts/Address.dart';
 import 'package:balti/Screens/Buyer/Accounts/orders_screenprocess.dart';
 import 'package:balti/Screens/Buyer/checkout/Checkout.dart';
+import 'package:balti/Screens/Constants.dart';
 import 'package:balti/Screens/Seller/AddProduct.dart';
 import 'package:balti/Screens/Seller/Dashboard.dart';
 import 'package:balti/Screens/Buyer/DetailScreen.dart';
@@ -26,8 +27,11 @@ import 'package:balti/Screens/Seller/manageorders/orderstabscreen.dart';
 import 'package:balti/Widgets/tab.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
+  await WidgetsFlutterBinding.ensureInitialized();
+  Constants.prefs = await SharedPreferences.getInstance();
   runApp(MyApp());
 }
 

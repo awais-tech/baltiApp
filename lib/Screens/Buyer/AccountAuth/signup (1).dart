@@ -55,7 +55,14 @@ class _MysignuppageState extends State<Mysignuppage> {
         _authData['email'] as String,
         _authData['password'] as String,
       );
-      Navigator.of(context).pushNamed(HomeScreen.route);
+      await Provider.of<Auth>(context, listen: false).userdetails(
+        _authData['email'] as String,
+        _authData['phoneno'] as String,
+        _authData['username'] as String,
+        _authData['password'] as String,
+      );
+
+      Navigator.of(context).pushReplacementNamed(HomeScreen.route);
     } on HttpException catch (error) {
       var errorMessage = 'Authentication failed';
       if (error.toString().contains('EMAIL_EXISTS')) {

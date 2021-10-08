@@ -53,7 +53,8 @@ class _LoginScreen1State extends State<LoginScreen1> {
         _authData['email'] as String,
         _authData['password'] as String,
       );
-      Navigator.of(context).pushNamed(HomeScreen.route);
+
+      Navigator.of(context).pushReplacementNamed(HomeScreen.route);
     } on HttpException catch (error) {
       var errorMessage = 'Authentication failed';
       if (error.toString().contains('EMAIL_EXISTS')) {

@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:balti/Utilities/Bottommodaltitle.dart';
 import 'package:balti/Utilities/Straightline.dart';
 import 'package:balti/Utilities/inputborder.dart';
 import 'package:flutter/material.dart';
+
+import '../../Constants.dart';
 // import 'package:progress_state_button/iconed_button.dart';
 // import 'package:progress_state_button/progress_button.dart';
 
@@ -15,10 +19,10 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   final myList = ['Name', 'Email', 'Phone', 'Password'];
   final myListData = [
-    'Daniyal Ayyaz',
-    'daniyalayyaz@gmail.com',
-    '03336557811',
-    '***********'
+    json.decode(Constants.prefs.getString('userinfo') as String)['name'],
+    json.decode(Constants.prefs.getString('userinfo') as String)['email'],
+    json.decode(Constants.prefs.getString('userinfo') as String)['Phoneno'],
+    json.decode(Constants.prefs.getString('userinfo') as String)['Password'],
   ];
   Widget progessButton() {
     return Container();
