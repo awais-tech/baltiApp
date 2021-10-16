@@ -108,7 +108,8 @@ class _OrderpendingState extends State<Orderpending> {
                             context: context,
                             isScrollControlled: true,
                             builder: (context) {
-                              return editEmail(context, "View Detail");
+                              return editEmail(
+                                  context, "View Detail", widget.order);
                             });
                       },
                     ),
@@ -162,7 +163,7 @@ class _OrderpendingState extends State<Orderpending> {
   }
 }
 
-Widget editEmail(BuildContext context, String title) {
+Widget editEmail(BuildContext context, String title, ord.OrderItem order) {
   return Padding(
     padding: MediaQuery.of(context).viewInsets,
     child: Container(
@@ -174,27 +175,27 @@ Widget editEmail(BuildContext context, String title) {
           Bottommodeltitle(title),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Email:daniyal@gmail.com',
+            child: Text('Email:' + order.email,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Address:885 C j2 Johar town',
+            child: Text('address' + order.email,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Name:Awais Shahbaz',
+            child: Text('Name:' + order.name,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Phone no:03054055977',
+            child: Text('Phone:' + order.phoneno,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Status Pending',
+            child: Text('Status:' + order.status,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
         ],

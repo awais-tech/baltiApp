@@ -10,13 +10,21 @@ class OrderItem {
   final List<CartItem> products;
   final DateTime dateTime;
   var status;
+  final String email;
+  final String phoneno;
+  final String name;
+  final String createdby;
 
   OrderItem({
     required this.id,
     required this.amount,
     required this.products,
     required this.dateTime,
+    required this.email,
+    required this.phoneno,
+    required this.name,
     required this.status,
+    required this.createdby,
   });
 }
 
@@ -30,38 +38,101 @@ class Orders with ChangeNotifier {
     return [..._orders];
   }
 
-  Future<void> fetchAndSetOrders() async {
-    final url = Uri.parse('https://baltiapi.herokuapp.com/orders/$userId');
-    final response = await http.get(url);
-    final List<OrderItem> loadedOrders = [];
-    final extracted = json.decode(response.body);
-    final extractedData = extracted['UserId'];
-    if (extractedData == null) {
-      return;
+  Future<void> fetchAndSetOrders([filterByUser = false]) async {
+    try {
+      var filterByUse = filterByUser ? 'true' : '';
+      final url = Uri.parse(
+          'https://baltiapi.herokuapp.com/orders/$userId/$filterByUse');
+
+      final response = await http.get(url);
+      if (response.body.length < 1 ||
+          json.decode(response.body).length < 1 ||
+          json.decode(response.body) == null ||
+          json.decode(response.body) == 'error' ||
+          response.body == 'error') {
+        throw ('fail');
+      }
+
+      final List<OrderItem> loadedOrders = [];
+      final extracted = json.decode(response.body);
+      if (filterByUser == false) {
+        print(3);
+        final extractedUser = extracted['_id'];
+        final extractedData = extracted['UserId'];
+        final ur =
+            Uri.parse('https://baltiapi.herokuapp.com/users/$extractedUser');
+        final respons = await http.get(ur);
+        final responseData = json.decode(respons.body);
+
+        extractedData.forEach((orderData) {
+          loadedOrders.add(
+            OrderItem(
+              id: orderData['_id'],
+              amount: orderData['amount'],
+              dateTime: DateTime.parse(orderData['dateTime']),
+              status: orderData['status'],
+              email: responseData['email'],
+              phoneno: responseData['Phoneno'],
+              name: responseData['name'],
+              createdby: orderData['createdby'],
+              products: (orderData['products'] as List<dynamic>)
+                  .map(
+                    (item) => CartItem(
+                      id: item['id'],
+                      create: item['createdby'],
+                      price: item['price'],
+                      quantity: item['quantity'],
+                      title: item['title'],
+                    ),
+                  )
+                  .toList(),
+            ),
+          );
+        });
+      } else {
+        final ur = Uri.parse('https://baltiapi.herokuapp.com/users');
+        final respons = await http.get(ur);
+        final responseData = json.decode(respons.body);
+        extracted.forEach((main) {
+          responseData.forEach((mains) {
+            if (main['_id'] == mains['Uid']) {
+              main['UserId'].forEach((orderData) {
+                print(orderData['_id']);
+                loadedOrders.add(
+                  OrderItem(
+                    id: orderData['_id'],
+                    amount: orderData['amount'],
+                    dateTime: DateTime.parse(orderData['dateTime']),
+                    status: orderData['status'],
+                    email: mains['email'],
+                    phoneno: mains['Phoneno'],
+                    name: mains['name'],
+                    createdby: orderData['createdby'],
+                    products: (orderData['products'] as List<dynamic>)
+                        .map(
+                          (item) => CartItem(
+                            id: item['id'],
+                            create: item['createdby'],
+                            price: item['price'],
+                            quantity: item['quantity'],
+                            title: item['title'],
+                          ),
+                        )
+                        .toList(),
+                  ),
+                );
+              });
+            }
+          });
+        });
+      }
+      _orders = loadedOrders.reversed.toList();
+      print(_orders);
+      notifyListeners();
+    } catch (e) {
+      print(e);
+      throw (e);
     }
-    print(extractedData);
-    extractedData.forEach((orderData) {
-      loadedOrders.add(
-        OrderItem(
-          id: orderData['_id'],
-          amount: orderData['amount'],
-          dateTime: DateTime.parse(orderData['dateTime']),
-          status: orderData['status'],
-          products: (orderData['products'] as List<dynamic>)
-              .map(
-                (item) => CartItem(
-                  id: item['id'],
-                  price: item['price'],
-                  quantity: item['quantity'],
-                  title: item['title'],
-                ),
-              )
-              .toList(),
-        ),
-      );
-    });
-    _orders = loadedOrders.reversed.toList();
-    notifyListeners();
   }
 
   Future<void> addOrder(List<CartItem> cartProducts, int total) async {
@@ -76,12 +147,14 @@ class Orders with ChangeNotifier {
         'amount': total,
         'dateTime': timestamp.toIso8601String(),
         'status': 'pending',
+        'createdby': cartProducts[0].create,
         'products': cartProducts
             .map((cp) => {
                   'id': cp.id,
                   'title': cp.title,
                   'quantity': cp.quantity,
                   'price': cp.price,
+                  'createdby': cp.create,
                 })
             .toList(),
       }),
@@ -93,7 +166,11 @@ class Orders with ChangeNotifier {
         id: json.decode(response.body)['_id'],
         amount: total,
         dateTime: timestamp,
+        createdby: cartProducts[0].create,
         products: cartProducts,
+        email: '',
+        phoneno: '',
+        name: '',
         status: 'pending',
       ),
     );

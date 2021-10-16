@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:balti/Provider/AuthP.dart';
 import 'package:balti/Utilities/Bottommodaltitle.dart';
 import 'package:balti/Utilities/Straightline.dart';
 import 'package:balti/Utilities/inputborder.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../Constants.dart';
 // import 'package:progress_state_button/iconed_button.dart';
@@ -17,35 +19,39 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  final myList = ['Name', 'Email', 'Phone', 'Password'];
-  final myListData = [
-    json.decode(Constants.prefs.getString('userinfo') as String)['name'],
-    json.decode(Constants.prefs.getString('userinfo') as String)['email'],
-    json.decode(Constants.prefs.getString('userinfo') as String)['Phoneno'],
-    json.decode(Constants.prefs.getString('userinfo') as String)['Password'],
-  ];
-  Widget progessButton() {
-    return Container();
-    // return ProgressButton.icon(iconedButtons: {
-    //   ButtonState.idle: IconedButton(
-    //       text: "Save Changes",
-    //       icon: Icon(Icons.save_alt_rounded, color: Colors.white),
-    //       color: Colors.pink.shade900),
-    //   ButtonState.loading:
-    //       IconedButton(text: "Loading", color: Colors.pink.shade900),
-    //   ButtonState.fail: IconedButton(
-    //       text: "Failed",
-    //       icon: Icon(Icons.cancel, color: Colors.white),
-    //       color: Colors.red.shade300),
-    //   ButtonState.success: IconedButton(
-    //       text: "Success",
-    //       icon: Icon(
-    //         Icons.check_circle,
-    //         color: Colors.white,
-    //       ),
-    //       color: Colors.green.shade400)
-    // }, onPressed: () {});
+  final myList = ['Name', 'Phone', 'Password'];
+
+  final email = TextEditingController();
+  final phone = TextEditingController();
+  final password = TextEditingController();
+  final name = TextEditingController();
+  void submit(value, name) async {
+    await Provider.of<Auth>(context, listen: false).update(value, name);
+    Navigator.of(context).pop();
+    setState(() {});
   }
+  // Widget progessButton() {
+  //   return Container();
+  //   // return ProgressButton.icon(iconedButtons: {
+  //   //   ButtonState.idle: IconedButton(
+  //   //       text: "Save Changes",
+  //   //       icon: Icon(Icons.save_alt_rounded, color: Colors.white),
+  //   //       color: Colors.pink.shade900),
+  //   //   ButtonState.loading:
+  //   //       IconedButton(text: "Loading", color: Colors.pink.shade900),
+  //   //   ButtonState.fail: IconedButton(
+  //   //       text: "Failed",
+  //   //       icon: Icon(Icons.cancel, color: Colors.white),
+  //   //       color: Colors.red.shade300),
+  //   //   ButtonState.success: IconedButton(
+  //   //       text: "Success",
+  //   //       icon: Icon(
+  //   //         Icons.check_circle,
+  //   //         color: Colors.white,
+  //   //       ),
+  //   //       color: Colors.green.shade400)
+  //   // }, onPressed: () {});
+  // }
 
   Widget editName(BuildContext context, String title) {
     return Padding(
@@ -75,37 +81,9 @@ class _ProfileState extends State<Profile> {
                 Expanded(
                   child: TextField(
                     keyboardType: TextInputType.streetAddress,
+                    controller: name,
                     decoration: InputDecoration(
-                      labelText: 'Edit First Name',
-                      border: InputBorder.none,
-                      hintText: 'Please start from uppercase letter',
-                      hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-          Container(
-            decoration: putborder(),
-            margin:
-                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-            child: Row(
-              children: <Widget>[
-                new Padding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-                  child: Icon(
-                    Icons.person_add_alt,
-                    color: Color(0xff8d43d6),
-                  ),
-                ),
-                Straightline(),
-                Expanded(
-                  child: TextField(
-                    keyboardType: TextInputType.streetAddress,
-                    decoration: InputDecoration(
-                      labelText: 'Edit Last Name',
+                      labelText: 'Edit  Name',
                       border: InputBorder.none,
                       hintText: 'Please start from uppercase letter',
                       hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
@@ -117,60 +95,118 @@ class _ProfileState extends State<Profile> {
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
-            child: progessButton(),
+            child: ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                )),
+                padding: MaterialStateProperty.all(EdgeInsets.symmetric(
+                        vertical: 25,
+                        horizontal: MediaQuery.of(context).size.width -
+                            MediaQuery.of(context).padding.top) *
+                    0.35),
+                backgroundColor: MaterialStateProperty.all(
+                    Color(0xff8d43d6)), // <-- Button color
+                overlayColor:
+                    MaterialStateProperty.resolveWith<Color?>((states) {
+                  if (states.contains(MaterialState.pressed))
+                    return Color(0xffB788E5); // <-- Splash color
+                }),
+              ),
+              child: const Text(
+                "Submit",
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () => {
+                submit(
+                  name.text,
+                  "name",
+                )
+              },
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget editEmail(BuildContext context, String title) {
-    return Padding(
-      padding: MediaQuery.of(context).viewInsets,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Bottommodeltitle(title),
-          Divider(
-            thickness: 2,
-          ),
-          Container(
-            decoration: putborder(),
-            margin:
-                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-            child: Row(
-              children: <Widget>[
-                new Padding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-                  child: Icon(
-                    Icons.email_outlined,
-                    color: Color(0xff8d43d6),
-                  ),
-                ),
-                Straightline(),
-                Expanded(
-                  child: TextField(
-                    keyboardType: TextInputType.streetAddress,
-                    decoration: InputDecoration(
-                      labelText: 'Edit Email',
-                      border: InputBorder.none,
-                      hintText: 'Please follow the Email format',
-                      hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: progessButton(),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget editEmail(BuildContext context, String title) {
+  //   return Padding(
+  //     padding: MediaQuery.of(context).viewInsets,
+  //     child: Column(
+  //       mainAxisSize: MainAxisSize.min,
+  //       children: [
+  //         Bottommodeltitle(title),
+  //         Divider(
+  //           thickness: 2,
+  //         ),
+  //         Container(
+  //           decoration: putborder(),
+  //           margin:
+  //               const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+  //           child: Row(
+  //             children: <Widget>[
+  //               new Padding(
+  //                 padding:
+  //                     EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+  //                 child: Icon(
+  //                   Icons.email_outlined,
+  //                   color: Color(0xff8d43d6),
+  //                 ),
+  //               ),
+  //               Straightline(),
+  //               Expanded(
+  //                 child: TextField(
+  //                   keyboardType: TextInputType.streetAddress,
+  //                   controller: email,
+  //                   decoration: InputDecoration(
+  //                     labelText: 'Edit address',
+  //                     border: InputBorder.none,
+  //                     hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
+  //                   ),
+  //                 ),
+  //               )
+  //             ],
+  //           ),
+  //         ),
+  //         Padding(
+  //           padding: const EdgeInsets.only(bottom: 8.0),
+  //           child: ElevatedButton(
+  //             style: ButtonStyle(
+  //               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+  //                   RoundedRectangleBorder(
+  //                 borderRadius: BorderRadius.circular(10.0),
+  //               )),
+  //               padding: MaterialStateProperty.all(EdgeInsets.symmetric(
+  //                       vertical: 25,
+  //                       horizontal: MediaQuery.of(context).size.width -
+  //                           MediaQuery.of(context).padding.top) *
+  //                   0.35),
+  //               backgroundColor: MaterialStateProperty.all(
+  //                   Color(0xff8d43d6)), // <-- Button color
+  //               overlayColor:
+  //                   MaterialStateProperty.resolveWith<Color?>((states) {
+  //                 if (states.contains(MaterialState.pressed))
+  //                   return Color(0xffB788E5); // <-- Splash color
+  //               }),
+  //             ),
+  //             child: const Text(
+  //               "submit",
+  //               style: TextStyle(color: Colors.white),
+  //             ),
+  //             onPressed: () => {
+  //               submit(
+  //                 email.text,
+  //                 "address",
+  //               )
+  //             },
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget editPhone(BuildContext context, String title) {
     return Padding(
@@ -199,6 +235,7 @@ class _ProfileState extends State<Profile> {
                 Straightline(),
                 Expanded(
                   child: TextField(
+                    controller: phone,
                     keyboardType: TextInputType.streetAddress,
                     decoration: InputDecoration(
                       labelText: 'Edit Phone Number',
@@ -213,7 +250,36 @@ class _ProfileState extends State<Profile> {
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
-            child: progessButton(),
+            child: ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                )),
+                padding: MaterialStateProperty.all(EdgeInsets.symmetric(
+                        vertical: 25,
+                        horizontal: MediaQuery.of(context).size.width -
+                            MediaQuery.of(context).padding.top) *
+                    0.35),
+                backgroundColor: MaterialStateProperty.all(
+                    Color(0xff8d43d6)), // <-- Button color
+                overlayColor:
+                    MaterialStateProperty.resolveWith<Color?>((states) {
+                  if (states.contains(MaterialState.pressed))
+                    return Color(0xffB788E5); // <-- Splash color
+                }),
+              ),
+              child: const Text(
+                "submit",
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () => {
+                submit(
+                  phone.text,
+                  "Phoneno",
+                )
+              },
+            ),
           ),
         ],
       ),
@@ -240,36 +306,6 @@ class _ProfileState extends State<Profile> {
                   padding:
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                   child: Icon(
-                    Icons.password,
-                    color: Color(0xff8d43d6),
-                  ),
-                ),
-                Straightline(),
-                Expanded(
-                  child: TextField(
-                    keyboardType: TextInputType.streetAddress,
-                    decoration: InputDecoration(
-                      labelText: 'Enter Current Password',
-                      border: InputBorder.none,
-                      hintText: 'Enter atleast 8 characters',
-                      hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
-                    ),
-                    obscureText: true,
-                  ),
-                )
-              ],
-            ),
-          ),
-          Container(
-            decoration: putborder(),
-            margin:
-                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-            child: Row(
-              children: <Widget>[
-                new Padding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-                  child: Icon(
                     Icons.map_outlined,
                     color: Color(0xff8d43d6),
                   ),
@@ -277,6 +313,7 @@ class _ProfileState extends State<Profile> {
                 Straightline(),
                 Expanded(
                   child: TextField(
+                    controller: password,
                     keyboardType: TextInputType.streetAddress,
                     decoration: InputDecoration(
                       labelText: 'Enter New Password',
@@ -292,7 +329,49 @@ class _ProfileState extends State<Profile> {
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
-            child: progessButton(),
+            child: ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                )),
+                padding: MaterialStateProperty.all(EdgeInsets.symmetric(
+                        vertical: 25,
+                        horizontal: MediaQuery.of(context).size.width -
+                            MediaQuery.of(context).padding.top) *
+                    0.35),
+                backgroundColor: MaterialStateProperty.all(
+                    Color(0xff8d43d6)), // <-- Button color
+                overlayColor:
+                    MaterialStateProperty.resolveWith<Color?>((states) {
+                  if (states.contains(MaterialState.pressed))
+                    return Color(0xffB788E5); // <-- Splash color
+                }),
+              ),
+              child: const Text(
+                "submit",
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () => {
+                if (password.text.length < 8)
+                  {
+                    Navigator.of(context).pop(),
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                        'Password must be 8 character long',
+                      ),
+                      duration: Duration(seconds: 2),
+                    )),
+                  }
+                else
+                  {
+                    submit(
+                      password.text,
+                      "Password",
+                    )
+                  }
+              },
+            ),
           ),
         ],
       ),
@@ -301,6 +380,12 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    final myListData = [
+      json.decode(Constants.prefs.getString('userinfo') as String)['name'],
+      // json.decode(Constants.prefs.getString('userinfo') as String)['address'],
+      json.decode(Constants.prefs.getString('userinfo') as String)['Phoneno'],
+      json.decode(Constants.prefs.getString('userinfo') as String)['Password'],
+    ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffB788E5),
@@ -343,9 +428,9 @@ class _ProfileState extends State<Profile> {
                         builder: (context) {
                           if (index == 0)
                             return editName(context, "Edit Name");
+                          // else if (index == 1)
+                          //   return editEmail(context, "Edit Email");
                           else if (index == 1)
-                            return editEmail(context, "Edit Email");
-                          else if (index == 2)
                             return editPhone(context, "Edit Phone");
                           else
                             return editPassword(context, "Change Password");

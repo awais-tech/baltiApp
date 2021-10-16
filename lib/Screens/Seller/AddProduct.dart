@@ -20,16 +20,16 @@ class _AddProductScreenState extends State<AddProductScreen> {
   bool loading = false;
   bool init = true;
   var _editedProduct = Meal(
-    id: '',
-    title: '',
-    ResturentName: '',
-    Category: '',
-    Dilvery: '',
-    imageUrl: '',
-    duration: 0,
-    price: 0,
-    description: '',
-  );
+      id: '',
+      title: '',
+      ResturentName: '',
+      Category: '',
+      Dilvery: '',
+      imageUrl: '',
+      duration: 0,
+      price: 0,
+      description: '',
+      createdby: '');
   var initial = {
     'price': 0.toString(),
     'description': '',
@@ -171,6 +171,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       onSaved: (value) {
                         _editedProduct = Meal(
                             title: value!,
+                            createdby: _editedProduct.createdby,
                             price: _editedProduct.price,
                             description: _editedProduct.description,
                             imageUrl: _editedProduct.imageUrl,
@@ -197,6 +198,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       onSaved: (value) {
                         _editedProduct = Meal(
                             title: _editedProduct.title,
+                            createdby: _editedProduct.createdby,
                             price: _editedProduct.price,
                             description: _editedProduct.description,
                             imageUrl: _editedProduct.imageUrl,
@@ -223,6 +225,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       onSaved: (value) {
                         _editedProduct = Meal(
                             title: _editedProduct.title,
+                            createdby: _editedProduct.createdby,
                             price: _editedProduct.price,
                             description: _editedProduct.description,
                             imageUrl: _editedProduct.imageUrl,
@@ -249,6 +252,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       onSaved: (value) {
                         _editedProduct = Meal(
                             title: _editedProduct.title,
+                            createdby: _editedProduct.createdby,
                             price: _editedProduct.price,
                             description: _editedProduct.description,
                             imageUrl: _editedProduct.imageUrl,
@@ -281,6 +285,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       onSaved: (value) {
                         _editedProduct = Meal(
                             title: _editedProduct.title,
+                            createdby: _editedProduct.createdby,
                             price: _editedProduct.price,
                             description: _editedProduct.description,
                             imageUrl: _editedProduct.imageUrl,
@@ -317,6 +322,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       onSaved: (value) {
                         _editedProduct = Meal(
                             title: _editedProduct.title,
+                            createdby: _editedProduct.createdby,
                             price: double.parse(value!) as int,
                             description: _editedProduct.description,
                             imageUrl: _editedProduct.imageUrl,
@@ -340,6 +346,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       onSaved: (value) {
                         _editedProduct = Meal(
                             title: _editedProduct.title,
+                            createdby: _editedProduct.createdby,
                             price: _editedProduct.price,
                             description: value!,
                             imageUrl: _editedProduct.imageUrl,
@@ -387,6 +394,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                             onSaved: (value) {
                               _editedProduct = Meal(
                                   title: _editedProduct.title,
+                                  createdby: _editedProduct.createdby,
                                   price: _editedProduct.price,
                                   description: _editedProduct.description,
                                   imageUrl: value!,

@@ -102,8 +102,8 @@ class ProductDetailScreen extends StatelessWidget {
               "Add To Cart",
             ),
             onPressed: () {
-              cart.addItem(
-                  loadedProduct.id, loadedProduct.price, loadedProduct.title);
+              cart.addItem(loadedProduct.id, loadedProduct.price,
+                  loadedProduct.title, loadedProduct.createdby);
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(

@@ -1,3 +1,4 @@
+import 'package:balti/Provider/AuthP.dart';
 import 'package:balti/Provider/orders.dart' show Orders;
 import 'package:balti/Widgets/order_complete.dart';
 import 'package:balti/Widgets/order_pending.dart';
@@ -21,7 +22,8 @@ class _OrdersCompletesState extends State<OrdersCompletes> {
       setState(() {
         _isLoading = true;
       });
-      await Provider.of<Orders>(context, listen: false).fetchAndSetOrders();
+
+      await Provider.of<Orders>(context, listen: false).fetchAndSetOrders(true);
       setState(() {
         _isLoading = false;
       });
@@ -31,15 +33,20 @@ class _OrdersCompletesState extends State<OrdersCompletes> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<Auth>(context, listen: false);
     return Scaffold(
-      body: Consumer<Orders>(
-        builder: (ctx, orderData, child) => ListView.builder(
-          itemCount: orderData.orders.length,
-          itemBuilder: (ctx, i) => orderData.orders[i].status == 'complete'
-              ? OrdersComplete(orderData.orders[i])
-              : Container(),
-        ),
-      ),
+      body: _isLoading
+          ? Center(child: CircularProgressIndicator())
+          : Consumer<Orders>(
+              builder: (ctx, orderData, child) => ListView.builder(
+                itemCount: orderData.orders.length,
+                itemBuilder: (ctx, i) =>
+                    orderData.orders[i].status == 'complete' &&
+                            orderData.orders[i].createdby == user.userid
+                        ? OrdersComplete(orderData.orders[i])
+                        : Container(),
+              ),
+            ),
     );
   }
 }

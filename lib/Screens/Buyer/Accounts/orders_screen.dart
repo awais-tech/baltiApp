@@ -53,13 +53,19 @@ class _OrdersScreenState extends State<OrdersScreen> {
             //         }
 
             //         return
-            Consumer<Orders>(
-          builder: (ctx, orderData, child) => ListView.builder(
-            itemCount: orderData.orders.length,
-            itemBuilder: (ctx, i) => orderData.orders[i].status == 'complete'
-                ? OrderItem(orderData.orders[i])
-                : Container(),
-          ),
-        ));
+            _isLoading
+                ? Center(child: CircularProgressIndicator())
+                : Consumer<Orders>(
+                    builder: (ctx, orderData, child) =>
+                        orderData.orders.length > 0
+                            ? ListView.builder(
+                                itemCount: orderData.orders.length,
+                                itemBuilder: (ctx, i) =>
+                                    orderData.orders[i].status == 'complete'
+                                        ? OrderItem(orderData.orders[i])
+                                        : Container(),
+                              )
+                            : Center(child: Text('No order')),
+                  ));
   }
 }

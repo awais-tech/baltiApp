@@ -111,6 +111,7 @@ class BaltiMeals with ChangeNotifier {
                 ResturentName: prodData['ResturentName'],
                 Category: prodData['Category'],
                 Dilvery: prodData['Dilvery'],
+                createdby: prodData['createdby'],
               ));
             })
           : print(2);
@@ -173,6 +174,7 @@ class BaltiMeals with ChangeNotifier {
         Category: product.Category,
         Dilvery: product.Dilvery,
         duration: product.duration,
+        createdby: userid,
       );
       meals.add(newProduct);
       notifyListeners();
@@ -204,8 +206,7 @@ class BaltiMeals with ChangeNotifier {
             }));
 
         meals[prodIndex] = newProduct;
-        print(newProduct.price);
-        print(items[prodIndex].price);
+
         notifyListeners();
       } else {
         print('...');

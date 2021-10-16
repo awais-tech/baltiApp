@@ -12,6 +12,7 @@ class Meal with ChangeNotifier {
   final int duration;
   final int price;
   final String description;
+  final String createdby;
   bool isFavorite;
 
   Meal({
@@ -24,6 +25,7 @@ class Meal with ChangeNotifier {
     required this.Dilvery,
     required this.price,
     required this.description,
+    required this.createdby,
     this.isFavorite = false,
   });
   void toggleFavoriteStatus() {

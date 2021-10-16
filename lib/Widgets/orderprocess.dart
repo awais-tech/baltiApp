@@ -107,7 +107,8 @@ class _OrdersProcessState extends State<OrdersProcess> {
                             context: context,
                             isScrollControlled: true,
                             builder: (context) {
-                              return editEmail(context, "View Detail");
+                              return editEmail(
+                                  context, "View Detail", widget.order);
                             });
                       },
                     ),
@@ -161,7 +162,7 @@ class _OrdersProcessState extends State<OrdersProcess> {
   }
 }
 
-Widget editEmail(BuildContext context, String title) {
+Widget editEmail(BuildContext context, String title, ord.OrderItem order) {
   return Padding(
     padding: MediaQuery.of(context).viewInsets,
     child: Container(
@@ -173,32 +174,27 @@ Widget editEmail(BuildContext context, String title) {
           Bottommodeltitle(title),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Estimated Time:30m',
+            child: Text('Email:' + order.email,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Email:daniyal@gmail.com',
+            child: Text('address' + order.email,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Address:885 C j2 Johar town',
+            child: Text('Name:' + order.name,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Name:Awais Shahbaz',
+            child: Text('Phone:' + order.phoneno,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Phone no:03054055977',
-                style: TextStyle(fontWeight: FontWeight.bold)),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text('Status: In process',
+            child: Text('Status:' + order.status,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
         ],

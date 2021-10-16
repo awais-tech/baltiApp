@@ -144,6 +144,28 @@ class Auth with ChangeNotifier {
     }
   }
 
+  Future<void> Changepass(String password) async {
+    try {
+      final extractedUserData =
+          await json.decode(Constants.prefs.getString('userData') as String);
+      final url = Uri.parse(
+          'https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyCr4Sog0u_N1K-RtJfJp9nAxfL0hNwlpXA');
+      final response = await http.post(
+        url,
+        body: json.encode(
+          {
+            'idToken': extractedUserData['token'],
+            'password': password,
+            'returnSecureToken': true,
+          },
+        ),
+      );
+    } catch (e) {
+      print(e);
+      throw (e);
+    }
+  }
+
   Future<void> userdetails(
       String email, String Phoneno, String username, String Password) async {
     try {
@@ -191,6 +213,53 @@ class Auth with ChangeNotifier {
 
       // final prefs = await SharedPreferences.getInstance();
 
+    } catch (e) {
+      print(e);
+      throw (e);
+    }
+  }
+
+  Future<void> update(info, name) async {
+    try {
+      var data;
+      final extractedUserData =
+          await json.decode(Constants.prefs.getString('userData') as String);
+      Map<String, String> headers = {"Content-type": "application/json"};
+      var userid = extractedUserData['userId'] as String;
+      final url = Uri.parse('https://baltiapi.herokuapp.com/users/$userid');
+      if (name == 'Password') {
+        data = 'Password';
+        Changepass(info);
+      } else if (name == 'address') {
+        data = 'address';
+      } else if (name == 'name') {
+        data = 'name';
+      } else {
+        data = 'Phoneno';
+      }
+      final response = await http.put(
+        url,
+        headers: headers,
+        body: json.encode(
+          {
+            data: info,
+          },
+        ),
+      );
+
+      final responseData = json.decode(response.body);
+      print(response);
+      final userinfo = json.encode(
+        {
+          'email': extractedUserData['email'],
+          'Phoneno': responseData['Phoneno'],
+          'name': responseData['name'],
+          'Password': responseData['Password'],
+        },
+      );
+      await Constants.prefs.setString('userinfo', userinfo);
+
+      notifyListeners();
     } catch (e) {
       print(e);
       throw (e);
