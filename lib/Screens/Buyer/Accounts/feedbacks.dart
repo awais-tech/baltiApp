@@ -54,9 +54,6 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
     setState(() {
       loading = true;
     });
-    setState(() {
-      loading = false;
-    });
     print("button clicked");
   }
 
