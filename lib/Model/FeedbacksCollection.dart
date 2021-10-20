@@ -6,7 +6,7 @@ class FeedbacksCollection with ChangeNotifier {
   final String lastName;
   final String email;
   final String description;
-  final int rating;
+  final double rating;
   bool isComment;
 
   FeedbacksCollection(
