@@ -1,8 +1,12 @@
 import 'dart:ui';
 import 'package:balti/Model/FeedbacksCollection.dart';
+import 'package:balti/Provider/AuthP.dart';
+import 'package:balti/Provider/feedback.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'dart:convert';
+
+import 'package:provider/provider.dart';
 
 enum SingingCharacter { comments, bugs }
 
@@ -19,23 +23,13 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   final _descriptionFocusNode = FocusNode();
   //final _textControl = TextEditingController();
   bool loading = false;
+  var rating;
   //bool init = true;
-  var _Feedback = FeedbacksCollection(
-    id: '',
-    firstName: '',
-    lastName: '',
-    email: '',
+  var _feedback = FeedbacksCollection(
     description: '',
-    rating: 0,
-    isComment: true,
   );
   var initial = {
-    'id': '',
-    'firstName': '',
-    'lastName': '',
-    'email': '',
     'description': '',
-    'rating': 0,
   };
   @override
   void dispose() {
@@ -48,13 +42,51 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
     if (!form) {
       return;
     }
+    try {
+      var oid = ModalRoute.of(context)!.settings.arguments as Map;
+      _feedbackKey.currentState!.save();
+      var id = Provider.of<Auth>(context, listen: false).userid;
 
-    _feedbackKey.currentState!.save();
-    print(json.encode(FeedbacksCollection));
+      print(_feedback.description);
+      print(rating);
+      print(oid);
+      print(id);
+      setState(() {
+        loading = true;
+      });
+      await Provider.of<Feedbacks>(context, listen: false).addfeedback(
+          feedb: _feedback,
+          uID: id,
+          oID: oid['id'],
+          created: oid['create'],
+          rating: rating,
+          email: oid['email']);
+    } catch (e) {
+      print(e);
+      _showErrorDialog('Something Goes wrong ');
+    }
+// addfeedback
     setState(() {
-      loading = true;
+      loading = false;
     });
-    print("button clicked");
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(message),
+        content: Text(message),
+        actions: <Widget>[
+          TextButton(
+            child: Text('Okay'),
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+          )
+        ],
+      ),
+    );
   }
 
   @override
@@ -92,58 +124,6 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8.0),
-                                child: Text(
-                                  "Feedback Type",
-                                  style: TextStyle(
-                                      color: Color(0xff8d43d6),
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                              ),
-                              Column(
-                                children: <Widget>[
-                                  RadioListTile(
-                                    activeColor: Color(0xff8d43d6),
-                                    groupValue: _character,
-                                    title: const Text('Comments'),
-                                    value: SingingCharacter.comments,
-                                    onChanged: (SingingCharacter? value) {
-                                      setState(() {
-                                        _character = value;
-                                      });
-                                    },
-                                    secondary: const Icon(
-                                      Icons.comment,
-                                      color: Color(0xff8d43d6),
-                                    ),
-                                  ),
-                                  RadioListTile(
-                                    activeColor: Color(0xff8d43d6),
-                                    groupValue: _character,
-                                    title: const Text('Bug Reports'),
-                                    value: SingingCharacter.bugs,
-                                    onChanged: (SingingCharacter? value) {
-                                      setState(() {
-                                        _character = value;
-                                        // FeedbacksCollection(
-                                        //     id: _Feedback.id,
-                                        //     firstName: _Feedback.firstName,
-                                        //     lastName: _Feedback.lastName,
-                                        //     email: _Feedback.email,
-                                        //     rating: _Feedback.rating,
-                                        //     description: _Feedback.description,
-                                        //     isComment: false);
-                                      });
-                                    },
-                                    secondary: const Icon(
-                                      Icons.bug_report_rounded,
-                                      color: Color(0xff8d43d6),
-                                    ),
-                                  ),
-                                ],
-                              ),
                               SizedBox(
                                 height: 8 * 3,
                               ),
@@ -192,152 +172,13 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                             );
                                         }
                                       },
-                                      onRatingUpdate: (rating) {
-                                        // setState(() {
-                                        //   FeedbacksCollection(
-                                        //       id: _Feedback.id,
-                                        //       firstName: _Feedback.firstName,
-                                        //       lastName: _Feedback.lastName,
-                                        //       email: _Feedback.email,
-                                        //       rating: rating,
-                                        //       description:
-                                        //           _Feedback.description);
-                                        // });
-                                        print(rating);
+                                      onRatingUpdate: (ratin) {
+                                        setState(() {
+                                          rating = ratin;
+                                        });
                                       },
                                     ),
                                   ],
-                                ),
-                              ),
-                              SizedBox(
-                                height: 8 * 3,
-                              ),
-                              Container(
-                                  width: double.infinity,
-                                  child: TextFormField(
-                                    initialValue:
-                                        initial['firstName'] as String,
-                                    textInputAction: TextInputAction.next,
-                                    keyboardType: TextInputType.text,
-                                    decoration: InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Color(0xffB788E5),
-                                              width: 2.0),
-                                        ),
-                                        contentPadding: EdgeInsets.symmetric(
-                                            vertical: 8, horizontal: 8),
-                                        labelText: 'First Name',
-                                        hintText: 'Enter Your First Name',
-                                        labelStyle: TextStyle(
-                                            fontSize: 16.0,
-                                            color: Colors.black87)),
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return 'Please enter a First Name.';
-                                      }
-
-                                      return null;
-                                    },
-                                    onSaved: (value) {
-                                      _Feedback = FeedbacksCollection(
-                                        id: _Feedback.id,
-                                        firstName: value!,
-                                        lastName: _Feedback.lastName,
-                                        email: _Feedback.email,
-                                        description: _Feedback.description,
-                                        rating: _Feedback.rating,
-                                        isComment: _Feedback.isComment,
-                                      );
-                                    },
-                                  )),
-                              SizedBox(
-                                height: 8 * 3,
-                              ),
-                              Container(
-                                width: double.infinity,
-                                child: TextFormField(
-                                  initialValue: initial['lastName'] as String,
-                                  textInputAction: TextInputAction.next,
-                                  keyboardType: TextInputType.text,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Color(0xffB788E5),
-                                            width: 2.0),
-                                      ),
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 8, horizontal: 8),
-                                      hintText: 'Enter Your Last Name',
-                                      labelText: 'Last Name',
-                                      labelStyle: TextStyle(
-                                          fontSize: 16.0,
-                                          color: Colors.black87)),
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Please enter a Last Name.';
-                                    }
-
-                                    return null;
-                                  },
-                                  onSaved: (value) {
-                                    _Feedback = FeedbacksCollection(
-                                      id: _Feedback.id,
-                                      firstName: _Feedback.firstName,
-                                      lastName: value!,
-                                      email: _Feedback.email,
-                                      description: _Feedback.description,
-                                      rating: _Feedback.rating,
-                                      isComment: _Feedback.isComment,
-                                    );
-                                  },
-                                ),
-                              ),
-                              SizedBox(
-                                height: 8 * 3,
-                              ),
-                              Container(
-                                width: double.infinity,
-                                child: TextFormField(
-                                  initialValue: initial['email'] as String,
-                                  textInputAction: TextInputAction.next,
-                                  keyboardType: TextInputType.text,
-                                  onChanged: (String value) {},
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Color(0xffB788E5),
-                                            width: 2.0),
-                                      ),
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 8, horizontal: 8),
-                                      labelText: 'Email',
-                                      labelStyle: TextStyle(
-                                          fontSize: 16.0,
-                                          color: Colors.black87)),
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Please enter a Email.';
-                                    }
-                                    if (!value.contains('@')) {
-                                      return 'Please enter a valid Email.';
-                                    }
-                                    return null;
-                                  },
-                                  onSaved: (value) {
-                                    _Feedback = FeedbacksCollection(
-                                      id: _Feedback.id,
-                                      firstName: _Feedback.firstName,
-                                      lastName: _Feedback.email,
-                                      email: value!,
-                                      description: _Feedback.description,
-                                      rating: _Feedback.rating,
-                                      isComment: _Feedback.isComment,
-                                    );
-                                  },
                                 ),
                               ),
                               SizedBox(
@@ -371,14 +212,8 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                     return null;
                                   },
                                   onSaved: (value) {
-                                    _Feedback = FeedbacksCollection(
-                                      id: _Feedback.id,
-                                      firstName: _Feedback.firstName,
-                                      lastName: _Feedback.lastName,
-                                      email: _Feedback.email,
+                                    _feedback = FeedbacksCollection(
                                       description: value!,
-                                      rating: _Feedback.rating,
-                                      isComment: _Feedback.isComment,
                                     );
                                   },
                                 ),

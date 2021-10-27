@@ -30,7 +30,11 @@ class _OrderItemState extends State<OrderItem> {
             leading: IconButton(
               icon: Icon(Icons.feedback_outlined, color: Color(0xff8d43d6)),
               onPressed: () => Navigator.of(context)
-                  .pushReplacementNamed(FeedbackScreen.routename),
+                  .pushNamed(FeedbackScreen.routename, arguments: {
+                'id': widget.order.id,
+                'create': widget.order.createdby,
+                'email': widget.order.email
+              }),
             ),
             title: Row(
               children: [

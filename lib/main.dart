@@ -1,6 +1,7 @@
 import 'package:balti/Provider/AuthP.dart';
 import 'package:balti/Provider/MealsProvider.dart';
 import 'package:balti/Provider/cart.dart';
+import 'package:balti/Provider/feedback.dart';
 import 'package:balti/Provider/orders.dart';
 import 'package:balti/Screens/Buyer/AccountAuth/ForgotPassword/ForgotPasswordScreen.dart';
 import 'package:balti/Screens/Buyer/AccountAuth/ForgotPassword/ResetPassword.dart';
@@ -63,6 +64,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (ctx) => Cart(),
+          ),
+          ChangeNotifierProvider(
+            create: (ctx) => Feedbacks(),
           ),
           // ChangeNotifierProvider(
           //   create: (ctx) => Orders(),
