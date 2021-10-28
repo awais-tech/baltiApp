@@ -11,6 +11,10 @@ class Feedbacks with ChangeNotifier {
     return [..._feedback];
   }
 
+  bool result(String id) {
+    return _feedback.every((feed) => feed.oID != id);
+  }
+
   Future<void> fetchAndSetProducts([bool user = false, uid]) async {
     var filterByUse = user ? 'true' : '';
     var url =
@@ -20,20 +24,25 @@ class Feedbacks with ChangeNotifier {
       final extractedData = json.decode(response.body);
 
       final List<FeedbacksCollection> loadedProducts = [];
+      print(extractedData.length);
       extractedData != Null
           ? extractedData.forEach((prodData) {
-              FeedbacksCollection(
-                  description: extractedData['description'],
-                  uID: extractedData['UID'],
-                  oID: extractedData['OID'],
-                  owner: extractedData['owner'],
-                  rating: extractedData['rating']);
+              loadedProducts.add(FeedbacksCollection(
+                  description: prodData['description'],
+                  uID: prodData['UID'],
+                  oID: prodData['OID'],
+                  owner: prodData['owner'],
+                  rating: prodData['rating'],
+                  email: prodData['email']));
             })
           : print(2);
 
       _feedback = loadedProducts;
+
       notifyListeners();
+      print(_feedback);
     } catch (error) {
+      print(error);
       throw (error);
     }
   }
@@ -68,7 +77,8 @@ class Feedbacks with ChangeNotifier {
               uID: uID,
               oID: oID,
               owner: created,
-              rating: rating));
+              rating: rating,
+              email: email));
       notifyListeners();
     } catch (e) {
       throw e;

@@ -38,9 +38,14 @@ class Orders with ChangeNotifier {
     return [..._orders];
   }
 
+  bool result(String id) {
+    return _orders.every((or) => or.id != id);
+  }
+
   Future<void> fetchAndSetOrders([filterByUser = false]) async {
     try {
       var filterByUse = filterByUser ? 'true' : '';
+      final List<OrderItem> loadedOrders = [];
       final url = Uri.parse(
           'https://baltiapi.herokuapp.com/orders/$userId/$filterByUse');
 
@@ -50,13 +55,14 @@ class Orders with ChangeNotifier {
           json.decode(response.body) == null ||
           json.decode(response.body) == 'error' ||
           response.body == 'error') {
-        throw ('fail');
+        _orders = loadedOrders.toList();
+
+        notifyListeners();
+        return;
       }
 
-      final List<OrderItem> loadedOrders = [];
       final extracted = json.decode(response.body);
       if (filterByUser == false) {
-        print(3);
         final extractedUser = extracted['_id'];
         final extractedData = extracted['UserId'];
         final ur =
@@ -127,10 +133,9 @@ class Orders with ChangeNotifier {
         });
       }
       _orders = loadedOrders.reversed.toList();
-      print(_orders);
+
       notifyListeners();
     } catch (e) {
-      print(e);
       throw (e);
     }
   }

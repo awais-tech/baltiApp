@@ -30,7 +30,7 @@ class _ManageFeedbacksState extends State<ManageFeedbacks> {
               return Consumer<Feedbacks>(
                   builder: (ctx, feedbackData, child) => feedbackData
                               .feedback.length >
-                          1
+                          0
                       ? GridView.builder(
                           itemCount: feedbackData.feedback.length,
                           itemBuilder: (context, index) {
@@ -38,14 +38,14 @@ class _ManageFeedbacksState extends State<ManageFeedbacks> {
                               child: Container(
                                 padding: EdgeInsets.all(10),
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
                                     Row(
                                       children: <Widget>[
                                         Expanded(
                                           child: Column(
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                CrossAxisAlignment.center,
                                             children: <Widget>[
                                               Text(
                                                 "Order ID",
@@ -136,10 +136,10 @@ class _ManageFeedbacksState extends State<ManageFeedbacks> {
                           },
                           gridDelegate:
                               SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 200,
+                            maxCrossAxisExtent: 300,
                             // MediaQuery.of(context).size.width /
                             // (MediaQuery.of(context).size.height / 1.4)
-                            childAspectRatio: 5 / 2,
+                            childAspectRatio: 1,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10,
                           ))

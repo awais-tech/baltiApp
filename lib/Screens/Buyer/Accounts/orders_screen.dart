@@ -18,15 +18,38 @@ class _OrdersScreenState extends State<OrdersScreen> {
   @override
   void initState() {
     Future.delayed(Duration.zero).then((_) async {
-      setState(() {
-        _isLoading = true;
-      });
-      await Provider.of<Orders>(context, listen: false).fetchAndSetOrders();
-      setState(() {
-        _isLoading = false;
-      });
+      try {
+        setState(() {
+          _isLoading = true;
+        });
+        await Provider.of<Orders>(context, listen: false).fetchAndSetOrders();
+        setState(() {
+          _isLoading = false;
+        });
+      } catch (e) {
+        _showErrorDialog(e as String);
+      }
     });
+
     super.initState();
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(message),
+        content: Text(message),
+        actions: <Widget>[
+          TextButton(
+            child: Text('Okay'),
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+          )
+        ],
+      ),
+    );
   }
 
   @override

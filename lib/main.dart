@@ -6,6 +6,7 @@ import 'package:balti/Provider/orders.dart';
 import 'package:balti/Screens/Buyer/AccountAuth/ForgotPassword/ForgotPasswordScreen.dart';
 import 'package:balti/Screens/Buyer/AccountAuth/ForgotPassword/ResetPassword.dart';
 import 'package:balti/Screens/Buyer/AccountAuth/ForgotPassword/VerifyEmail.dart';
+import 'package:balti/Screens/Buyer/AccountAuth/login%20screen%201%20(2).dart';
 import 'package:balti/Screens/Buyer/Accounts/Address.dart';
 import 'package:balti/Screens/Buyer/Accounts/orders_screenprocess.dart';
 import 'package:balti/Screens/Buyer/checkout/Checkout.dart';
@@ -72,35 +73,49 @@ class MyApp extends StatelessWidget {
           //   create: (ctx) => Orders(),
           // ),
         ],
-        child: MaterialApp(
-            title: 'BaltiApp',
-            theme: ThemeData(
-              primaryColor: Color(0xffB788E5),
-              accentColor: Color(0xff8d43d6),
-            ),
-            home: Splash(),
-            routes: {
-              Mysignuppage.route: (ctx) => Mysignuppage(),
-              ForgotPasswordScreen.route: (ctx) => ForgotPasswordScreen(),
-              ResetPassword.route: (ctx) => ResetPassword(),
-              VerifyEmail.route: (ctx) => VerifyEmail(),
-              HomeScreen.route: (ctx) => TabsScreen(),
-              Mycart.route: (ctx) => Mycart(),
-              ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
-              CheckoutScreen.route: (ctx) => CheckoutScreen(),
-              Profile.routeName: (ctx) => Profile(),
-              OrderStatus.routeName: (ctx) => OrderStatus(),
-              OrdersScreen.routeName: (ctx) => OrdersScreen(),
-              AboutUs.routeName: (ctx) => AboutUs(),
-              Address.routeName: (ctx) => Address(),
-              Sellerdashboard.routeName: (ctx) => Sellerdashboard(),
-              UserProductsScreen.routeName: (ctx) => UserProductsScreen(),
-              AddProductScreen.routeName: (ctx) => AddProductScreen(),
-              FeedbackScreen.routename: (ctx) => FeedbackScreen(),
-              ManageFeedbacks.routeName: (ctx) => ManageFeedbacks(),
-              OrdersApprovalScreen.routeName: (ctx) => OrdersApprovalScreen(),
-              OrdersScreenprocessprocess.routeName: (ctx) =>
-                  OrdersScreenprocessprocess()
-            }));
+        child: Consumer<Auth>(
+            builder: (ctx, auth, _) => MaterialApp(
+                    title: 'BaltiApp',
+                    theme: ThemeData(
+                      primaryColor: Color(0xffB788E5),
+                      accentColor: Color(0xff8d43d6),
+                    ),
+                    home: auth.isAuth
+                        ? HomeScreen()
+                        : FutureBuilder(
+                            future: auth.tryAutoLogin(),
+                            builder: (ctx, authResultSnapshot) =>
+                                authResultSnapshot.connectionState ==
+                                        ConnectionState.waiting
+                                    ? Splash()
+                                    : LoginScreen1(),
+                          ),
+                    routes: {
+                      Mysignuppage.route: (ctx) => Mysignuppage(),
+                      ForgotPasswordScreen.route: (ctx) =>
+                          ForgotPasswordScreen(),
+                      ResetPassword.route: (ctx) => ResetPassword(),
+                      VerifyEmail.route: (ctx) => VerifyEmail(),
+                      HomeScreen.route: (ctx) => TabsScreen(),
+                      Mycart.route: (ctx) => Mycart(),
+                      ProductDetailScreen.routeName: (ctx) =>
+                          ProductDetailScreen(),
+                      CheckoutScreen.route: (ctx) => CheckoutScreen(),
+                      Profile.routeName: (ctx) => Profile(),
+                      OrderStatus.routeName: (ctx) => OrderStatus(),
+                      OrdersScreen.routeName: (ctx) => OrdersScreen(),
+                      AboutUs.routeName: (ctx) => AboutUs(),
+                      Address.routeName: (ctx) => Address(),
+                      Sellerdashboard.routeName: (ctx) => Sellerdashboard(),
+                      UserProductsScreen.routeName: (ctx) =>
+                          UserProductsScreen(),
+                      AddProductScreen.routeName: (ctx) => AddProductScreen(),
+                      FeedbackScreen.routename: (ctx) => FeedbackScreen(),
+                      ManageFeedbacks.routeName: (ctx) => ManageFeedbacks(),
+                      OrdersApprovalScreen.routeName: (ctx) =>
+                          OrdersApprovalScreen(),
+                      OrdersScreenprocessprocess.routeName: (ctx) =>
+                          OrdersScreenprocessprocess()
+                    })));
   }
 }

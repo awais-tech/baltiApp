@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:balti/Model/FeedbacksCollection.dart';
 import 'package:balti/Provider/AuthP.dart';
 import 'package:balti/Provider/feedback.dart';
+import 'package:balti/Screens/Buyer/HomepageScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'dart:convert';
@@ -61,6 +62,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
           created: oid['create'],
           rating: rating,
           email: oid['email']);
+      Navigator.of(context).pushNamed(HomeScreen.route);
     } catch (e) {
       print(e);
       _showErrorDialog('Something Goes wrong ');

@@ -325,4 +325,19 @@ class Auth with ChangeNotifier {
   //   final timeToExpiry = _expiryDate.difference(DateTime.now()).inSeconds;
   //   _authTimer = Timer(Duration(seconds: timeToExpiry), logout);
   // }
+   Future<bool> tryAutoLogin() async {
+    // final prefs = await SharedPreferences.getInstance();
+    if (!Constants.prefs.containsKey('userData')) {
+      return false;
+    }
+    final extractedUserData =
+        await json.decode(Constants.prefs.getString('userData') as String);
+
+    _token = extractedUserData['token'];
+    _userId = extractedUserData['userId'] as String;
+   
+    notifyListeners();
+   
+    return true;
+  }
 }
