@@ -48,10 +48,6 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
       _feedbackKey.currentState!.save();
       var id = Provider.of<Auth>(context, listen: false).userid;
 
-      print(_feedback.description);
-      print(rating);
-      print(oid);
-      print(id);
       setState(() {
         loading = true;
       });
@@ -61,11 +57,12 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
           oID: oid['id'],
           created: oid['create'],
           rating: rating,
-          email: oid['email']);
+          email: oid['email'],
+          prod: oid['productid']);
       Navigator.of(context).pushNamed(HomeScreen.route);
     } catch (e) {
-      print(e);
-      _showErrorDialog('Something Goes wrong ');
+      Navigator.of(context).pushNamed(HomeScreen.route);
+      // _showErrorDialog('Something Goes wrong ');
     }
 // addfeedback
     setState(() {

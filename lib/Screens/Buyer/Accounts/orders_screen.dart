@@ -27,7 +27,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
           _isLoading = false;
         });
       } catch (e) {
-        _showErrorDialog(e as String);
+        setState(() {
+          _isLoading = false;
+        });
       }
     });
 

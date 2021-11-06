@@ -15,8 +15,27 @@ class Feedbacks with ChangeNotifier {
     return _feedback.every((feed) => feed.oID != id);
   }
 
-  Future<void> fetchAndSetProducts([bool user = false, uid]) async {
+  List<FeedbacksCollection> orderfeedback(String id) {
+    return _feedback.where((feed) => feed.proid == id).toList();
+  }
+
+  double get total {
+    return feedback.length > 0
+        ? (_feedback.fold(
+                0.0,
+                (previousValue, element) =>
+                    (previousValue as double) + element.rating) /
+            _feedback.length)
+        : 0;
+  }
+
+  Future<void> fetchAndSetProducts([
+    bool user = false,
+    uid,
+    prod = '',
+  ]) async {
     var filterByUse = user ? 'true' : '';
+    filterByUse = prod == '' ? filterByUse : 'prod';
     var url =
         Uri.parse('https://baltiapi.herokuapp.com/feedback/$uid/$filterByUse');
     try {
@@ -24,8 +43,8 @@ class Feedbacks with ChangeNotifier {
       final extractedData = json.decode(response.body);
 
       final List<FeedbacksCollection> loadedProducts = [];
-      print(extractedData.length);
-      extractedData != Null
+
+      extractedData != Null || extractedData.length > 0
           ? extractedData.forEach((prodData) {
               loadedProducts.add(FeedbacksCollection(
                   description: prodData['description'],
@@ -33,7 +52,8 @@ class Feedbacks with ChangeNotifier {
                   oID: prodData['OID'],
                   owner: prodData['owner'],
                   rating: prodData['rating'],
-                  email: prodData['email']));
+                  email: prodData['email'],
+                  proid: prodData['proid']));
             })
           : print(2);
 
@@ -42,6 +62,8 @@ class Feedbacks with ChangeNotifier {
       notifyListeners();
       print(_feedback);
     } catch (error) {
+      _feedback = [];
+      notifyListeners();
       print(error);
       throw (error);
     }
@@ -53,7 +75,8 @@ class Feedbacks with ChangeNotifier {
       oID,
       created,
       rating,
-      email}) async {
+      email,
+      prod}) async {
     try {
       var url = Uri.parse('https://baltiapi.herokuapp.com/feedback');
       Map<String, String> headers = {"Content-type": "application/json"};
@@ -68,6 +91,7 @@ class Feedbacks with ChangeNotifier {
           'owner': created,
           'rating': rating,
           'email': email,
+          'proid': prod,
         }),
       );
       _feedback.insert(
@@ -78,7 +102,8 @@ class Feedbacks with ChangeNotifier {
               oID: oID,
               owner: created,
               rating: rating,
-              email: email));
+              email: email,
+              proid: prod));
       notifyListeners();
     } catch (e) {
       throw e;

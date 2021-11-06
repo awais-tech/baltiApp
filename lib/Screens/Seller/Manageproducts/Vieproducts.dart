@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:balti/Provider/MealsProvider.dart';
+import 'package:balti/Screens/Constants.dart';
+import 'package:balti/Screens/Seller/AddProduct.dart';
 import 'package:balti/Widgets/Mnageproduct.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -36,8 +40,8 @@ class UserProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(222);
-    final productsData = Provider.of<BaltiMeals>(context);
+    final productsData = Provider.of<BaltiMeals>(context).findowner(
+        json.decode(Constants.prefs.getString('userData') as String)['userId']);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xffB788E5),
@@ -46,7 +50,8 @@ class UserProductsScreen extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.add),
               onPressed: () {
-                Navigator.of(context).pushNamed('Your Products');
+                Navigator.of(context).pushNamed(AddProductScreen.routeName);
+                ;
               },
             ),
           ],
@@ -56,13 +61,13 @@ class UserProductsScreen extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(8),
             child: ListView.builder(
-              itemCount: productsData.items.length,
+              itemCount: productsData.length,
               itemBuilder: (_, i) => Column(
                 children: [
                   UserProductItem(
-                    productsData.items[i].title,
-                    productsData.items[i].imageUrl,
-                    productsData.items[i].id,
+                    productsData[i].title,
+                    productsData[i].imageUrl,
+                    productsData[i].id,
                   ),
                   Divider(),
                 ],

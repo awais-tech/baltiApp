@@ -15,7 +15,6 @@ class Auth with ChangeNotifier {
   var _authTimer;
 
   bool get isAuth {
-    print(222);
     return _token != null;
   }
 
@@ -306,17 +305,13 @@ class Auth with ChangeNotifier {
   //   }
   // }
 
-  // void logout() {
-  //   _token = null;
-  //   _userId = '';
-  //   _expiryDate = null;
-  //   if (_authTimer != null) {
-  //     _authTimer.cancel();
-  //     _authTimer = null;
-  //   }
-  //   notifyListeners();
-  //   Constants.prefs.clear();
-  // }
+  void logout() {
+    _token = null;
+    _userId = '';
+    _expiryDate = null;
+    notifyListeners();
+    Constants.prefs.clear();
+  }
 
   // void _autoLogout() {
   //   if (_authTimer != null) {
@@ -325,19 +320,21 @@ class Auth with ChangeNotifier {
   //   final timeToExpiry = _expiryDate.difference(DateTime.now()).inSeconds;
   //   _authTimer = Timer(Duration(seconds: timeToExpiry), logout);
   // }
-   Future<bool> tryAutoLogin() async {
+  Future<bool> tryAutoLogin() async {
     // final prefs = await SharedPreferences.getInstance();
     if (!Constants.prefs.containsKey('userData')) {
+      print(!Constants.prefs.containsKey('userData'));
       return false;
     }
+
     final extractedUserData =
         await json.decode(Constants.prefs.getString('userData') as String);
 
     _token = extractedUserData['token'];
     _userId = extractedUserData['userId'] as String;
-   
+
     notifyListeners();
-   
+
     return true;
   }
 }

@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:balti/Screens/Buyer/Accounts/feedbacks.dart';
 import 'package:balti/Utilities/Bottommodaltitle.dart';
 
 import 'package:flutter/material.dart';
@@ -29,16 +28,7 @@ class _OrdersCompleteState extends State<OrdersComplete> {
       child: Column(
         children: <Widget>[
           ListTile(
-            leading: IconButton(
-              icon: Icon(Icons.feedback_outlined, color: Color(0xff8d43d6)),
-              onPressed: () => Navigator.of(context)
-                  .pushReplacementNamed(FeedbackScreen.routename),
-            ),
-            title: Row(
-              children: [
-                Text(' \Rs.${widget.order.amount} '),
-              ],
-            ),
+            title: Text(' \Rs.${widget.order.amount} '),
             subtitle: Text(
               DateFormat('dd/MM/yyyy hh:mm').format(widget.order.dateTime),
             ),
@@ -54,7 +44,8 @@ class _OrdersCompleteState extends State<OrdersComplete> {
                             context: context,
                             isScrollControlled: true,
                             builder: (context) {
-                              return editEmail(context, "View Detail");
+                              return editEmail(
+                                  context, "View Detail", widget.order);
                             });
                       },
                     ),
@@ -108,7 +99,7 @@ class _OrdersCompleteState extends State<OrdersComplete> {
   }
 }
 
-Widget editEmail(BuildContext context, String title) {
+Widget editEmail(BuildContext context, String title, ord.OrderItem order) {
   return Padding(
     padding: MediaQuery.of(context).viewInsets,
     child: Container(
@@ -120,27 +111,27 @@ Widget editEmail(BuildContext context, String title) {
           Bottommodeltitle(title),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Email:daniyal@gmail.com',
+            child: Text('Email:' + order.email,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Address:885 C j2 Johar town',
+            child: Text('address' + order.email,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Name:Awais Shahbaz',
+            child: Text('Name:' + order.name,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Phone no:03054055977',
+            child: Text('Phone:' + order.phoneno,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Status: Complete',
+            child: Text('Status:' + order.status,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
         ],

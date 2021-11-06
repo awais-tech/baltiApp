@@ -9,6 +9,7 @@ import 'package:balti/Screens/Buyer/AccountAuth/ForgotPassword/VerifyEmail.dart'
 import 'package:balti/Screens/Buyer/AccountAuth/login%20screen%201%20(2).dart';
 import 'package:balti/Screens/Buyer/Accounts/Address.dart';
 import 'package:balti/Screens/Buyer/Accounts/orders_screenprocess.dart';
+import 'package:balti/Screens/Buyer/Rating.dart';
 import 'package:balti/Screens/Buyer/checkout/Checkout.dart';
 import 'package:balti/Screens/Constants.dart';
 import 'package:balti/Screens/Seller/AddProduct.dart';
@@ -81,7 +82,7 @@ class MyApp extends StatelessWidget {
                       accentColor: Color(0xff8d43d6),
                     ),
                     home: auth.isAuth
-                        ? HomeScreen()
+                        ? TabsScreen()
                         : FutureBuilder(
                             future: auth.tryAutoLogin(),
                             builder: (ctx, authResultSnapshot) =>
@@ -91,6 +92,9 @@ class MyApp extends StatelessWidget {
                                     : LoginScreen1(),
                           ),
                     routes: {
+                      HomeScreen.route: (ctx) => HomeScreen(),
+                      LoginScreen1.routename: (ctx) => LoginScreen1(),
+                      TabsScreen.route: (ctx) => TabsScreen(),
                       Mysignuppage.route: (ctx) => Mysignuppage(),
                       ForgotPasswordScreen.route: (ctx) =>
                           ForgotPasswordScreen(),
@@ -114,6 +118,7 @@ class MyApp extends StatelessWidget {
                       ManageFeedbacks.routeName: (ctx) => ManageFeedbacks(),
                       OrdersApprovalScreen.routeName: (ctx) =>
                           OrdersApprovalScreen(),
+                      Rating.routename: (ctx) => Rating(),
                       OrdersScreenprocessprocess.routeName: (ctx) =>
                           OrdersScreenprocessprocess()
                     })));

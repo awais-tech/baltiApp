@@ -7,6 +7,7 @@ class BaltiMeals with ChangeNotifier {
   String Auth;
   String userid;
   BaltiMeals(this.Auth, this.meals, this.userid);
+
   List<Meal> meals = [
     // Meal(
     //   id: 'm1',
@@ -89,6 +90,14 @@ class BaltiMeals with ChangeNotifier {
 
   Meal findById(String id) {
     return items.firstWhere((prod) => prod.id == id);
+  }
+
+  List<Meal> findByresturent(String name) {
+    return items.where((prod) => prod.ResturentName.contains(name)).toList();
+  }
+
+  List<Meal> findowner(id) {
+    return items.where((prod) => prod.createdby == id).toList();
   }
 
   Future<void> fetchAndSetProducts() async {

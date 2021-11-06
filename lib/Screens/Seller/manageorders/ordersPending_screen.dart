@@ -19,13 +19,20 @@ class _OrderspendingsState extends State<Orderspendings> {
   @override
   void initState() {
     Future.delayed(Duration.zero).then((_) async {
-      setState(() {
-        _isLoading = true;
-      });
-      await Provider.of<Orders>(context, listen: false).fetchAndSetOrders(true);
-      setState(() {
-        _isLoading = false;
-      });
+      try {
+        setState(() {
+          _isLoading = true;
+        });
+        await Provider.of<Orders>(context, listen: false)
+            .fetchAndSetOrders(true);
+        setState(() {
+          _isLoading = false;
+        });
+      } catch (e) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     });
     super.initState();
   }

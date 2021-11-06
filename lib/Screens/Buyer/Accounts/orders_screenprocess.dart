@@ -1,4 +1,5 @@
 import 'package:balti/Provider/orders.dart' show Orders;
+import 'package:balti/Widgets/order_itempen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,14 +21,21 @@ class _OrdersScreenprocessprocessState
   @override
   void initState() {
     Future.delayed(Duration.zero).then((_) async {
-      setState(() {
-        _isLoading = true;
-      });
-      await Provider.of<Orders>(context, listen: false).fetchAndSetOrders();
-      setState(() {
-        _isLoading = false;
-      });
+      try {
+        setState(() {
+          _isLoading = true;
+        });
+        await Provider.of<Orders>(context, listen: false).fetchAndSetOrders();
+        setState(() {
+          _isLoading = false;
+        });
+      } catch (e) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     });
+
     super.initState();
   }
 
@@ -56,13 +64,16 @@ class _OrdersScreenprocessprocessState
 
             //         return
             Consumer<Orders>(
-          builder: (ctx, orderData, child) => ListView.builder(
-            itemCount: orderData.orders.length,
-            itemBuilder: (ctx, i) => orderData.orders[i].status == 'process' ||
-                    orderData.orders[i].status == 'pending'
-                ? OrderItem(orderData.orders[i])
-                : Container(),
-          ),
+          builder: (ctx, orderData, child) => orderData.orders.length > 0
+              ? ListView.builder(
+                  itemCount: orderData.orders.length,
+                  itemBuilder: (ctx, i) =>
+                      orderData.orders[i].status == 'process' ||
+                              orderData.orders[i].status == 'pending'
+                          ? OrderItempro(orderData.orders[i])
+                          : Container(),
+                )
+              : Center(child: Text('No order')),
         ));
   }
 }

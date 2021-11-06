@@ -20,13 +20,20 @@ class _OrdersInProcessState extends State<OrdersInProcess> {
   @override
   void initState() {
     Future.delayed(Duration.zero).then((_) async {
-      setState(() {
-        _isLoading = true;
-      });
-      await Provider.of<Orders>(context, listen: false).fetchAndSetOrders(true);
-      setState(() {
-        _isLoading = false;
-      });
+      try {
+        setState(() {
+          _isLoading = true;
+        });
+        await Provider.of<Orders>(context, listen: false)
+            .fetchAndSetOrders(true);
+        setState(() {
+          _isLoading = false;
+        });
+      } catch (e) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     });
     super.initState();
   }
@@ -38,14 +45,16 @@ class _OrdersInProcessState extends State<OrdersInProcess> {
       body: _isLoading
           ? Center(child: CircularProgressIndicator())
           : Consumer<Orders>(
-              builder: (ctx, orderData, child) => ListView.builder(
-                itemCount: orderData.orders.length,
-                itemBuilder: (ctx, i) =>
-                    orderData.orders[i].status == 'process' &&
-                            orderData.orders[i].createdby == user.userid
-                        ? OrdersProcess(orderData.orders[i])
-                        : Container(),
-              ),
+              builder: (ctx, orderData, child) => orderData.orders.length > 0
+                  ? ListView.builder(
+                      itemCount: orderData.orders.length,
+                      itemBuilder: (ctx, i) =>
+                          orderData.orders[i].status == 'process' &&
+                                  orderData.orders[i].createdby == user.userid
+                              ? OrdersProcess(orderData.orders[i])
+                              : Container(),
+                    )
+                  : Center(child: Text('No order')),
             ),
     );
   }

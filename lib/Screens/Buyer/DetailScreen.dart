@@ -1,6 +1,11 @@
+import 'dart:ui';
+
 import 'package:balti/Provider/MealsProvider.dart';
 import 'package:balti/Provider/cart.dart';
+import 'package:balti/Provider/feedback.dart';
+import 'package:balti/Screens/Buyer/Rating.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetailScreen extends StatelessWidget {
@@ -19,110 +24,155 @@ class ProductDetailScreen extends StatelessWidget {
       context,
       listen: false,
     ).findById(productId);
-    final cart = Provider.of<Cart>(context, listen: false);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(loadedProduct.title),
-        backgroundColor: Color(0xffB788E5),
-      ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            height: screenWidth.height * 0.75,
-            child: ListView(
-              children: <Widget>[
-                Container(
-                  height: 250,
-                  margin: EdgeInsets.symmetric(vertical: 10),
-                  width: double.infinity,
-                  child: Image.network(loadedProduct.imageUrl,
-                      fit: BoxFit.contain),
-                ),
-                Divider(),
-                SizedBox(height: 10),
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Text(
-                    'Rs ${loadedProduct.price}',
-                    textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  decoration: BoxDecoration(),
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  width: double.infinity,
-                  child: Text(
-                    loadedProduct.title,
-                    textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    softWrap: true,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  decoration: BoxDecoration(),
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  width: double.infinity,
-                  margin: EdgeInsets.only(bottom: 20),
-                  child: Text(
-                    loadedProduct.description,
-                    textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 15),
-                    softWrap: true,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Divider(),
-          ElevatedButton(
-            style: ButtonStyle(
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              )),
-              padding: MaterialStateProperty.all(
-                  EdgeInsets.only(left: 30, right: 30, top: 20, bottom: 20)),
 
-              backgroundColor: MaterialStateProperty.all(
-                  Color(0xff8d43d6)), // <-- Button color
-              overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
-                if (states.contains(MaterialState.pressed))
-                  return Color(0xffB788E5); // <-- Splash color
-              }),
-            ),
-            child: Text(
-              "Add To Cart",
-            ),
-            onPressed: () {
-              cart.addItem(loadedProduct.id, loadedProduct.price,
-                  loadedProduct.title, loadedProduct.createdby);
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    'Added item to cart!',
-                  ),
-                  duration: Duration(seconds: 2),
-                  action: SnackBarAction(
-                    label: 'UNDO',
-                    onPressed: () {
-                      cart.removeSingleItem(loadedProduct.id);
-                    },
-                  ),
+    final cart = Provider.of<Cart>(context, listen: false);
+    return FutureBuilder(
+        future: Provider.of<Feedbacks>(context, listen: false)
+            .fetchAndSetProducts(true, loadedProduct.id, 'prod'),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Scaffold(
+                appBar: AppBar(
+                  title: Text(loadedProduct.title),
+                  backgroundColor: Color(0xffB788E5),
                 ),
-              );
-            },
-          )
-        ],
-      ),
-    );
+                body: Center(child: CircularProgressIndicator()));
+          } else {
+            return Scaffold(
+              appBar: AppBar(
+                title: Text(loadedProduct.title),
+                backgroundColor: Color(0xffB788E5),
+                actions: [
+                  Consumer<Feedbacks>(
+                    builder: (ctx, feedbackData, child) => TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(Rating.routename,
+                            arguments: loadedProduct.id);
+                      },
+                      child: Column(
+                        children: [
+                          Text('Rating', style: TextStyle(color: Colors.red)),
+                          Expanded(
+                            child: RatingBarIndicator(
+                              rating: feedbackData.total + 0.0,
+                              itemBuilder: (context, index) => Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                              ),
+                              itemCount: 5,
+                              itemSize: 20.0,
+                              direction: Axis.horizontal,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              body: Column(
+                children: <Widget>[
+                  Container(
+                    height: screenWidth.height * 0.75,
+                    child: ListView(
+                      children: <Widget>[
+                        Container(
+                          height: 250,
+                          margin: EdgeInsets.symmetric(vertical: 10),
+                          width: double.infinity,
+                          child: Image.network(loadedProduct.imageUrl,
+                              fit: BoxFit.contain),
+                        ),
+                        Divider(),
+                        SizedBox(height: 10),
+                        Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: Text(
+                            'Rs ${loadedProduct.price}',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(),
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          width: double.infinity,
+                          child: Text(
+                            loadedProduct.title,
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                            softWrap: true,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(),
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          width: double.infinity,
+                          margin: EdgeInsets.only(bottom: 20),
+                          child: Text(
+                            loadedProduct.description,
+                            textAlign: TextAlign.start,
+                            style: TextStyle(fontSize: 15),
+                            softWrap: true,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Divider(),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      )),
+                      padding: MaterialStateProperty.all(EdgeInsets.only(
+                          left: 30, right: 30, top: 20, bottom: 20)),
+
+                      backgroundColor: MaterialStateProperty.all(
+                          Color(0xff8d43d6)), // <-- Button color
+                      overlayColor:
+                          MaterialStateProperty.resolveWith<Color?>((states) {
+                        if (states.contains(MaterialState.pressed))
+                          return Color(0xffB788E5); // <-- Splash color
+                      }),
+                    ),
+                    child: Text(
+                      "Add To Cart",
+                    ),
+                    onPressed: () {
+                      cart.addItem(loadedProduct.id, loadedProduct.price,
+                          loadedProduct.title, loadedProduct.createdby);
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Added item to cart!',
+                          ),
+                          duration: Duration(seconds: 2),
+                          action: SnackBarAction(
+                            label: 'UNDO',
+                            onPressed: () {
+                              cart.removeSingleItem(loadedProduct.id);
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                ],
+              ),
+            );
+          }
+        });
   }
 }

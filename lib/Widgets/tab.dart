@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class TabsScreen extends StatefulWidget {
+  static final route = 'tabsScreen';
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }

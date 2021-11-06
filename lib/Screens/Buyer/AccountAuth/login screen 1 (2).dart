@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:sign_button/sign_button.dart';
 
 class LoginScreen1 extends StatefulWidget {
+  static final routename = 'login';
   @override
   _LoginScreen1State createState() => _LoginScreen1State();
 }
@@ -320,21 +321,27 @@ class _LoginScreen1State extends State<LoginScreen1> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Container(
-                                        child: Text("Don\'t have an account?")),
-                                    Container(
-                                      child: TextButton(
-                                        style: TextButton.styleFrom(
-                                          textStyle:
-                                              const TextStyle(fontSize: 10),
+                                    FittedBox(
+                                      child: Container(
+                                          child: FittedBox(
+                                              child: Text(
+                                                  "Don\'t have an account?"))),
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        child: TextButton(
+                                          style: TextButton.styleFrom(
+                                            textStyle:
+                                                const TextStyle(fontSize: 10),
+                                          ),
+                                          onPressed: () {
+                                            Navigator.of(context).pushNamed(
+                                              Mysignuppage.route,
+                                            );
+                                          },
+                                          child:
+                                              const Text('Create new account.'),
                                         ),
-                                        onPressed: () {
-                                          Navigator.of(context).pushNamed(
-                                            Mysignuppage.route,
-                                          );
-                                        },
-                                        child:
-                                            const Text('Create new account.'),
                                       ),
                                     ),
                                   ],
@@ -349,26 +356,22 @@ class _LoginScreen1State extends State<LoginScreen1> {
                               ],
                             ),
                           ),
-                          Container(
-                            margin: const EdgeInsets.only(top: 5.0),
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: SignInButton(
-                                buttonType: ButtonType.facebook,
-                                buttonSize: ButtonSize.small,
-                                onPressed: () {}),
+                          FittedBox(
+                            child: Container(
+                              margin: const EdgeInsets.only(top: 5.0),
+                              padding: const EdgeInsets.only(left: 20.0),
+                              child: SignInButton(
+                                  btnText: "Facebook",
+                                  buttonType: ButtonType.facebook,
+                                  buttonSize: ButtonSize.small,
+                                  onPressed: () {}),
+                            ),
                           ),
                           Container(
                             margin: const EdgeInsets.only(top: 5.0),
                             padding: const EdgeInsets.only(left: 20.0),
                             child: SignInButton(
-                                buttonType: ButtonType.mail,
-                                buttonSize: ButtonSize.small,
-                                onPressed: () {}),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.only(top: 5.0),
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: SignInButton(
+                                btnText: "Google",
                                 buttonType: ButtonType.google,
                                 buttonSize: ButtonSize.small,
                                 onPressed: () {
