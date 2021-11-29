@@ -1,7 +1,7 @@
 import 'package:balti/Provider/feedback.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_beautiful_popup/main.dart';
+//import 'package:flutter_beautiful_popup/main.dart';
 
 class Rating extends StatefulWidget {
   static final routename = 'rating';
