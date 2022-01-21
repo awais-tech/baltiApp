@@ -29,7 +29,7 @@ class BaltiItem extends StatelessWidget {
     );
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(18),
       ),
       margin: EdgeInsets.all(10),
       child: Column(
@@ -44,8 +44,8 @@ class BaltiItem extends StatelessWidget {
               children: <Widget>[
                 ClipRRect(
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12),
-                    topRight: Radius.circular(12),
+                    topLeft: Radius.circular(18),
+                    topRight: Radius.circular(18),
                   ),
                   child: Image.network(
                     loadedMenu.imageUrl,
@@ -63,8 +63,9 @@ class BaltiItem extends StatelessWidget {
                         color: Colors.black54,
                       ),
                       borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(10),
-                        topRight: Radius.circular(10),
+                        topLeft: Radius.circular(12),
+                        bottomRight: Radius.circular(18),
+                        topRight: Radius.circular(18),
                       ),
                     ),
                     width: 120,
@@ -89,12 +90,13 @@ class BaltiItem extends StatelessWidget {
                   bottom: 4,
                   left: 4,
                   child: Container(
+                    padding: EdgeInsets.all(5),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         border: Border.all(color: Colors.white, width: 1),
                         borderRadius: BorderRadius.circular(10)),
                     child: Text(
-                      '${loadedMenu.duration} minute duration ',
+                      '${loadedMenu.duration} Minute Duration',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 10,
@@ -114,11 +116,9 @@ class BaltiItem extends StatelessWidget {
               title: Container(
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(vertical: 4),
-                child: FittedBox(
-                  child: Text(
-                    loadedMenu.ResturentName,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
+                child: Text(
+                  loadedMenu.ResturentName,
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
               ),
 

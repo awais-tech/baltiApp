@@ -321,27 +321,23 @@ class _LoginScreen1State extends State<LoginScreen1> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    FittedBox(
-                                      child: Container(
-                                          child: FittedBox(
-                                              child: Text(
-                                                  "Don\'t have an account?"))),
-                                    ),
-                                    Expanded(
-                                      child: Container(
-                                        child: TextButton(
-                                          style: TextButton.styleFrom(
-                                            textStyle:
-                                                const TextStyle(fontSize: 10),
-                                          ),
-                                          onPressed: () {
-                                            Navigator.of(context).pushNamed(
-                                              Mysignuppage.route,
-                                            );
-                                          },
-                                          child:
-                                              const Text('Create new account.'),
+                                    Container(
+                                        child: FittedBox(
+                                            child: Text(
+                                                "Don\'t have an account?"))),
+                                    Container(
+                                      child: TextButton(
+                                        style: TextButton.styleFrom(
+                                          textStyle:
+                                              const TextStyle(fontSize: 10),
                                         ),
+                                        onPressed: () {
+                                          Navigator.of(context).pushNamed(
+                                            Mysignuppage.route,
+                                          );
+                                        },
+                                        child:
+                                            const Text('Create new account.'),
                                       ),
                                     ),
                                   ],
@@ -358,9 +354,10 @@ class _LoginScreen1State extends State<LoginScreen1> {
                           ),
                           FittedBox(
                             child: Container(
-                              margin: const EdgeInsets.only(top: 5.0),
-                              padding: const EdgeInsets.only(left: 20.0),
+                              margin: const EdgeInsets.only(top: 10.0),
+                              //padding: const EdgeInsets.only(left: 20.0),
                               child: SignInButton(
+                                  width: 130,
                                   btnText: "Facebook",
                                   buttonType: ButtonType.facebook,
                                   buttonSize: ButtonSize.small,
@@ -369,8 +366,9 @@ class _LoginScreen1State extends State<LoginScreen1> {
                           ),
                           Container(
                             margin: const EdgeInsets.only(top: 5.0),
-                            padding: const EdgeInsets.only(left: 20.0),
+                            //padding: const EdgeInsets.only(left: 20.0),
                             child: SignInButton(
+                                width: 130,
                                 btnText: "Google",
                                 buttonType: ButtonType.google,
                                 buttonSize: ButtonSize.small,

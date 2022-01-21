@@ -159,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           return ChangeNotifierProvider.value(
                               value: products[index],
                               child: Container(
-                                width: 220.0,
+                                width: 280,
                                 child: BaltiItem(),
                               ));
                         },

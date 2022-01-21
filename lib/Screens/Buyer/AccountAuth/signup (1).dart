@@ -407,33 +407,32 @@ class _MysignuppageState extends State<Mysignuppage> {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.all(20),
+                                //padding: EdgeInsets.all(20),
+                                margin: EdgeInsets.all(20),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
                                         child: Text(
-                                      "if you have an account.",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
+                                      "You already have an account?",
+                                      //style: TextStyle(
+                                      //fontWeight: FontWeight.bold),
                                     )),
-                                    Container(
-                                      //padding: const EdgeInsets.only(left: 0),
-                                      child: TextButton(
-                                        style: TextButton.styleFrom(
-                                          textStyle: const TextStyle(
-                                              fontSize: 10,
-                                              color: Color(0xff8d43d6)),
-                                        ),
-                                        onPressed: () {
-                                          Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      LoginScreen1()));
-                                        },
-                                        child: const Text('Sign in'),
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                        textStyle: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w800,
+                                            color: Color(0xff8d43d6)),
                                       ),
+                                      onPressed: () {
+                                        Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    LoginScreen1()));
+                                      },
+                                      child: const Text('Sign in'),
                                     ),
                                   ],
                                 ),
