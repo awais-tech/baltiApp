@@ -164,7 +164,7 @@ class BaltiMeals with ChangeNotifier {
           'description': product.description,
           'price': product.price,
           'imageUrl': product.imageUrl,
-          'favourite': product.isFavorite,
+          'favourite': false,
           'ResturentName': product.ResturentName,
           'Category': product.Category,
           'Dilvery': product.Dilvery,

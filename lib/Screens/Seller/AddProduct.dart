@@ -239,12 +239,13 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     ),
                     TextFormField(
                       initialValue: initial['Dilvery'] as String,
-                      decoration: InputDecoration(labelText: 'Dilvery'),
+                      decoration:
+                          InputDecoration(labelText: 'Delivery Charges'),
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Please enter a .';
+                          return 'Please enter Delivery Charges.';
                         }
 
                         return null;

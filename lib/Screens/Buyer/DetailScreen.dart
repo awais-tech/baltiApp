@@ -172,7 +172,8 @@ class ProductDetailScreen extends StatelessWidget {
                               Divider(),
                               Container(
                                 decoration: BoxDecoration(),
-                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 10),
                                 width: double.infinity,
                                 margin: EdgeInsets.only(bottom: 20),
                                 child: Text(
