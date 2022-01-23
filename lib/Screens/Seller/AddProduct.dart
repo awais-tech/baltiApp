@@ -1,7 +1,10 @@
 import 'package:balti/Model/meal.dart';
 import 'package:balti/Provider/MealsProvider.dart';
+import 'package:balti/Provider/utilities.dart';
+import 'package:dropdown_plus/dropdown_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:select_form_field/select_form_field.dart';
 
 class AddProductScreen extends StatefulWidget {
   static const routeName = '/edit-product';
@@ -34,7 +37,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
     'price': 0.toString(),
     'description': '',
     'ResturentName': '',
-    'Category': '',
+    'Category': "Fast Food",
     'Dilvery': '',
     'duration': 0.toString(),
   };
@@ -53,9 +56,11 @@ class _AddProductScreenState extends State<AddProductScreen> {
   }
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async {
     if (init) {
       final id = ModalRoute.of(context)?.settings.arguments;
+      await Provider.of<Utilities>(context, listen: false)
+          .fetchAndSetProducts();
 
       if (id != null) {
         _editedProduct = Provider.of<BaltiMeals>(context, listen: false)
@@ -132,6 +137,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final cat = Provider.of<Utilities>(context).categorys;
     return Scaffold(
       appBar: AppBar(
         title: Text('Edit Product'),
@@ -195,48 +201,43 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
                         return null;
                       },
-                      onSaved: (value) {
-                        _editedProduct = Meal(
-                            title: _editedProduct.title,
-                            createdby: _editedProduct.createdby,
-                            price: _editedProduct.price,
-                            description: _editedProduct.description,
-                            imageUrl: _editedProduct.imageUrl,
-                            id: _editedProduct.id,
-                            ResturentName: value!,
-                            Category: _editedProduct.Category,
-                            Dilvery: _editedProduct.Dilvery,
-                            duration: _editedProduct.duration,
-                            isFavorite: _editedProduct.isFavorite);
-                      },
                     ),
-                    TextFormField(
-                      initialValue: initial['Category'] as String,
-                      decoration: InputDecoration(labelText: 'Category'),
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.text,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter a Ctageory.';
-                        }
+                    Consumer<Utilities>(
+                      builder: (ctx, utility, _) => SelectFormField(
+                        type: SelectFormFieldType.dropdown,
+                        initialValue: initial["Category"],
+                        labelText: 'Select Category',
+                        items: utility.categorys,
+                        onSaved: (dynamic value) {},
+                      ),
+                    ),
+                    // TextFormField(
+                    //   initialValue: initial['Category'] as String,
+                    //   decoration: InputDecoration(labelText: 'Category'),
+                    //   textInputAction: TextInputAction.next,
+                    //   keyboardType: TextInputType.text,
+                    //   validator: (value) {
+                    //     if (value!.isEmpty) {
+                    //       return 'Please enter a Ctageory.';
+                    //     }
 
-                        return null;
-                      },
-                      onSaved: (value) {
-                        _editedProduct = Meal(
-                            title: _editedProduct.title,
-                            createdby: _editedProduct.createdby,
-                            price: _editedProduct.price,
-                            description: _editedProduct.description,
-                            imageUrl: _editedProduct.imageUrl,
-                            id: _editedProduct.id,
-                            ResturentName: _editedProduct.ResturentName,
-                            Category: value!,
-                            Dilvery: _editedProduct.Dilvery,
-                            duration: _editedProduct.duration,
-                            isFavorite: _editedProduct.isFavorite);
-                      },
-                    ),
+                    //     return null;
+                    //   },
+                    //   onSaved: (value) {
+                    //     _editedProduct = Meal(
+                    //         title: _editedProduct.title,
+                    //         createdby: _editedProduct.createdby,
+                    //         price: _editedProduct.price,
+                    //         description: _editedProduct.description,
+                    //         imageUrl: _editedProduct.imageUrl,
+                    //         id: _editedProduct.id,
+                    //         ResturentName: _editedProduct.ResturentName,
+                    //         Category: value!,
+                    //         Dilvery: _editedProduct.Dilvery,
+                    //         duration: _editedProduct.duration,
+                    //         isFavorite: _editedProduct.isFavorite);
+                    //   },
+                    // ),
                     TextFormField(
                       initialValue: initial['Dilvery'] as String,
                       decoration:

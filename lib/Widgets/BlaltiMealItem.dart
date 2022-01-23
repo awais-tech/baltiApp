@@ -137,7 +137,7 @@ class BaltiItem extends StatelessWidget {
                   Container(
                     child: FittedBox(
                       child: Text(
-                        'Delivery Charges ${loadedMenu.Dilvery}',
+                        'Delivery Charges: ${loadedMenu.Dilvery}',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),

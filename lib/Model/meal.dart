@@ -7,7 +7,7 @@ class Meal with ChangeNotifier {
   final String imageUrl;
 
   final String ResturentName;
-  final String Category;
+  String Category;
   final String Dilvery;
   final int duration;
   final int price;
