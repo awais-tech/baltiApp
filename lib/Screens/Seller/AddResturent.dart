@@ -63,7 +63,7 @@ class _AddResturentState extends State<AddResturent> {
           'name': _editedResturent.name.toString(),
           'description': _editedResturent.description,
           'location': _editedResturent.location,
-          'imageurl': _editedResturent.location,
+          'imageurl': _editedResturent.imageUrl,
         };
         _imageUrlController.text = _editedResturent.imageUrl;
       }
@@ -103,7 +103,7 @@ class _AddResturentState extends State<AddResturent> {
             context: context,
             builder: (ctx) => AlertDialog(
                   content: Text(
-                    'Something Goes wrong ?',
+                    e.toString(),
                   ),
                   title: Text(
                     'Warning',
@@ -195,8 +195,7 @@ class _AddResturentState extends State<AddResturent> {
 
                     TextFormField(
                       initialValue: initial['location'] as String,
-                      decoration:
-                          InputDecoration(labelText: 'Delivery Charges'),
+                      decoration: InputDecoration(labelText: 'Location'),
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.text,
                       validator: (value) {
@@ -244,7 +243,8 @@ class _AddResturentState extends State<AddResturent> {
                             controller: _imageUrlController,
                             focusNode: _image,
                             onFieldSubmitted: (_) => {saveform},
-                            onSaved: (value) {},
+                            onSaved: (newValue) =>
+                                _editedResturent.imageUrl = newValue!,
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please enter an image URL.';

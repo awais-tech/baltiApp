@@ -100,6 +100,7 @@ class Resturents with ChangeNotifier {
       resturents.add(newResturent);
       notifyListeners();
     } catch (e) {
+      print(e);
       throw e;
     }
   }

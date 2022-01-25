@@ -189,26 +189,27 @@ class _AddProductScreenState extends State<AddProductScreen> {
                             isFavorite: _editedProduct.isFavorite);
                       },
                     ),
-                    TextFormField(
-                      initialValue: initial['ResturentName'] as String,
-                      decoration: InputDecoration(labelText: 'ResturentName'),
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.text,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter a ResturentName.';
-                        }
 
-                        return null;
-                      },
-                    ),
                     Consumer<Utilities>(
                       builder: (ctx, utility, _) => SelectFormField(
                         type: SelectFormFieldType.dropdown,
                         initialValue: initial["Category"],
                         labelText: 'Select Category',
                         items: utility.categorys,
-                        onSaved: (dynamic value) {},
+                        onSaved: (dynamic value) {
+                          _editedProduct = Meal(
+                              title: _editedProduct.title,
+                              createdby: _editedProduct.createdby,
+                              price: _editedProduct.price,
+                              description: _editedProduct.description,
+                              imageUrl: _editedProduct.imageUrl,
+                              id: _editedProduct.id,
+                              ResturentName: _editedProduct.ResturentName,
+                              Category: value,
+                              Dilvery: _editedProduct.Dilvery,
+                              duration: _editedProduct.duration,
+                              isFavorite: _editedProduct.isFavorite);
+                        },
                       ),
                     ),
                     // TextFormField(

@@ -1,5 +1,6 @@
 import 'package:balti/Provider/AuthP.dart';
 import 'package:balti/Provider/MealsProvider.dart';
+import 'package:balti/Provider/Resturents.dart';
 import 'package:balti/Provider/cart.dart';
 import 'package:balti/Provider/feedback.dart';
 import 'package:balti/Provider/orders.dart';
@@ -14,6 +15,7 @@ import 'package:balti/Screens/Buyer/Rating.dart';
 import 'package:balti/Screens/Buyer/checkout/Checkout.dart';
 import 'package:balti/Screens/Constants.dart';
 import 'package:balti/Screens/Seller/AddProduct.dart';
+import 'package:balti/Screens/Seller/AddResturent.dart';
 import 'package:balti/Screens/Seller/Dashboard.dart';
 import 'package:balti/Screens/Buyer/DetailScreen.dart';
 import 'package:balti/Screens/Buyer/HomepageScreen.dart';
@@ -60,6 +62,14 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProxyProvider<Auth, BaltiMeals>(
             create: (ctx) => BaltiMeals('', [], ''),
             update: (ctx, auth, previousProducts) => BaltiMeals(
+              auth.token!,
+              previousProducts == null ? [] : previousProducts.items,
+              auth.userid,
+            ),
+          ),
+          ChangeNotifierProxyProvider<Auth, Resturents>(
+            create: (ctx) => Resturents('', [], ''),
+            update: (ctx, auth, previousProducts) => Resturents(
               auth.token!,
               previousProducts == null ? [] : previousProducts.items,
               auth.userid,
@@ -124,7 +134,8 @@ class MyApp extends StatelessWidget {
                           OrdersApprovalScreen(),
                       Rating.routename: (ctx) => Rating(),
                       OrdersScreenprocessprocess.routeName: (ctx) =>
-                          OrdersScreenprocessprocess()
+                          OrdersScreenprocessprocess(),
+                      AddResturent.routeName: (ctx) => AddResturent()
                     })));
   }
 }
