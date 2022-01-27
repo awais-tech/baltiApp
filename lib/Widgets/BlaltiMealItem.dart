@@ -86,51 +86,74 @@ class BaltiItem extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           InkWell(
+            onLongPress: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return Dialog(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18)),
+                        elevation: 16,
+                        child: Container(
+                          margin: EdgeInsets.only(left: 10, right: 10),
+                          height: 300,
+                          width: double.infinity,
+                          child: CarouselSlider(
+                            options: CarouselOptions(
+                              autoPlay: true,
+                              aspectRatio: 2.0,
+                              enlargeCenterPage: true,
+                            ),
+                            items: imageSliders,
+                          ),
+                        ));
+                  });
+            },
             onTap: () {
               Navigator.of(context).pushNamed(ProductDetailScreen.routeName,
                   arguments: loadedMenu.id);
             },
             child: Stack(
               children: <Widget>[
-                HoldDetector(
-                  onHold: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return Dialog(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18)),
-                              elevation: 16,
-                              child: Container(
-                                margin: EdgeInsets.only(left: 10, right: 10),
-                                height: 300,
-                                width: double.infinity,
-                                child: CarouselSlider(
-                                  options: CarouselOptions(
-                                    autoPlay: true,
-                                    aspectRatio: 2.0,
-                                    enlargeCenterPage: true,
-                                  ),
-                                  items: imageSliders,
-                                ),
-                              ));
-                        });
-                  },
-                  holdTimeout: Duration(milliseconds: 200),
-                  enableHapticFeedback: true,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(18),
-                      topRight: Radius.circular(18),
-                    ),
-                    child: Image.network(
-                      loadedMenu.imageUrl,
-                      height: 120,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
+                // HoldDetector(
+                // onHold: () {
+                //   showDialog(
+                //       context: context,
+                //       builder: (context) {
+                //         return Dialog(
+                //             shape: RoundedRectangleBorder(
+                //                 borderRadius: BorderRadius.circular(18)),
+                //             elevation: 16,
+                //             child: Container(
+                //               margin: EdgeInsets.only(left: 10, right: 10),
+                //               height: 300,
+                //               width: double.infinity,
+                //               child: CarouselSlider(
+                //                 options: CarouselOptions(
+                //                   autoPlay: true,
+                //                   aspectRatio: 2.0,
+                //                   enlargeCenterPage: true,
+                //                 ),
+                //                 items: imageSliders,
+                //               ),
+                //             ));
+                //       });
+                // },
+                // holdTimeout: Duration(milliseconds: 200),
+                // enableHapticFeedback: true,
+                ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(18),
+                    topRight: Radius.circular(18),
+                  ),
+                  child: Image.network(
+                    loadedMenu.imageUrl,
+                    height: 120,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
                   ),
                 ),
+                // ),
                 Positioned(
                   top: 7,
                   child: Container(

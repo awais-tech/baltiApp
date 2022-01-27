@@ -148,40 +148,53 @@ class _AddResturentState extends State<AddResturent> {
                 autovalidateMode: AutovalidateMode.always,
                 child: ListView(
                   children: <Widget>[
-                    TextFormField(
-                      decoration: InputDecoration(labelText: 'Description'),
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.text,
-                      controller: _TextControl,
-                      onFieldSubmitted: (_) {
-                        FocusScope.of(context).requestFocus(_priceFocusNode);
-                      },
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter a description.';
-                        }
-                        if (value.length < 10) {
-                          return 'Should be at least ${10 - _TextControl.text.length.toInt()} characters long.';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        _editedResturent.description = value!;
-                      },
+                    Container(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'Description',
+                          border: OutlineInputBorder(),
+                        ),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.text,
+                        controller: _TextControl,
+                        onFieldSubmitted: (_) {
+                          FocusScope.of(context).requestFocus(_priceFocusNode);
+                        },
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter a description.';
+                          }
+                          if (value.length < 10) {
+                            return 'Should be at least ${10 - _TextControl.text.length.toInt()} characters long.';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          _editedResturent.description = value!;
+                        },
+                      ),
                     ),
-                    TextFormField(
-                      initialValue: initial['name'] as String,
-                      decoration: InputDecoration(labelText: 'ResturentName'),
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.text,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter a ResturentName.';
-                        }
+                    Container(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextFormField(
+                        initialValue: initial['name'] as String,
+                        decoration: InputDecoration(
+                          labelText: 'ResturentName',
+                          border: OutlineInputBorder(),
+                        ),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.text,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter a ResturentName.';
+                          }
 
-                        return null;
-                      },
-                      onSaved: (newValue) => _editedResturent.name = newValue!,
+                          return null;
+                        },
+                        onSaved: (newValue) =>
+                            _editedResturent.name = newValue!,
+                      ),
                     ),
                     // Consumer<Utilities>(
                     //   builder: (ctx, utility, _) => SelectFormField(
@@ -193,21 +206,27 @@ class _AddResturentState extends State<AddResturent> {
                     //   ),
                     // ),
 
-                    TextFormField(
-                      initialValue: initial['location'] as String,
-                      decoration: InputDecoration(labelText: 'Location'),
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.text,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter location.';
-                        }
+                    Container(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextFormField(
+                        initialValue: initial['location'] as String,
+                        decoration: InputDecoration(
+                          labelText: 'Location',
+                          border: OutlineInputBorder(),
+                        ),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.text,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter location.';
+                          }
 
-                        return null;
-                      },
-                      onSaved: (value) {
-                        _editedResturent.location = value!;
-                      },
+                          return null;
+                        },
+                        onSaved: (value) {
+                          _editedResturent.location = value!;
+                        },
+                      ),
                     ),
 
                     Row(
@@ -236,31 +255,35 @@ class _AddResturentState extends State<AddResturent> {
                                 ),
                         ),
                         Expanded(
-                          child: TextFormField(
-                            decoration: InputDecoration(labelText: 'Image URL'),
-                            keyboardType: TextInputType.url,
-                            textInputAction: TextInputAction.done,
-                            controller: _imageUrlController,
-                            focusNode: _image,
-                            onFieldSubmitted: (_) => {saveform},
-                            onSaved: (newValue) =>
-                                _editedResturent.imageUrl = newValue!,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Please enter an image URL.';
-                              }
-                              if (!value.startsWith('http') &&
-                                      !value.startsWith('https') ||
-                                  value.contains('www')) {
-                                return 'Please enter a valid URL.';
-                              }
-                              if (!value.endsWith('.png') &&
-                                  !value.endsWith('.jpg') &&
-                                  !value.endsWith('.jpeg')) {
-                                return 'Please enter a valid image URL.';
-                              }
-                              return null;
-                            },
+                          child: Container(
+                            padding: const EdgeInsets.all(15.0),
+                            child: TextFormField(
+                              decoration:
+                                  InputDecoration(labelText: 'Image URL'),
+                              keyboardType: TextInputType.url,
+                              textInputAction: TextInputAction.done,
+                              controller: _imageUrlController,
+                              focusNode: _image,
+                              onFieldSubmitted: (_) => {saveform},
+                              onSaved: (newValue) =>
+                                  _editedResturent.imageUrl = newValue!,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please enter an image URL.';
+                                }
+                                if (!value.startsWith('http') &&
+                                        !value.startsWith('https') ||
+                                    value.contains('www')) {
+                                  return 'Please enter a valid URL.';
+                                }
+                                if (!value.endsWith('.png') &&
+                                    !value.endsWith('.jpg') &&
+                                    !value.endsWith('.jpeg')) {
+                                  return 'Please enter a valid image URL.';
+                                }
+                                return null;
+                              },
+                            ),
                           ),
                         ),
                       ],

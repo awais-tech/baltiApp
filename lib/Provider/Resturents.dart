@@ -21,8 +21,8 @@ class Resturents with ChangeNotifier {
     return items.where((prod) => prod.name.contains(name)).toList();
   }
 
-  List<Resturent> findowner(id) {
-    return items.where((prod) => prod.createdby == id).toList();
+  List<Resturent> findowner() {
+    return items.where((prod) => prod.createdby == userid).toList();
   }
 
   Future<void> fetchAndSetResturents() async {
@@ -38,8 +38,10 @@ class Resturents with ChangeNotifier {
                 id: prodData['_id'],
                 name: prodData['Name'],
                 description: prodData['description'],
-                imageUrl: prodData['imageUrl'],
-                location: prodData['duration'],
+                imageUrl:
+                    prodData['imageUrl'] == null ? "" : prodData['imageUrl'],
+                location:
+                    prodData['duration'] == null ? "" : prodData['duration'],
                 createdby: prodData['createdby'],
               ));
             })

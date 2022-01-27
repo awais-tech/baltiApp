@@ -2,6 +2,7 @@ import 'package:balti/Provider/MealsProvider.dart';
 import 'package:balti/Screens/Buyer/HomepageScreen.dart';
 import 'package:balti/Screens/Seller/AddProduct.dart';
 import 'package:balti/Screens/Seller/AddResturent.dart';
+import 'package:balti/Screens/Seller/JailRecords.dart';
 import 'package:balti/Screens/Seller/ManageFeedbacks.dart';
 import 'package:balti/Screens/Seller/Manageproducts/Vieproducts.dart';
 import 'package:balti/Screens/Seller/manageorders/orderstabscreen.dart';
@@ -82,7 +83,7 @@ class _SellerdashboardState extends State<Sellerdashboard> {
                                   tileColor: Colors.blueGrey[50],
                                   onTap: () {
                                     Navigator.of(context)
-                                        .pushNamed(AddResturent.routeName);
+                                        .pushNamed(ResturentRecords.routeName);
                                   },
                                   title: Text(
                                     "Hi, User",

@@ -13,26 +13,33 @@ import 'package:provider/provider.dart';
 //   _UserProductsScreenState createState() => _UserProductsScreenState();
 // }
 
-class UserProductsScreen extends StatelessWidget {
+class UserProductsScreen extends StatefulWidget {
   // var _showOnlyFavorites = false;
   // var _isInit = true;
   // var _isLoading = false;
   static const routeName = '/user-products';
 
-  // void didChangeDependencies() {
-  //   if (_isInit) {
-  //     setState(() {
-  //       _isLoading = true;
-  //     });
-  //     Provider.of<BaltiMeals>(context).fetchAndSetProducts().then((_) {
-  //       setState(() {
-  //         _isLoading = false;
-  //       });
-  //     });
-  //   }
-  //   _isInit = false;
-  //   super.didChangeDependencies();
-  // }
+  @override
+  State<UserProductsScreen> createState() => _UserProductsScreenState();
+}
+
+class _UserProductsScreenState extends State<UserProductsScreen> {
+  var _isInit = true;
+  var _isLoading = true;
+  void didChangeDependencies() {
+    if (_isInit) {
+      setState(() {
+        _isLoading = true;
+      });
+      Provider.of<BaltiMeals>(context).fetchAndSetProducts().then((_) {
+        setState(() {
+          _isLoading = false;
+        });
+      });
+    }
+    _isInit = false;
+    super.didChangeDependencies();
+  }
 
   Future<void> _refreshProducts(BuildContext context) async {
     await Provider.of<BaltiMeals>(context).fetchAndSetProducts();
@@ -56,24 +63,26 @@ class UserProductsScreen extends StatelessWidget {
             ),
           ],
         ),
-        body: RefreshIndicator(
-          onRefresh: () => _refreshProducts(context),
-          child: Padding(
-            padding: EdgeInsets.all(8),
-            child: ListView.builder(
-              itemCount: productsData.length,
-              itemBuilder: (_, i) => Column(
-                children: [
-                  UserProductItem(
-                    productsData[i].title,
-                    productsData[i].imageUrl,
-                    productsData[i].id,
+        body: _isLoading
+            ? Center(child: CircularProgressIndicator())
+            : RefreshIndicator(
+                onRefresh: () => _refreshProducts(context),
+                child: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: ListView.builder(
+                    itemCount: productsData.length,
+                    itemBuilder: (_, i) => Column(
+                      children: [
+                        UserProductItem(
+                          productsData[i].title,
+                          productsData[i].imageUrl,
+                          productsData[i].id,
+                        ),
+                        Divider(),
+                      ],
+                    ),
                   ),
-                  Divider(),
-                ],
-              ),
-            ),
-          ),
-        ));
+                ),
+              ));
   }
 }
