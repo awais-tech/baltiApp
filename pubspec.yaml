@@ -26,6 +26,8 @@ dependencies:
   provider: ^5.0.0
   sign_button: ^2.0.1
   select_form_field: "^2.2.0"
+  holding_gesture: ^1.1.0
+  carousel_slider: ^4.0.0
   # progress_state_button: "^1.0.3"
 
   # The following adds the Cupertino Icons font to your application.
