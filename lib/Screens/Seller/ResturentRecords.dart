@@ -4,11 +4,11 @@ import 'package:balti/Screens/Seller/AddResturent.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'ViewJailCells.dart';
+import 'ViewResturent.dart';
 import 'dart:convert';
 
 class ResturentRecords extends StatefulWidget {
-  static final routeName = 'JailRecord';
+  static final routeName = 'ResturentRecords';
 
   @override
   State<ResturentRecords> createState() => _ResturentRecordsState();
@@ -23,7 +23,7 @@ class _ResturentRecordsState extends State<ResturentRecords> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue[900],
-          title: FittedBox(child: Text('Jail Record')),
+          title: FittedBox(child: Text('Resturent Record')),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +49,7 @@ class _ResturentRecordsState extends State<ResturentRecords> {
                       decoration: InputDecoration(
                         fillColor: Colors.blueAccent[50],
                         filled: true,
-                        labelText: 'Search by Prison ID',
+                        labelText: 'Search by Resturent Name',
                         border: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.blue)),
                         labelStyle:
@@ -94,11 +94,11 @@ class _ResturentRecordsState extends State<ResturentRecords> {
                                           .toLowerCase()
                                           .contains(
                                               name.toString().toLowerCase())
-                                      ? Container()
-                                      // ? ViewJailCellsRecord(snp.data!.docs[i])
+                                      ? ViewResturent(resturent[i])
                                       : Container()
-                                  : Container()));
+                                  : ViewResturent(resturent[i])));
                     }
+                    // jjsjsxxsssss
                   },
                 ),
               ),

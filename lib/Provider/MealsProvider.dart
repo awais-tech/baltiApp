@@ -92,6 +92,10 @@ class BaltiMeals with ChangeNotifier {
     return items.firstWhere((prod) => prod.id == id);
   }
 
+  List<Meal> findowners(String id) {
+    return items.where((prod) => prod.createdby == id).toList();
+  }
+
   List<Meal> findByresturent(String name) {
     return items.where((prod) => prod.ResturentName.contains(name)).toList();
   }
@@ -151,7 +155,7 @@ class BaltiMeals with ChangeNotifier {
     existingProduct = null;
   }
 
-  Future<void> addProduct(product) async {
+  Future<void> addProduct(product, name) async {
     try {
       final url = Uri.parse('https://baltiapi.herokuapp.com/products');
       Map<String, String> headers = {"Content-type": "application/json"};
@@ -165,7 +169,7 @@ class BaltiMeals with ChangeNotifier {
           'price': product.price,
           'imageUrl': product.imageUrl,
           'favourite': false,
-          'ResturentName': product.ResturentName,
+          'ResturentName': name,
           'Category': product.Category,
           'Dilvery': product.Dilvery,
           'duration': product.duration,

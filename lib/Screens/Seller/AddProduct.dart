@@ -20,7 +20,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final _imageUrlController = TextEditingController();
   final _TextControl = TextEditingController();
   final _form = GlobalKey<FormState>();
-  bool loading = false;
+  bool loading = true;
   bool init = true;
   var _editedProduct = Meal(
       id: '',
@@ -58,13 +58,16 @@ class _AddProductScreenState extends State<AddProductScreen> {
   @override
   void didChangeDependencies() async {
     if (init) {
-      final id = ModalRoute.of(context)?.settings.arguments;
+      setState(() {
+        loading = true;
+      });
+      final id = ModalRoute.of(context)?.settings.arguments as Map;
       await Provider.of<Utilities>(context, listen: false)
           .fetchAndSetProducts();
 
-      if (id != null) {
+      if (id["id"] != null && id["id"] != "") {
         _editedProduct = Provider.of<BaltiMeals>(context, listen: false)
-            .findById(id as String);
+            .findById(id["id"] as String);
         initial = {
           'price': _editedProduct.price.toString(),
           'description': _editedProduct.description,
@@ -73,10 +76,14 @@ class _AddProductScreenState extends State<AddProductScreen> {
           'Dilvery': _editedProduct.Dilvery,
           'duration': _editedProduct.duration.toString(),
         };
+
         _imageUrlController.text = _editedProduct.imageUrl;
         _TextControl.text = _editedProduct.title;
       }
     }
+    setState(() {
+      loading = false;
+    });
     init = false;
     super.didChangeDependencies();
   }
@@ -87,6 +94,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   void saveform() async {
     var form = _form.currentState!.validate();
+    final id = ModalRoute.of(context)?.settings.arguments as Map;
     if (!form) {
       return;
     }
@@ -106,7 +114,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
     } else {
       try {
         await Provider.of<BaltiMeals>(context, listen: false)
-            .addProduct(_editedProduct);
+            .addProduct(_editedProduct, id["name"]);
       } catch (e) {
         await showDialog(
             context: context,
@@ -137,7 +145,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final cat = Provider.of<Utilities>(context).categorys;
+    final cat = Provider.of<Utilities>(context, listen: false).categorys;
     return Scaffold(
       appBar: AppBar(
         title: Text('Edit Product'),
@@ -151,65 +159,70 @@ class _AddProductScreenState extends State<AddProductScreen> {
               semanticsLabel: 'Please Wait',
             ))
           : Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(2.0),
               child: Form(
                 key: _form,
-                autovalidateMode: AutovalidateMode.always,
                 child: ListView(
                   children: <Widget>[
-                    TextFormField(
-                      decoration: InputDecoration(labelText: 'Title'),
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.text,
-                      controller: _TextControl,
-                      onFieldSubmitted: (_) {
-                        FocusScope.of(context).requestFocus(_priceFocusNode);
-                      },
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter a description.';
-                        }
-                        if (value.length < 10) {
-                          return 'Should be at least ${10 - _TextControl.text.length.toInt()} characters long.';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        _editedProduct = Meal(
-                            title: value!,
-                            createdby: _editedProduct.createdby,
-                            price: _editedProduct.price,
-                            description: _editedProduct.description,
-                            imageUrl: _editedProduct.imageUrl,
-                            id: _editedProduct.id,
-                            ResturentName: _editedProduct.ResturentName,
-                            Category: _editedProduct.Category,
-                            Dilvery: _editedProduct.Dilvery,
-                            duration: _editedProduct.duration,
-                            isFavorite: _editedProduct.isFavorite);
-                      },
-                    ),
-
-                    Consumer<Utilities>(
-                      builder: (ctx, utility, _) => SelectFormField(
-                        type: SelectFormFieldType.dropdown,
-                        initialValue: initial["Category"],
-                        labelText: 'Select Category',
-                        items: utility.categorys,
-                        onSaved: (dynamic value) {
+                    Container(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextFormField(
+                        decoration: InputDecoration(labelText: 'Title'),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.text,
+                        controller: _TextControl,
+                        onFieldSubmitted: (_) {
+                          FocusScope.of(context).requestFocus(_priceFocusNode);
+                        },
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter a description.';
+                          }
+                          if (value.length < 10) {
+                            return 'Should be at least ${10 - _TextControl.text.length.toInt()} characters long.';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
                           _editedProduct = Meal(
-                              title: _editedProduct.title,
+                              title: value!,
                               createdby: _editedProduct.createdby,
                               price: _editedProduct.price,
                               description: _editedProduct.description,
                               imageUrl: _editedProduct.imageUrl,
                               id: _editedProduct.id,
                               ResturentName: _editedProduct.ResturentName,
-                              Category: value,
+                              Category: _editedProduct.Category,
                               Dilvery: _editedProduct.Dilvery,
                               duration: _editedProduct.duration,
                               isFavorite: _editedProduct.isFavorite);
                         },
+                      ),
+                    ),
+
+                    Container(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Consumer<Utilities>(
+                        builder: (ctx, utility, _) => SelectFormField(
+                          type: SelectFormFieldType.dropdown,
+                          initialValue: initial["Category"],
+                          labelText: 'Select Category',
+                          items: utility.categorys,
+                          onSaved: (dynamic value) {
+                            _editedProduct = Meal(
+                                title: _editedProduct.title,
+                                createdby: _editedProduct.createdby,
+                                price: _editedProduct.price,
+                                description: _editedProduct.description,
+                                imageUrl: _editedProduct.imageUrl,
+                                id: _editedProduct.id,
+                                ResturentName: _editedProduct.ResturentName,
+                                Category: value,
+                                Dilvery: _editedProduct.Dilvery,
+                                duration: _editedProduct.duration,
+                                isFavorite: _editedProduct.isFavorite);
+                          },
+                        ),
                       ),
                     ),
                     // TextFormField(
@@ -239,128 +252,149 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     //         isFavorite: _editedProduct.isFavorite);
                     //   },
                     // ),
-                    TextFormField(
-                      initialValue: initial['Dilvery'] as String,
-                      decoration:
-                          InputDecoration(labelText: 'Delivery Charges'),
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.text,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter Delivery Charges.';
-                        }
+                    Container(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextFormField(
+                        initialValue: initial['Dilvery'] as String,
+                        decoration:
+                            InputDecoration(labelText: 'Delivery Charges'),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.text,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter Delivery Charges.';
+                          }
 
-                        return null;
-                      },
-                      onSaved: (value) {
-                        _editedProduct = Meal(
-                            title: _editedProduct.title,
-                            createdby: _editedProduct.createdby,
-                            price: _editedProduct.price,
-                            description: _editedProduct.description,
-                            imageUrl: _editedProduct.imageUrl,
-                            id: _editedProduct.id,
-                            ResturentName: _editedProduct.ResturentName,
-                            Category: _editedProduct.Category,
-                            Dilvery: value!,
-                            duration: _editedProduct.duration,
-                            isFavorite: _editedProduct.isFavorite);
-                      },
+                          return null;
+                        },
+                        onSaved: (value) {
+                          _editedProduct = Meal(
+                              title: _editedProduct.title,
+                              createdby: _editedProduct.createdby,
+                              price: _editedProduct.price,
+                              description: _editedProduct.description,
+                              imageUrl: _editedProduct.imageUrl,
+                              id: _editedProduct.id,
+                              ResturentName: _editedProduct.ResturentName,
+                              Category: _editedProduct.Category,
+                              Dilvery: value!,
+                              duration: _editedProduct.duration,
+                              isFavorite: _editedProduct.isFavorite);
+                        },
+                      ),
                     ),
-                    TextFormField(
-                      initialValue: initial['duration'] as String,
-                      decoration: InputDecoration(labelText: 'duration'),
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.text,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter a price.';
-                        }
-                        if (double.tryParse(value) == null) {
-                          return 'Please enter a valid number.';
-                        }
-                        if (double.parse(value) <= 0) {
-                          return 'Please enter a number greater than zero.';
-                        }
+                    Container(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextFormField(
+                        initialValue: initial['duration'] as String,
+                        decoration: InputDecoration(labelText: 'duration'),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.text,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter a price.';
+                          }
+                          if (double.tryParse(value) == null) {
+                            return 'Please enter a valid number.';
+                          }
+                          if (double.parse(value) <= 0) {
+                            return 'Please enter a number greater than zero.';
+                          }
 
-                        return null;
-                      },
-                      onSaved: (value) {
-                        _editedProduct = Meal(
-                            title: _editedProduct.title,
-                            createdby: _editedProduct.createdby,
-                            price: _editedProduct.price,
-                            description: _editedProduct.description,
-                            imageUrl: _editedProduct.imageUrl,
-                            id: _editedProduct.id,
-                            ResturentName: _editedProduct.ResturentName,
-                            Category: _editedProduct.Category,
-                            Dilvery: _editedProduct.Dilvery,
-                            duration: double.parse(value!) as int,
-                            isFavorite: _editedProduct.isFavorite);
-                      },
+                          return null;
+                        },
+                        onSaved: (value) {
+                          _editedProduct = Meal(
+                              title: _editedProduct.title,
+                              createdby: _editedProduct.createdby,
+                              price: _editedProduct.price,
+                              description: _editedProduct.description,
+                              imageUrl: _editedProduct.imageUrl,
+                              id: _editedProduct.id,
+                              ResturentName: _editedProduct.ResturentName,
+                              Category: _editedProduct.Category,
+                              Dilvery: _editedProduct.Dilvery,
+                              duration: double.parse(value!) as int,
+                              isFavorite: _editedProduct.isFavorite);
+                        },
+                      ),
                     ),
-                    TextFormField(
-                      initialValue: initial['price'] as String,
-                      decoration: InputDecoration(labelText: 'Price'),
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.number,
-                      focusNode: _priceFocusNode,
-                      onFieldSubmitted: (_) {
-                        FocusScope.of(context)
-                            .requestFocus(_DescriptionFocusNode);
-                      },
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter a price.';
-                        }
-                        if (double.tryParse(value) == null) {
-                          return 'Please enter a valid number.';
-                        }
-                        if (double.parse(value) <= 0) {
-                          return 'Please enter a number greater than zero.';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        _editedProduct = Meal(
-                            title: _editedProduct.title,
-                            createdby: _editedProduct.createdby,
-                            price: double.parse(value!) as int,
-                            description: _editedProduct.description,
-                            imageUrl: _editedProduct.imageUrl,
-                            id: _editedProduct.id,
-                            ResturentName: _editedProduct.ResturentName,
-                            Category: _editedProduct.Category,
-                            Dilvery: _editedProduct.Dilvery,
-                            duration: _editedProduct.duration,
-                            isFavorite: _editedProduct.isFavorite);
-                      },
+                    Container(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextFormField(
+                        initialValue: initial['price'] as String,
+                        decoration: InputDecoration(labelText: 'Price'),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.number,
+                        focusNode: _priceFocusNode,
+                        onFieldSubmitted: (_) {
+                          FocusScope.of(context)
+                              .requestFocus(_DescriptionFocusNode);
+                        },
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter a price.';
+                          }
+                          if (double.tryParse(value) == null) {
+                            return 'Please enter a valid number.';
+                          }
+                          if (double.parse(value) <= 0) {
+                            return 'Please enter a number greater than zero.';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          _editedProduct = Meal(
+                              title: _editedProduct.title,
+                              createdby: _editedProduct.createdby,
+                              price: double.parse(value!) as int,
+                              description: _editedProduct.description,
+                              imageUrl: _editedProduct.imageUrl,
+                              id: _editedProduct.id,
+                              ResturentName: _editedProduct.ResturentName,
+                              Category: _editedProduct.Category,
+                              Dilvery: _editedProduct.Dilvery,
+                              duration: _editedProduct.duration,
+                              isFavorite: _editedProduct.isFavorite);
+                        },
+                      ),
                     ),
-                    TextFormField(
-                      decoration: InputDecoration(labelText: 'Description'),
-                      initialValue: initial['description'] as String,
-                      maxLines: 3,
-                      keyboardType: TextInputType.multiline,
-                      focusNode: _DescriptionFocusNode,
-                      onFieldSubmitted: (_) {
-                        FocusScope.of(context).requestFocus(_image);
-                      },
-                      onSaved: (value) {
-                        _editedProduct = Meal(
-                            title: _editedProduct.title,
-                            createdby: _editedProduct.createdby,
-                            price: _editedProduct.price,
-                            description: value!,
-                            imageUrl: _editedProduct.imageUrl,
-                            id: _editedProduct.id,
-                            ResturentName: _editedProduct.ResturentName,
-                            Category: _editedProduct.Category,
-                            Dilvery: _editedProduct.Dilvery,
-                            duration: _editedProduct.duration,
-                            isFavorite: _editedProduct.isFavorite);
-                      },
+                    Container(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextFormField(
+                        initialValue: initial['description'] as String,
+                        decoration: InputDecoration(labelText: 'Description'),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.number,
+                        focusNode: _priceFocusNode,
+                        onFieldSubmitted: (_) {
+                          FocusScope.of(context)
+                              .requestFocus(_DescriptionFocusNode);
+                        },
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter a Description.';
+                          }
+
+                          return null;
+                        },
+                        onSaved: (value) {
+                          _editedProduct = Meal(
+                              title: _editedProduct.title,
+                              createdby: _editedProduct.createdby,
+                              price: _editedProduct.price,
+                              description: value!,
+                              imageUrl: _editedProduct.imageUrl,
+                              id: _editedProduct.id,
+                              ResturentName: _editedProduct.ResturentName,
+                              Category: _editedProduct.Category,
+                              Dilvery: _editedProduct.Dilvery,
+                              duration: _editedProduct.duration,
+                              isFavorite: _editedProduct.isFavorite);
+                        },
+                      ),
                     ),
+
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: <Widget>[

@@ -47,8 +47,14 @@ class _UserProductsScreenState extends State<UserProductsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final productsData = Provider.of<BaltiMeals>(context).findowner(
+    var id = ModalRoute.of(context)?.settings.arguments;
+    print(id);
+    print(3);
+    final productsDat = Provider.of<BaltiMeals>(context).findowners(
         json.decode(Constants.prefs.getString('userData') as String)['userId']);
+
+    final productsData =
+        productsDat.where((val) => val.ResturentName == id.toString()).toList();
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xffB788E5),

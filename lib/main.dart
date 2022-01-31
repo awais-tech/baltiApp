@@ -26,10 +26,12 @@ import 'package:balti/Screens/Buyer/checkout/addtocart.dart';
 import 'package:balti/Screens/Buyer/Accounts/orders_screen.dart';
 import 'package:balti/Screens/Buyer/AccountAuth/signup%20(1).dart';
 import 'package:balti/Screens/Buyer/AccountAuth/splash.dart';
-import 'package:balti/Screens/Seller/JailRecords.dart';
+
 import 'package:balti/Screens/Seller/ManageFeedbacks.dart';
 import 'package:balti/Screens/Seller/Manageproducts/Vieproducts.dart';
 import 'package:balti/Screens/Buyer/Accounts/feedbacks.dart';
+import 'package:balti/Screens/Seller/ResturentRecords.dart';
+import 'package:balti/Screens/Seller/ViewResturent.dart';
 import 'package:balti/Screens/Seller/manageorders/orderstabscreen.dart';
 import 'package:balti/Widgets/tab.dart';
 import 'package:flutter/material.dart';
@@ -137,7 +139,8 @@ class MyApp extends StatelessWidget {
                       OrdersScreenprocessprocess.routeName: (ctx) =>
                           OrdersScreenprocessprocess(),
                       AddResturent.routeName: (ctx) => AddResturent(),
-                      ResturentRecords.routeName: (ctx) => ResturentRecords()
+                      ResturentRecords.routeName: (ctx) => ResturentRecords(),
+                      // ResturentRecords.routeName: (ctx) => ResturentRecords()
                     })));
   }
 }

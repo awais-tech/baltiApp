@@ -2,9 +2,10 @@ import 'package:balti/Provider/MealsProvider.dart';
 import 'package:balti/Screens/Buyer/HomepageScreen.dart';
 import 'package:balti/Screens/Seller/AddProduct.dart';
 import 'package:balti/Screens/Seller/AddResturent.dart';
-import 'package:balti/Screens/Seller/JailRecords.dart';
+
 import 'package:balti/Screens/Seller/ManageFeedbacks.dart';
 import 'package:balti/Screens/Seller/Manageproducts/Vieproducts.dart';
+import 'package:balti/Screens/Seller/ResturentRecords.dart';
 import 'package:balti/Screens/Seller/manageorders/orderstabscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -81,10 +82,10 @@ class _SellerdashboardState extends State<Sellerdashboard> {
                                     borderRadius: BorderRadius.circular(15.0),
                                   ),
                                   tileColor: Colors.blueGrey[50],
-                                  onTap: () {
-                                    Navigator.of(context)
-                                        .pushNamed(ResturentRecords.routeName);
-                                  },
+                                  // onTap: () {
+                                  //   Navigator.of(context)
+                                  //       .pushNamed(ResturentRecords.routeName);
+                                  // },
                                   title: Text(
                                     "Hi, User",
                                     textAlign: TextAlign.start,
@@ -101,11 +102,11 @@ class _SellerdashboardState extends State<Sellerdashboard> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  trailing: Icon(
-                                    Icons.add_business_outlined,
-                                    color: Colors.black,
-                                    size: 36,
-                                  ),
+                                  // trailing: Icon(
+                                  //   Icons.add_business_outlined,
+                                  //   color: Colors.black,
+                                  //   size: 36,
+                                  // ),
                                 ),
                               ),
                             ),
@@ -127,7 +128,7 @@ class _SellerdashboardState extends State<Sellerdashboard> {
                                   child: InkWell(
                                     onTap: () {
                                       Navigator.of(context).pushNamed(
-                                          UserProductsScreen.routeName);
+                                          ResturentRecords.routeName);
                                     },
                                     child: Column(
                                       mainAxisAlignment:
