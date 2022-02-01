@@ -109,16 +109,37 @@ class BaltiMeals with ChangeNotifier {
     try {
       final response = await http.get(url);
       final extractedData = json.decode(response.body);
-      print(extractedData);
+      // print(extractedData);
+      // print(2);
+      var urlfav =
+          Uri.parse('https://baltiapi.herokuapp.com/Favourite/${userid}');
+      final responsefav = await http.get(urlfav);
+      final extractedDatafav = json.decode(responsefav.body);
+      print(2);
+      print(extractedDatafav);
+      print(10);
       final List<Meal> loadedProducts = [];
+      var status = false;
       extractedData != Null
           ? extractedData.forEach((prodData) {
+              if (extractedDatafav != null) {
+                print(prodData['_id']);
+                extractedDatafav["Fav"].forEach((val) {
+                  if (val["id"] == prodData['_id']) {
+                    status = val["status"];
+                    return;
+                  } else {
+                    status = false;
+                    return;
+                  }
+                });
+              }
               loadedProducts.add(Meal(
                 id: prodData['_id'],
                 title: prodData['title'],
                 description: prodData['description'],
                 price: prodData['price'],
-                isFavorite: true,
+                isFavorite: status,
                 imageUrl: prodData['imageUrl'],
                 duration: prodData['duration'],
                 ResturentName: prodData['ResturentName'],

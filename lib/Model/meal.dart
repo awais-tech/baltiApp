@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Meal with ChangeNotifier {
   final String id;
@@ -28,8 +30,17 @@ class Meal with ChangeNotifier {
     required this.createdby,
     this.isFavorite = false,
   });
-  void toggleFavoriteStatus() {
+  void toggleFavoriteStatus(ids) async {
     var old = isFavorite;
+    final url = Uri.parse('https://baltiapi.herokuapp.com/Favourite/${ids}');
+    Map<String, String> headers = {"Content-type": "application/json"};
+
+    await http.post(url,
+        headers: headers,
+        body: json.encode({
+          'status': !isFavorite,
+          'id': id,
+        }));
 
     isFavorite = !isFavorite;
     notifyListeners();
