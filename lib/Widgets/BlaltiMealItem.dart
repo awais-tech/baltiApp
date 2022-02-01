@@ -1,4 +1,5 @@
 import 'package:balti/Model/meal.dart';
+import 'package:balti/Provider/AuthP.dart';
 import 'package:balti/Screens/Buyer/DetailScreen.dart';
 import 'package:balti/Screens/Buyer/checkout/addtocart.dart';
 import 'package:holding_gesture/holding_gesture.dart';
@@ -253,7 +254,9 @@ class BaltiItem extends StatelessWidget {
                 ),
                 color: Colors.red,
                 onPressed: () {
-                  loadedMenu.toggleFavoriteStatus();
+                  print(loadedMenu.isFavorite);
+                  loadedMenu.toggleFavoriteStatus(
+                      Provider.of<Auth>(context, listen: false).userid);
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
@@ -263,7 +266,8 @@ class BaltiItem extends StatelessWidget {
                       action: SnackBarAction(
                         label: 'UNDO',
                         onPressed: () {
-                          loadedMenu.toggleFavoriteStatus();
+                          loadedMenu.toggleFavoriteStatus(
+                              Provider.of<Auth>(context, listen: false).userid);
                         },
                       ),
                     ),
