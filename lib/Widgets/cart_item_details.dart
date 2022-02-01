@@ -100,7 +100,7 @@ class _CartItemDetailState extends State<CartItemDetail> {
                       width: 30,
                       child: IconButton(
                         icon: Icon(Icons.delete_rounded),
-                        color: Color(0xff8d43d6),
+                        color: Colors.red[900],
                         iconSize: MediaQuery.of(context).size.width * 0.04,
                         onPressed: () {
                           cart.removeItem(widget.keys);
@@ -116,17 +116,18 @@ class _CartItemDetailState extends State<CartItemDetail> {
                           )))),
             ],
           ),
-          Expanded(
-              child: FittedBox(
-                  child: Padding(
-                      padding: EdgeInsets.only(left: 30, right: 20),
-                      child: Text(
-                        'Rs.${widget.productPrice * widget.Quantity}',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: MediaQuery.of(context).size.width * 0.04,
-                        ),
-                      ))))
+          FittedBox(
+              fit: BoxFit.cover,
+              child: Container(
+                  padding: EdgeInsets.only(right: 10),
+                  child: Text(
+                    'Rs.${widget.productPrice * widget.Quantity}',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: MediaQuery.of(context).size.width * 0.04,
+                    ),
+                    textAlign: TextAlign.right,
+                  )))
         ],
       ),
     );

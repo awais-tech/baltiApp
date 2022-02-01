@@ -96,7 +96,9 @@ class MyApp extends StatelessWidget {
                     title: 'BaltiApp',
                     theme: ThemeData(
                       primaryColor: Color(0xffB788E5),
-                      accentColor: Color(0xff8d43d6),
+                      pageTransitionsTheme: PageTransitionsTheme(builders: {
+                        TargetPlatform.android: ZoomPageTransitionsBuilder(),
+                      }),
                     ),
                     home: auth.isAuth
                         ? TabsScreen()

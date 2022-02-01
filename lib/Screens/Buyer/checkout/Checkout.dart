@@ -5,6 +5,7 @@ import 'package:balti/Widgets/NewAdress.dart';
 import 'package:balti/Widgets/NewCard.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 enum SingingCharacter { card, cash }
 
@@ -52,6 +53,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     child: Column(
                       children: [
                         RadioListTile(
+                          activeColor: Color(0xff8d43d6),
                           groupValue: _character,
                           title: const Text('Credit/Debit Card'),
                           value: SingingCharacter.card,
@@ -63,6 +65,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           secondary: const Icon(Icons.payment),
                         ),
                         RadioListTile(
+                          activeColor: Color(0xff8d43d6),
                           groupValue: _character,
                           title: const Text('Cash'),
                           value: SingingCharacter.cash,

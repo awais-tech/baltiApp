@@ -22,8 +22,8 @@ class _ResturentRecordsState extends State<ResturentRecords> {
     print(3);
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue[900],
-          title: FittedBox(child: Text('Resturent Record')),
+          backgroundColor: Color(0xffB788E5),
+          title: FittedBox(child: Text('Restaurents Record')),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,7 +113,7 @@ class _ResturentRecordsState extends State<ResturentRecords> {
           onPressed: () {
             Navigator.of(context).pushNamed(AddResturent.routeName);
           },
-          backgroundColor: Colors.red[900],
+          backgroundColor: Color(0xff8d43d6),
         ));
   }
 }
