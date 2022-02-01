@@ -123,14 +123,10 @@ class BaltiMeals with ChangeNotifier {
       extractedData != Null
           ? extractedData.forEach((prodData) {
               if (extractedDatafav != null) {
-                print(prodData['_id']);
+                status = false;
                 extractedDatafav["Fav"].forEach((val) {
                   if (val["id"] == prodData['_id']) {
                     status = val["status"];
-                    return;
-                  } else {
-                    status = false;
-                    return;
                   }
                 });
               }
