@@ -1,4 +1,5 @@
 import 'package:balti/Model/meal.dart';
+import 'package:balti/Screens/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -111,8 +112,11 @@ class BaltiMeals with ChangeNotifier {
       final extractedData = json.decode(response.body);
       // print(extractedData);
       // print(2);
+      var userd = await json
+          .decode(Constants.prefs.getString('userData') as String)['userId'];
+      print(userd);
       var urlfav =
-          Uri.parse('https://baltiapi.herokuapp.com/Favourite/${userid}');
+          Uri.parse('https://baltiapi.herokuapp.com/Favourite/${userd}');
       final responsefav = await http.get(urlfav);
       final extractedDatafav = json.decode(responsefav.body);
       print(2);
@@ -122,7 +126,8 @@ class BaltiMeals with ChangeNotifier {
       var status = false;
       extractedData != Null
           ? extractedData.forEach((prodData) {
-              if (extractedDatafav != null) {
+              if (extractedDatafav != null &&
+                  extractedDatafav["Error"] != "Not found") {
                 status = false;
                 extractedDatafav["Fav"].forEach((val) {
                   if (val["id"] == prodData['_id']) {

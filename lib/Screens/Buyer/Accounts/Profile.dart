@@ -19,12 +19,13 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  final myList = ['Name', 'Phone', 'Password'];
+  final myList = ['Name', 'Address', 'Password'];
 
   final email = TextEditingController();
-  final phone = TextEditingController();
+  var hide = false;
   final password = TextEditingController();
   final name = TextEditingController();
+  final Address = TextEditingController();
   void submit(value, name) async {
     await Provider.of<Auth>(context, listen: false).update(value, name);
     Navigator.of(context).pop();
@@ -235,12 +236,12 @@ class _ProfileState extends State<Profile> {
                 Straightline(),
                 Expanded(
                   child: TextField(
-                    controller: phone,
+                    controller: Address,
                     keyboardType: TextInputType.streetAddress,
                     decoration: InputDecoration(
-                      labelText: 'Edit Phone Number',
+                      labelText: 'Edit Address',
                       border: InputBorder.none,
-                      hintText: 'Please enter phone with area code',
+                      hintText: 'Please enter Address with area ',
                       hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
                     ),
                   ),
@@ -274,10 +275,23 @@ class _ProfileState extends State<Profile> {
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () => {
-                submit(
-                  phone.text,
-                  "Phoneno",
-                )
+                if (Address.text.length < 7)
+                  {
+                    Navigator.of(context).pop(),
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                        'Address must be 7 character long',
+                      ),
+                      duration: Duration(seconds: 2),
+                    )),
+                  }
+                else
+                  {
+                    submit(
+                      Address.text,
+                      "Address",
+                    )
+                  }
               },
             ),
           ),
@@ -383,7 +397,7 @@ class _ProfileState extends State<Profile> {
     final myListData = [
       json.decode(Constants.prefs.getString('userinfo') as String)['name'],
       // json.decode(Constants.prefs.getString('userinfo') as String)['address'],
-      json.decode(Constants.prefs.getString('userinfo') as String)['Phoneno'],
+      json.decode(Constants.prefs.getString('userinfo') as String)['Address'],
       json.decode(Constants.prefs.getString('userinfo') as String)['Password'],
     ];
     return Scaffold(
@@ -430,9 +444,10 @@ class _ProfileState extends State<Profile> {
                             return editName(context, "Edit Name");
                           // else if (index == 1)
                           //   return editEmail(context, "Edit Email");
-                          else if (index == 1)
-                            return editPhone(context, "Edit Phone");
-                          else
+
+                          else if (index == 1) {
+                            return editPhone(context, "Edit Address");
+                          } else
                             return editPassword(context, "Change Password");
                         });
                   },

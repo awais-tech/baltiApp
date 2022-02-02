@@ -165,8 +165,8 @@ class Auth with ChangeNotifier {
     }
   }
 
-  Future<void> userdetails(
-      String email, String Phoneno, String username, String Password) async {
+  Future<void> userdetails(String email, String Phoneno, String username,
+      String Password, Address) async {
     try {
       final extractedUserData =
           await json.decode(Constants.prefs.getString('userData') as String);
@@ -183,6 +183,7 @@ class Auth with ChangeNotifier {
             'Uid': userid,
             'Phoneno': Phoneno,
             'Password': Password,
+            "Address": Address
           },
         ),
       );
@@ -195,6 +196,7 @@ class Auth with ChangeNotifier {
           'Phoneno': responseData['Phoneno'],
           'name': responseData['name'],
           'Password': responseData['Password'],
+          "Address": responseData['Address'],
         },
       );
       await Constants.prefs.setString('userinfo', userinfo);
@@ -234,7 +236,7 @@ class Auth with ChangeNotifier {
       } else if (name == 'name') {
         data = 'name';
       } else {
-        data = 'Phoneno';
+        data = 'Address';
       }
       final response = await http.put(
         url,
@@ -252,6 +254,7 @@ class Auth with ChangeNotifier {
         {
           'email': extractedUserData['email'],
           'Phoneno': responseData['Phoneno'],
+          'Address': responseData['Address'],
           'name': responseData['name'],
           'Password': responseData['Password'],
         },

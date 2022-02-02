@@ -20,6 +20,7 @@ class _MysignuppageState extends State<Mysignuppage> {
     'password': '',
     'username': '',
     'phoneno': '',
+    "Address": "",
   };
 
   void _showErrorDialog(String message) {
@@ -60,6 +61,7 @@ class _MysignuppageState extends State<Mysignuppage> {
         _authData['phoneno'] as String,
         _authData['username'] as String,
         _authData['password'] as String,
+        _authData['Address'] as String,
       );
 
       Navigator.of(context).pushReplacementNamed(HomeScreen.route);
@@ -246,6 +248,58 @@ class _MysignuppageState extends State<Mysignuppage> {
                                         },
                                         onSaved: (value) {
                                           _authData['email'] = value!;
+                                        },
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                margin: const EdgeInsets.symmetric(
+                                    vertical: 10.0, horizontal: 20.0),
+                                child: Row(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 10.0, horizontal: 15.0),
+                                      child: Icon(
+                                        Icons.house,
+                                        color: Color(0xff8d43d6),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 30.0,
+                                      width: 1.0,
+                                      color: Colors.grey.withOpacity(0.5),
+                                      margin: const EdgeInsets.only(
+                                          left: 00.0, right: 10.0),
+                                    ),
+                                    Expanded(
+                                      child: TextFormField(
+                                        keyboardType: TextInputType.text,
+                                        decoration: InputDecoration(
+                                          labelText: 'Enter New Address',
+                                          border: InputBorder.none,
+                                          hintText:
+                                              '30 b,BOR Pia society,lahore',
+                                          hintStyle: TextStyle(
+                                              color: Colors.grey, fontSize: 10),
+                                        ),
+                                        validator: (value) {
+                                          if (value!.isEmpty ||
+                                              value.length < 8) {
+                                            return 'Address must be 7 character long!';
+                                          }
+                                        },
+                                        onSaved: (value) {
+                                          _authData['Address'] = value!;
                                         },
                                       ),
                                     )

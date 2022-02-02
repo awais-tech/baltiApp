@@ -1,11 +1,12 @@
 import 'package:balti/Provider/cart.dart';
 import 'package:balti/Provider/orders.dart';
 import 'package:balti/Screens/Buyer/Accounts/orders_screenprocess.dart';
+import 'package:balti/Screens/Constants.dart';
 import 'package:balti/Widgets/NewAdress.dart';
 import 'package:balti/Widgets/NewCard.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'dart:convert';
 
 enum SingingCharacter { card, cash }
 
@@ -38,48 +39,48 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                      padding: EdgeInsets.only(top: 10, bottom: 10, left: 15),
-                      child: Text(
-                        "Payment Methods",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            color: Color(0xff8d43d6),
-                            fontWeight: FontWeight.bold),
-                      )),
-                  Card(
-                    margin: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                    elevation: 5,
-                    child: Column(
-                      children: [
-                        RadioListTile(
-                          activeColor: Color(0xff8d43d6),
-                          groupValue: _character,
-                          title: const Text('Credit/Debit Card'),
-                          value: SingingCharacter.card,
-                          onChanged: (SingingCharacter? value) {
-                            setState(() {
-                              _character = value;
-                            });
-                          },
-                          secondary: const Icon(Icons.payment),
-                        ),
-                        RadioListTile(
-                          activeColor: Color(0xff8d43d6),
-                          groupValue: _character,
-                          title: const Text('Cash'),
-                          value: SingingCharacter.cash,
-                          onChanged: (SingingCharacter? value) {
-                            setState(() {
-                              _character = value;
-                            });
-                          },
-                          secondary: const Icon(Icons.attach_money),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Button(context, "Add New Card"),
+                  // Container(
+                  //     padding: EdgeInsets.only(top: 10, bottom: 10, left: 15),
+                  //     child: Text(
+                  //       "Payment Methods",
+                  //       textAlign: TextAlign.start,
+                  //       style: TextStyle(
+                  //           color: Color(0xff8d43d6),
+                  //           fontWeight: FontWeight.bold),
+                  //     )),
+                  // Card(
+                  //   margin: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                  //   elevation: 5,
+                  //   child: Column(
+                  //     children: [
+                  //       RadioListTile(
+                  //         activeColor: Color(0xff8d43d6),
+                  //         groupValue: _character,
+                  //         title: const Text('Credit/Debit Card'),
+                  //         value: SingingCharacter.card,
+                  //         onChanged: (SingingCharacter? value) {
+                  //           setState(() {
+                  //             _character = value;
+                  //           });
+                  //         },
+                  //         secondary: const Icon(Icons.payment),
+                  //       ),
+                  //       RadioListTile(
+                  //         activeColor: Color(0xff8d43d6),
+                  //         groupValue: _character,
+                  //         title: const Text('Cash'),
+                  //         value: SingingCharacter.cash,
+                  //         onChanged: (SingingCharacter? value) {
+                  //           setState(() {
+                  //             _character = value;
+                  //           });
+                  //         },
+                  //         secondary: const Icon(Icons.attach_money),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                  // Button(context, "Add New Card"),
                   Container(
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,15 +115,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                           fontSize: 18,
                                           color: Colors.black87)),
                                   Text(
-                                      "House No. 30 Block B PIA Housing Society",
+                                      json.decode(
+                                          Constants.prefs.getString('userinfo')
+                                              as String)['Address'],
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black87,
                                       )),
-                                  Text("Johar Town, Lahore 54782",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black54)),
                                 ],
                               ),
                             ),
