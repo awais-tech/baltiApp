@@ -127,7 +127,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             ),
                           ),
                         ),
-                        Button(context, "Add New Address"),
+                        Button(context, "Change Address"),
                       ])),
                 ],
               ),

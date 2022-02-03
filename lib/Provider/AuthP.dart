@@ -340,4 +340,43 @@ class Auth with ChangeNotifier {
 
     return true;
   }
+
+  Future<void> updates(info, name) async {
+    try {
+      var data;
+      final extractedUserData =
+          await json.decode(Constants.prefs.getString('userData') as String);
+      Map<String, String> headers = {"Content-type": "application/json"};
+      var userid = extractedUserData['userId'] as String;
+      final url = Uri.parse('https://baltiapi.herokuapp.com/users/$userid');
+
+      final response = await http.put(
+        url,
+        headers: headers,
+        body: json.encode(
+          {
+            "Address": info,
+          },
+        ),
+      );
+
+      final responseData = json.decode(response.body);
+      print(response);
+      final userinfo = json.encode(
+        {
+          'email': extractedUserData['email'],
+          'Phoneno': responseData['Phoneno'],
+          'Address': responseData['Address'],
+          'name': responseData['name'],
+          'Password': responseData['Password'],
+        },
+      );
+      await Constants.prefs.setString('userinfo', userinfo);
+
+      notifyListeners();
+    } catch (e) {
+      print(e);
+      throw (e);
+    }
+  }
 }

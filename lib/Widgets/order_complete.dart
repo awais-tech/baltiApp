@@ -116,7 +116,7 @@ Widget editEmail(BuildContext context, String title, ord.OrderItem order) {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('address' + order.email,
+            child: Text('Address' + order.Address,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(

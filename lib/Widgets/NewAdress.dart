@@ -1,10 +1,18 @@
+import 'package:balti/Provider/AuthP.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class NewAddress extends StatelessWidget {
+class NewAddress extends StatefulWidget {
   const NewAddress({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<NewAddress> createState() => _NewAddressState();
+}
+
+class _NewAddressState extends State<NewAddress> {
+  var address = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,6 +49,7 @@ class NewAddress extends StatelessWidget {
                 new Expanded(
                   child: TextField(
                     keyboardType: TextInputType.streetAddress,
+                    controller: address,
                     decoration: InputDecoration(
                       labelText: 'Enter New Address',
                       border: InputBorder.none,
@@ -56,7 +65,12 @@ class NewAddress extends StatelessWidget {
             style: TextButton.styleFrom(
               textStyle: const TextStyle(fontSize: 15),
             ),
-            onPressed: () {},
+            onPressed: () async {
+              await Provider.of<Auth>(context, listen: false)
+                  .updates(address.text, "Address");
+              Navigator.of(context).pop();
+              setState(() {});
+            },
             child: const Text('Submit'),
           ),
         ],

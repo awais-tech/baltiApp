@@ -13,6 +13,7 @@ class OrderItem {
   final String email;
   final String phoneno;
   final String name;
+  final String Address;
   final String createdby;
 
   OrderItem({
@@ -23,6 +24,7 @@ class OrderItem {
     required this.email,
     required this.phoneno,
     required this.name,
+    required this.Address,
     required this.status,
     required this.createdby,
   });
@@ -79,6 +81,7 @@ class Orders with ChangeNotifier {
               status: orderData['status'],
               email: responseData['email'],
               phoneno: responseData['Phoneno'],
+              Address: responseData['Address'],
               name: responseData['name'],
               createdby: orderData['createdby'],
               products: (orderData['products'] as List<dynamic>)
@@ -113,6 +116,7 @@ class Orders with ChangeNotifier {
                     email: mains['email'],
                     phoneno: mains['Phoneno'],
                     name: mains['name'],
+                    Address: mains['Address'],
                     createdby: orderData['createdby'],
                     products: (orderData['products'] as List<dynamic>)
                         .map(
@@ -176,6 +180,7 @@ class Orders with ChangeNotifier {
         email: '',
         phoneno: '',
         name: '',
+        Address: "",
         status: 'pending',
       ),
     );
