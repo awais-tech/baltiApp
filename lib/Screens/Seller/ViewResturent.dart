@@ -78,19 +78,19 @@ class _ViewResturentState extends State<ViewResturent> {
                     ),
                   ),
                 ),
-                Container(
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Text(
-                      'Description: ${widget.comp.description}',
-                      softWrap: true,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                )
+                // Container(
+                //   child: FittedBox(
+                //     fit: BoxFit.contain,
+                //     child: Text(
+                //       'Description: ${widget.comp.description}',
+                //       softWrap: true,
+                //       style: TextStyle(
+                //         fontWeight: FontWeight.bold,
+                //         color: Colors.grey,
+                //       ),
+                //     ),
+                //   ),
+                // )
               ],
             ),
           )
