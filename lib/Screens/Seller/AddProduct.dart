@@ -314,7 +314,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                               ResturentName: _editedProduct.ResturentName,
                               Category: _editedProduct.Category,
                               Dilvery: _editedProduct.Dilvery,
-                              duration: double.parse(value!) as int,
+                              duration: int.parse(value!),
                               isFavorite: _editedProduct.isFavorite);
                         },
                       ),
@@ -326,11 +326,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         decoration: InputDecoration(labelText: 'Price'),
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
-                        focusNode: _priceFocusNode,
-                        onFieldSubmitted: (_) {
-                          FocusScope.of(context)
-                              .requestFocus(_DescriptionFocusNode);
-                        },
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter a price.';
@@ -347,7 +342,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           _editedProduct = Meal(
                               title: _editedProduct.title,
                               createdby: _editedProduct.createdby,
-                              price: double.parse(value!) as int,
+                              price: int.parse(value!),
                               description: _editedProduct.description,
                               imageUrl: _editedProduct.imageUrl,
                               id: _editedProduct.id,
@@ -365,8 +360,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         initialValue: initial['description'] as String,
                         decoration: InputDecoration(labelText: 'Description'),
                         textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.number,
-                        focusNode: _priceFocusNode,
                         onFieldSubmitted: (_) {
                           FocusScope.of(context)
                               .requestFocus(_DescriptionFocusNode);

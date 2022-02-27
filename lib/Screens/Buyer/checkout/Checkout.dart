@@ -115,9 +115,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                           fontSize: 18,
                                           color: Colors.black87)),
                                   Text(
-                                      json.decode(
-                                          Constants.prefs.getString('userinfo')
-                                              as String)['Address'],
+                                      // json.decode(
+                                      //     Constants.prefs.getString('userinfo')
+                                      //         as String)['Address'],
+                                      "ssss",
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black87,
