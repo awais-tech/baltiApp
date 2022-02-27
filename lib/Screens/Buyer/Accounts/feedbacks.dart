@@ -20,6 +20,7 @@ class FeedbackScreen extends StatefulWidget {
 
 class _FeedbackScreenState extends State<FeedbackScreen> {
   SingingCharacter? _character = SingingCharacter.comments;
+
   final _feedbackKey = GlobalKey<FormState>();
   final _descriptionFocusNode = FocusNode();
   //final _textControl = TextEditingController();
@@ -46,6 +47,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
     try {
       var oid = ModalRoute.of(context)!.settings.arguments as Map;
       _feedbackKey.currentState!.save();
+
       var id = Provider.of<Auth>(context, listen: false).userid;
 
       setState(() {

@@ -82,6 +82,7 @@ class Auth with ChangeNotifier {
             'name': responses['name'],
             'Password': responses['Password'],
             'email': responses['email'],
+            "Address": responses["Address"],
             'Phoneno': responses['Phoneno'],
           },
         );
