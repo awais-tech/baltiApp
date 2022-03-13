@@ -1,5 +1,6 @@
 import 'package:balti/Model/Http_exception.dart';
 import 'package:balti/Provider/AuthP.dart';
+import 'package:balti/Provider/Currentlocation.dart';
 import 'package:balti/Screens/Buyer/AccountAuth/ForgotPassword/ForgotPasswordScreen.dart';
 import 'package:balti/Screens/Buyer/AccountAuth/ForgotPassword/VerifyEmail.dart';
 import 'package:balti/Screens/Buyer/HomepageScreen.dart';
@@ -15,12 +16,20 @@ class LoginScreen1 extends StatefulWidget {
 }
 
 class _LoginScreen1State extends State<LoginScreen1> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+        Provider.of<Currentlocation>(context, listen: false).currentlocation();
+  }
   final GlobalKey<FormState> _formKey = GlobalKey();
   var _isLoading = false;
   Map<String, String> _authData = {
     'email': '',
     'password': '',
   };
+  
   void _showErrorDialog(String message) {
     showDialog(
       context: context,

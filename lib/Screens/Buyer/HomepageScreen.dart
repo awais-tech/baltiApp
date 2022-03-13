@@ -1,7 +1,9 @@
 import 'package:balti/Model/meal.dart';
+import 'package:balti/Provider/Currentlocation.dart';
 import 'package:balti/Provider/MealsProvider.dart';
 import 'package:balti/Screens/Seller/Dashboard.dart';
 import 'package:balti/Widgets/BlaltiMealItem.dart';
+import 'package:balti/Widgets/Map.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,9 +20,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  
   var _showOnlyFavorites = false;
+
+
   var _isInit = true;
   var _isLoading = false;
+
   @override
   void didChangeDependencies() {
     if (_isInit) {
@@ -35,6 +41,12 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     _isInit = false;
     super.didChangeDependencies();
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    Provider.of<Currentlocation>(context, listen: false).currentlocation();
+    super.initState();
   }
 
   @override
@@ -66,14 +78,19 @@ class _HomeScreenState extends State<HomeScreen> {
               PopupMenuItem(
                 child: Column(
                   children: [
-                    Text('Change Location'),
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Enter Location',
-                        border: InputBorder.none,
-                        hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
-                      ),
-                    )
+                    InkWell(
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushReplacementNamed(Maps.routeName);
+                        },
+                        child: Text('Change Location')),
+                    // TextField(
+                    //   decoration: InputDecoration(
+                    //     labelText: 'Enter Location',
+                    //     border: InputBorder.none,
+                    //     hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
+                    //   ),
+                    // )
                   ],
                 ),
                 value: FilterOptions.Favorites,

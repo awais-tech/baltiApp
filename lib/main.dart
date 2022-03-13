@@ -1,8 +1,10 @@
 import 'package:balti/Provider/AuthP.dart';
+import 'package:balti/Provider/Currentlocation.dart';
 import 'package:balti/Provider/MealsProvider.dart';
 import 'package:balti/Provider/Resturents.dart';
 import 'package:balti/Provider/cart.dart';
 import 'package:balti/Provider/feedback.dart';
+import 'package:balti/Provider/googlemap.dart';
 import 'package:balti/Provider/orders.dart';
 import 'package:balti/Provider/utilities.dart';
 import 'package:balti/Screens/Buyer/AccountAuth/ForgotPassword/ForgotPasswordScreen.dart';
@@ -38,6 +40,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Widgets/Map.dart';
+
 void main() async {
   await WidgetsFlutterBinding.ensureInitialized();
   Constants.prefs = await SharedPreferences.getInstance();
@@ -53,7 +57,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(
             create: (ctx) => Auth(),
           ),
-
+          ChangeNotifierProvider.value(value: Currentlocation()),
           ChangeNotifierProxyProvider<Auth, Orders>(
             create: (ctx) => Orders('', '', []),
             update: (ctx, auth, previousOrders) => Orders(
@@ -78,6 +82,7 @@ class MyApp extends StatelessWidget {
               auth.userid,
             ),
           ),
+          ChangeNotifierProvider.value(value: GernateMap()),
           ChangeNotifierProvider(
             create: (ctx) => Cart(),
           ),
@@ -111,7 +116,9 @@ class MyApp extends StatelessWidget {
                                     : LoginScreen1(),
                           ),
                     routes: {
+                      Maps.routeName:(ctx)=>Maps(),
                       HomeScreen.route: (ctx) => HomeScreen(),
+
                       LoginScreen1.routename: (ctx) => LoginScreen1(),
                       TabsScreen.route: (ctx) => TabsScreen(),
                       Mysignuppage.route: (ctx) => Mysignuppage(),

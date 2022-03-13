@@ -29,6 +29,9 @@ dependencies:
   holding_gesture: ^1.1.0
   carousel_slider: ^4.0.0
   flutter_custom_clippers: ^2.0.0
+  google_maps_flutter: any
+  geolocator: any
+  geocoder: any
   # progress_state_button: "^1.0.3"
 
   # The following adds the Cupertino Icons font to your application.
