@@ -2,7 +2,9 @@ import 'package:balti/Model/Resturent.dart';
 import 'package:balti/Model/Resturent.dart';
 
 import 'package:balti/Provider/Resturents.dart';
+import 'package:balti/Provider/googlemap.dart';
 import 'package:balti/Provider/utilities.dart';
+import 'package:balti/Widgets/Map.dart';
 import 'package:dropdown_plus/dropdown_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -76,6 +78,11 @@ class _AddResturentState extends State<AddResturent> {
     setState(() {});
   }
 
+  saveaddress() {
+    Navigator.of(context)
+        .pushReplacementNamed(Maps.routeName, arguments: "seller");
+  }
+
   void saveform() async {
     var form = _form.currentState!.validate();
     if (!form) {
@@ -129,6 +136,11 @@ class _AddResturentState extends State<AddResturent> {
   @override
   Widget build(BuildContext context) {
     final cat = Provider.of<Utilities>(context).categorys;
+    final lat = Provider.of<GernateMap>(context, listen: true).lng;
+    final long = Provider.of<GernateMap>(context, listen: true).lat;
+    if (long != 0.0 && lat != 0.00) {
+      initial['location'] = '${lat},${long}';
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Resturent'),
@@ -148,6 +160,29 @@ class _AddResturentState extends State<AddResturent> {
                 autovalidateMode: AutovalidateMode.always,
                 child: ListView(
                   children: <Widget>[
+                    Container(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextFormField(
+                        initialValue: initial['location'] as String,
+                        decoration: InputDecoration(
+                          labelText: 'Location',
+                          border: OutlineInputBorder(),
+                        ),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.text,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter location.';
+                          }
+
+                          return null;
+                        },
+                        onSaved: (value) {
+                          _editedResturent.location = value!;
+                        },
+                      ),
+                    ),
+                    IconButton(onPressed: saveaddress, icon: Icon(Icons.save)),
                     Container(
                       padding: const EdgeInsets.all(15.0),
                       child: TextFormField(
@@ -205,29 +240,6 @@ class _AddResturentState extends State<AddResturent> {
                     //     onSaved: (dynamic value) {},
                     //   ),
                     // ),
-
-                    Container(
-                      padding: const EdgeInsets.all(15.0),
-                      child: TextFormField(
-                        initialValue: initial['location'] as String,
-                        decoration: InputDecoration(
-                          labelText: 'Location',
-                          border: OutlineInputBorder(),
-                        ),
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.text,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter location.';
-                          }
-
-                          return null;
-                        },
-                        onSaved: (value) {
-                          _editedResturent.location = value!;
-                        },
-                      ),
-                    ),
 
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.end,

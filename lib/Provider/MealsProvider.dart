@@ -1,8 +1,11 @@
+import 'package:balti/Model/Resturent.dart';
 import 'package:balti/Model/meal.dart';
 import 'package:balti/Screens/Constants.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:collection/collection.dart';
 
 class BaltiMeals with ChangeNotifier {
   String Auth;
@@ -99,6 +102,37 @@ class BaltiMeals with ChangeNotifier {
 
   List<Meal> findByresturent(String name) {
     return items.where((prod) => prod.ResturentName.contains(name)).toList();
+  }
+
+  List<Meal> findByresturentandLocation(lat, long, List<Resturent> res) {
+    List<Meal> storeproduct = [];
+    res.forEach((element) {
+      print(element);
+      print(Geolocator.distanceBetween(lat, long, lat, long));
+      var loc = element.location.split(",");
+      print(loc);
+      var data = items.firstWhere(
+          (prod) => (prod.ResturentName.contains(element.name) &&
+              Geolocator.distanceBetween(
+                      lat, long, double.parse(loc[0]), double.parse(loc[1])) <
+                  2000),
+          orElse: () => Meal(
+              id: "",
+              title: "",
+              imageUrl: "",
+              duration: 0,
+              ResturentName: "",
+              Category: "",
+              Dilvery: "",
+              price: 0,
+              description: "",
+              createdby: ""));
+      if (data.id != "") {
+        storeproduct.add(data);
+      }
+    });
+
+    return storeproduct;
   }
 
   List<Meal> findowner(id) {

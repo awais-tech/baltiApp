@@ -40,8 +40,7 @@ class Resturents with ChangeNotifier {
                 description: prodData['description'],
                 imageUrl:
                     prodData['imageUrl'] == null ? "" : prodData['imageUrl'],
-                location:
-                    prodData['duration'] == null ? "" : prodData['duration'],
+                location: prodData['Location'],
                 createdby: prodData['createdby'],
               ));
             })
@@ -86,7 +85,7 @@ class Resturents with ChangeNotifier {
           'Name': resturent.name,
           'description': resturent.description,
           'imageUrl': resturent.imageUrl,
-          'Loocation': resturent.location,
+          'Location': resturent.location,
           'createdby': userid,
         }),
       );

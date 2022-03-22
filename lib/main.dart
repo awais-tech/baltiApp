@@ -66,14 +66,6 @@ class MyApp extends StatelessWidget {
               previousOrders!.orders,
             ),
           ),
-          ChangeNotifierProxyProvider<Auth, BaltiMeals>(
-            create: (ctx) => BaltiMeals('', [], ''),
-            update: (ctx, auth, previousProducts) => BaltiMeals(
-              auth.token!,
-              previousProducts == null ? [] : previousProducts.items,
-              auth.userid,
-            ),
-          ),
           ChangeNotifierProxyProvider<Auth, Resturents>(
             create: (ctx) => Resturents('', [], ''),
             update: (ctx, auth, previousProducts) => Resturents(
@@ -82,6 +74,15 @@ class MyApp extends StatelessWidget {
               auth.userid,
             ),
           ),
+          ChangeNotifierProxyProvider<Auth, BaltiMeals>(
+            create: (ctx) => BaltiMeals('', [], ''),
+            update: (ctx, auth, previousProducts) => BaltiMeals(
+              auth.token!,
+              previousProducts == null ? [] : previousProducts.items,
+              auth.userid,
+            ),
+          ),
+
           ChangeNotifierProvider.value(value: GernateMap()),
           ChangeNotifierProvider(
             create: (ctx) => Cart(),
@@ -116,7 +117,7 @@ class MyApp extends StatelessWidget {
                                     : LoginScreen1(),
                           ),
                     routes: {
-                      Maps.routeName:(ctx)=>Maps(),
+                      Maps.routeName: (ctx) => Maps(),
                       HomeScreen.route: (ctx) => HomeScreen(),
 
                       LoginScreen1.routename: (ctx) => LoginScreen1(),

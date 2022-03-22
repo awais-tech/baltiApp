@@ -1,10 +1,13 @@
 import 'package:balti/Model/meal.dart';
 import 'package:balti/Provider/Currentlocation.dart';
 import 'package:balti/Provider/MealsProvider.dart';
+import 'package:balti/Provider/Resturents.dart';
+import 'package:balti/Provider/googlemap.dart';
 import 'package:balti/Screens/Seller/Dashboard.dart';
 import 'package:balti/Widgets/BlaltiMealItem.dart';
 import 'package:balti/Widgets/Map.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 
 enum FilterOptions {
@@ -20,9 +23,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
   var _showOnlyFavorites = false;
-
 
   var _isInit = true;
   var _isLoading = false;
@@ -34,14 +35,20 @@ class _HomeScreenState extends State<HomeScreen> {
         _isLoading = true;
       });
       Provider.of<BaltiMeals>(context).fetchAndSetProducts().then((_) {
-        setState(() {
-          _isLoading = false;
-        });
-      });
+        Provider.of<Resturents>(context, listen: false)
+            .fetchAndSetResturents()
+            .then((_) {
+          setState(() {
+            _isLoading = false;
+          });
+        }).catchError((e) => print(e));
+      }).catchError((e) => print(e));
+      ;
     }
     _isInit = false;
     super.didChangeDependencies();
   }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -51,12 +58,23 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<Meal> products;
     final loadedMenu = Provider.of<BaltiMeals>(
       context,
       listen: true,
     );
-    final products =
-        _showOnlyFavorites ? loadedMenu.favoriteItems : loadedMenu.items;
+
+    final lat = Provider.of<GernateMap>(context, listen: true).lng;
+    final lng = Provider.of<GernateMap>(context, listen: true).lat;
+    if (lat != 0.0 && lng != 0.0) {
+      final loadedres = Provider.of<Resturents>(context, listen: false);
+      products = Provider.of<BaltiMeals>(context)
+          .findByresturentandLocation(lat, lng, loadedres.items);
+    } else {
+      products =
+          _showOnlyFavorites ? loadedMenu.favoriteItems : loadedMenu.items;
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffB788E5),
@@ -80,8 +98,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     InkWell(
                         onTap: () {
-                          Navigator.of(context)
-                              .pushReplacementNamed(Maps.routeName);
+                          Navigator.of(context).pushReplacementNamed(
+                              Maps.routeName,
+                              arguments: "Buyer");
                         },
                         child: Text('Change Location')),
                     // TextField(
@@ -183,59 +202,65 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: products.length,
                       ),
                     ),
-                    Container(
-                      child: Container(
-                          color: Colors.white,
-                          child: OrientationBuilder(
-                            builder: (BuildContext context,
-                                Orientation orientation) {
-                              return new GridView.builder(
-                                shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
-                                itemCount: products.length,
-                                itemBuilder: (ctx, index) {
-                                  return ChangeNotifierProvider.value(
-                                    value: products[index],
-                                    child: BaltiItem(),
-                                  );
-                                },
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount:
-                                      MediaQuery.of(context).orientation ==
-                                              Orientation.portrait
-                                          ? 2
-                                          : 4,
-                                  // MediaQuery.of(context).size.width /
-                                  // (MediaQuery.of(context).size.height / 1.4)
-                                  childAspectRatio:
-                                      MediaQuery.of(context).orientation ==
-                                              Orientation.portrait
-                                          ? 1 / 1.3
-                                          : 1 / 1.1,
-                                  crossAxisSpacing: 4,
-                                  mainAxisSpacing: 4,
+                    products.length < 1
+                        ? Center(
+                            child: Text(
+                            "No Record",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ))
+                        : Container(
+                            child: Container(
+                                color: Colors.white,
+                                child: OrientationBuilder(
+                                  builder: (BuildContext context,
+                                      Orientation orientation) {
+                                    return new GridView.builder(
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: products.length,
+                                      itemBuilder: (ctx, index) {
+                                        return ChangeNotifierProvider.value(
+                                          value: products[index],
+                                          child: BaltiItem(),
+                                        );
+                                      },
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: MediaQuery.of(context)
+                                                    .orientation ==
+                                                Orientation.portrait
+                                            ? 2
+                                            : 4,
+                                        // MediaQuery.of(context).size.width /
+                                        // (MediaQuery.of(context).size.height / 1.4)
+                                        childAspectRatio: MediaQuery.of(context)
+                                                    .orientation ==
+                                                Orientation.portrait
+                                            ? 1 / 1.3
+                                            : 1 / 1.1,
+                                        crossAxisSpacing: 4,
+                                        mainAxisSpacing: 4,
+                                      ),
+                                    );
+                                  },
+                                )
+                                // child: ListView.builder(
+                                //   cacheExtent: 9999,
+                                //   shrinkWrap: true,
+                                //   physics: const NeverScrollableScrollPhysics(),
+                                //   itemBuilder: (ctx, index) {
+                                //     return ChangeNotifierProvider.value(
+                                //       value: products[index],
+                                //       child: Container(
+                                //         width: 300.0,
+                                //         child: BaltiItem(),
+                                //       ),
+                                //     );
+                                //   },
+                                //   itemCount: products.length,
+                                // ),
                                 ),
-                              );
-                            },
-                          )
-                          // child: ListView.builder(
-                          //   cacheExtent: 9999,
-                          //   shrinkWrap: true,
-                          //   physics: const NeverScrollableScrollPhysics(),
-                          //   itemBuilder: (ctx, index) {
-                          //     return ChangeNotifierProvider.value(
-                          //       value: products[index],
-                          //       child: Container(
-                          //         width: 300.0,
-                          //         child: BaltiItem(),
-                          //       ),
-                          //     );
-                          //   },
-                          //   itemCount: products.length,
-                          // ),
                           ),
-                    ),
                   ],
                 ),
               ),
