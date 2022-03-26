@@ -21,45 +21,44 @@ class _OrdersCompleteState extends State<OrdersComplete> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.order.products);
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(10),
       child: Column(
         children: <Widget>[
           ListTile(
-            title: Text(' \Rs.${widget.order.amount} '),
+            title: Row(
+              children: [
+                Text(' \Rs.${widget.order.amount} '),
+                IconButton(
+                  icon: Icon(_expanded ? Icons.expand_less : Icons.expand_more),
+                  onPressed: () {
+                    setState(() {
+                      _expanded = !_expanded;
+                    });
+                  },
+                ),
+              ],
+            ),
             subtitle: Text(
               DateFormat('dd/MM/yyyy hh:mm').format(widget.order.dateTime),
             ),
             trailing: Container(
-              width: 100,
-              child: Expanded(
-                child: Row(
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.details_outlined),
-                      onPressed: () {
-                        showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            builder: (context) {
-                              return editEmail(
-                                  context, "View Detail", widget.order);
-                            });
-                      },
-                    ),
-                    IconButton(
-                      icon: Icon(
-                          _expanded ? Icons.expand_less : Icons.expand_more),
-                      onPressed: () {
-                        setState(() {
-                          _expanded = !_expanded;
-                        });
-                      },
-                    ),
-                  ],
-                ),
+              child: Column(
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.details_outlined),
+                    onPressed: () {
+                      showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          builder: (context) {
+                            return editEmail(
+                                context, "View Detail", widget.order);
+                          });
+                    },
+                  ),
+                ],
               ),
             ),
           ),

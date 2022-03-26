@@ -98,9 +98,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     InkWell(
                         onTap: () {
-                          Navigator.of(context).pushReplacementNamed(
-                              Maps.routeName,
-                              arguments: "Buyer");
+                          Navigator.of(context)
+                              .pushNamed(Maps.routeName, arguments: "Buyer");
                         },
                         child: Text('Change Location')),
                     // TextField(

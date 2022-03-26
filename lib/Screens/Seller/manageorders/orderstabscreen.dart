@@ -17,30 +17,27 @@ class OrdersApprovalScreen extends StatelessWidget {
           title: Text('Orders'),
           bottom: TabBar(
             tabs: [
-              FittedBox(
-                fit: BoxFit.contain,
-                child: Tab(
-                    icon: Icon(Icons.approval_rounded),
-                    text: "Order need approval"),
-              ),
-              FittedBox(
-                child: Tab(
-                    icon: Icon(Icons.pending_actions_rounded),
-                    text: "Order in processing"),
-              ),
-              FittedBox(
-                  child: Tab(
-                      icon: Icon(Icons.done_all_rounded),
-                      text: "Complete Orders"))
+              Tab(
+                  icon: Icon(Icons.approval_rounded),
+                  text: "Order need approval"),
+              Tab(
+                  icon: Icon(Icons.pending_actions_rounded),
+                  text: "Order in processing"),
+              Tab(icon: Icon(Icons.done_all_rounded), text: "Complete Orders")
             ],
           ),
         ),
-        body: TabBarView(
-          children: [
-            Orderspendings(),
-            OrdersInProcess(),
-            OrdersCompletes(),
-          ],
+        body: Container(
+          child: TabBarView(
+            children: [
+              Container(),
+              Container(),
+              // Container()
+              // Orderspendings(),
+              // OrdersInProcess(),
+              OrdersCompletes(),
+            ],
+          ),
         ),
       ),
     );

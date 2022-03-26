@@ -145,10 +145,10 @@ class _MapsState extends State<Maps> {
                                     }
                                     FormHelper.showMessage(
                                       context,
-                                      "Are you want Save this Location",
-                                      "Cancel",
+                                      "Your Location is save",
                                       "",
-                                      "done",
+                                      "",
+                                      "Ok",
                                       () {
                                         if (id == "seller") {
                                           Navigator.of(context).pushNamed(
